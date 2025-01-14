@@ -1,0 +1,151 @@
+{
+    "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-ea6adcad-9572",
+    "name": "Microsoft.Web-WebApp-Portal-ea6adcad-9572",
+    "type": "Microsoft.Resources/deployments",
+    "tags": {
+        "primaryResourceId": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourcegroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze",
+        "marketplaceItemId": "Microsoft.WebSite",
+        "provisioningHash": "customize-post-provisioning-steps-webapp-deployment"
+    },
+    "properties": {
+        "templateHash": "8135926055058660827",
+        "parameters": {
+            "subscriptionId": {
+                "type": "String",
+                "value": "2d06f7f7-077c-4f77-a10f-321e27a999d6"
+            },
+            "resourceGroupName": {
+                "type": "String",
+                "value": "FENapredneBaze_group"
+            },
+            "name": {
+                "type": "String",
+                "value": "FENapredneBaze"
+            },
+            "location": {
+                "type": "String",
+                "value": "East US"
+            },
+            "hostingPlanName": {
+                "type": "String",
+                "value": "ASP-FENapredneBazegroup-8c46"
+            },
+            "serverFarmResourceGroup": {
+                "type": "String",
+                "value": "FENapredneBaze_group"
+            },
+            "alwaysOn": {
+                "type": "Bool",
+                "value": false
+            },
+            "ftpsState": {
+                "type": "String",
+                "value": "FtpsOnly"
+            },
+            "sku": {
+                "type": "String",
+                "value": "Free"
+            },
+            "skuCode": {
+                "type": "String",
+                "value": "F1"
+            },
+            "workerSize": {
+                "type": "String",
+                "value": "0"
+            },
+            "workerSizeId": {
+                "type": "String",
+                "value": "0"
+            },
+            "numberOfWorkers": {
+                "type": "String",
+                "value": "1"
+            },
+            "linuxFxVersion": {
+                "type": "String",
+                "value": "NODE|20-lts"
+            }
+        },
+        "mode": "Incremental",
+        "debugSetting": {
+            "detailLevel": "None"
+        },
+        "provisioningState": "Succeeded",
+        "timestamp": "2024-07-04T21:58:47.0055284Z",
+        "duration": "PT44.0369821S",
+        "correlationId": "c1a85bc3-532a-47ae-a7e6-1e966a3b4e9a",
+        "providers": [
+            {
+                "namespace": "Microsoft.Web",
+                "resourceTypes": [
+                    {
+                        "resourceType": "sites",
+                        "locations": ["eastus"]
+                    },
+                    {
+                        "resourceType": "sites/basicPublishingCredentialsPolicies",
+                        "locations": [null]
+                    },
+                    {
+                        "resourceType": "serverfarms",
+                        "locations": ["eastus"]
+                    }
+                ]
+            }
+        ],
+        "dependencies": [
+            {
+                "dependsOn": [
+                    {
+                        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/serverfarms/ASP-FENapredneBazegroup-8c46",
+                        "resourceType": "Microsoft.Web/serverfarms",
+                        "resourceName": "ASP-FENapredneBazegroup-8c46"
+                    }
+                ],
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze",
+                "resourceType": "Microsoft.Web/sites",
+                "resourceName": "FENapredneBaze"
+            },
+            {
+                "dependsOn": [
+                    {
+                        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/Sites/FENapredneBaze",
+                        "resourceType": "Microsoft.Web/Sites",
+                        "resourceName": "FENapredneBaze"
+                    }
+                ],
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze/basicPublishingCredentialsPolicies/scm",
+                "resourceType": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+                "resourceName": "FENapredneBaze/scm"
+            },
+            {
+                "dependsOn": [
+                    {
+                        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/Sites/FENapredneBaze",
+                        "resourceType": "Microsoft.Web/Sites",
+                        "resourceName": "FENapredneBaze"
+                    }
+                ],
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze/basicPublishingCredentialsPolicies/ftp",
+                "resourceType": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+                "resourceName": "FENapredneBaze/ftp"
+            }
+        ],
+        "outputResources": [
+            {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/serverfarms/ASP-FENapredneBazegroup-8c46"
+            },
+            {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze"
+            },
+            {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze/basicPublishingCredentialsPolicies/ftp"
+            },
+            {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze/basicPublishingCredentialsPolicies/scm"
+            }
+        ],
+        "validationLevel": "Template"
+    }
+}

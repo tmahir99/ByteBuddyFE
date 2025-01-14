@@ -1,0 +1,82 @@
+[
+    {
+        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-ea6adcad-9572/operations/7CFCE5EDBF165712",
+        "operationId": "7CFCE5EDBF165712",
+        "properties": {
+            "provisioningOperation": "Create",
+            "provisioningState": "Succeeded",
+            "timestamp": "2024-07-04T21:58:46.8461321Z",
+            "duration": "PT42.4975576S",
+            "trackingId": "a345f867-9a27-49c7-9a9a-b3d7afc44dd4",
+            "statusCode": "OK",
+            "targetResource": {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze/basicPublishingCredentialsPolicies/ftp",
+                "resourceType": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+                "resourceName": "FENapredneBaze/ftp"
+            }
+        }
+    },
+    {
+        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-ea6adcad-9572/operations/9BAE0FF98886B5A5",
+        "operationId": "9BAE0FF98886B5A5",
+        "properties": {
+            "provisioningOperation": "Create",
+            "provisioningState": "Succeeded",
+            "timestamp": "2024-07-04T21:58:46.8405809Z",
+            "duration": "PT0.5384797S",
+            "trackingId": "4ee1d22b-bb38-4c30-a568-350a83afa61c",
+            "statusCode": "OK",
+            "targetResource": {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze/basicPublishingCredentialsPolicies/scm",
+                "resourceType": "Microsoft.Web/sites/basicPublishingCredentialsPolicies",
+                "resourceName": "FENapredneBaze/scm"
+            }
+        }
+    },
+    {
+        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-ea6adcad-9572/operations/DF1C4C455C6EE8BB",
+        "operationId": "DF1C4C455C6EE8BB",
+        "properties": {
+            "provisioningOperation": "Create",
+            "provisioningState": "Succeeded",
+            "timestamp": "2024-07-04T21:58:46.2637567Z",
+            "duration": "PT41.9151822S",
+            "trackingId": "e490ccf9-494e-49bf-9fd4-dbe333dcbe70",
+            "statusCode": "OK",
+            "targetResource": {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/sites/FENapredneBaze",
+                "resourceType": "Microsoft.Web/sites",
+                "resourceName": "FENapredneBaze"
+            }
+        }
+    },
+    {
+        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-ea6adcad-9572/operations/8768813D66DBC2DE",
+        "operationId": "8768813D66DBC2DE",
+        "properties": {
+            "provisioningOperation": "Create",
+            "provisioningState": "Succeeded",
+            "timestamp": "2024-07-04T21:58:13.5539789Z",
+            "duration": "PT9.2054044S",
+            "trackingId": "afb451d2-3943-4311-b222-6c78bc7ab58e",
+            "statusCode": "OK",
+            "targetResource": {
+                "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Web/serverfarms/ASP-FENapredneBazegroup-8c46",
+                "resourceType": "Microsoft.Web/serverfarms",
+                "resourceName": "ASP-FENapredneBazegroup-8c46"
+            }
+        }
+    },
+    {
+        "id": "/subscriptions/2d06f7f7-077c-4f77-a10f-321e27a999d6/resourceGroups/FENapredneBaze_group/providers/Microsoft.Resources/deployments/Microsoft.Web-WebApp-Portal-ea6adcad-9572/operations/08584814766034893816",
+        "operationId": "08584814766034893816",
+        "properties": {
+            "provisioningOperation": "EvaluateDeploymentOutput",
+            "provisioningState": "Succeeded",
+            "timestamp": "2024-07-04T21:58:46.9708204Z",
+            "duration": "PT0.0816311S",
+            "trackingId": "d7e0f3da-d8c2-427b-b2b8-c38a8b63ca1d",
+            "statusCode": "OK"
+        }
+    }
+]
