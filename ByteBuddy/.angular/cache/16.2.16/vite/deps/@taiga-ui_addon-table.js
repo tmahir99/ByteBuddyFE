@@ -8,7 +8,7 @@ import {
   TuiTileHandleDirective,
   TuiTilesComponent,
   TuiTilesModule
-} from "./chunk-WQ3YKBMM.js";
+} from "./chunk-UQAIKJRN.js";
 import {
   ALWAYS_TRUE_HANDLER,
   AbstractTuiController,
@@ -51,14 +51,14 @@ import {
   tuiQueryListChanges,
   tuiTypedFromEvent,
   tuiWatchedControllerFactory
-} from "./chunk-ZCMKX7LW.js";
+} from "./chunk-YYZ25BTP.js";
 import "./chunk-J4J4264W.js";
-import "./chunk-6UEW7PLC.js";
-import "./chunk-B6D3TQPO.js";
-import "./chunk-QODR4S6D.js";
+import "./chunk-VWL4RCA6.js";
+import "./chunk-7IUQLMWK.js";
 import {
   NgControl
 } from "./chunk-4UOO7GJQ.js";
+import "./chunk-QODR4S6D.js";
 import "./chunk-ZVOY2GPJ.js";
 import {
   AsyncPipe,

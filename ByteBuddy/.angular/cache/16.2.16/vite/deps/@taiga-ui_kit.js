@@ -430,13 +430,13 @@ import {
   tuiTabsOptionsProvider,
   tuiTagOptionsProvider,
   tuiToggleOptionsProvider
-} from "./chunk-WQ3YKBMM.js";
-import "./chunk-ZCMKX7LW.js";
+} from "./chunk-UQAIKJRN.js";
+import "./chunk-YYZ25BTP.js";
 import "./chunk-J4J4264W.js";
-import "./chunk-6UEW7PLC.js";
-import "./chunk-B6D3TQPO.js";
-import "./chunk-QODR4S6D.js";
+import "./chunk-VWL4RCA6.js";
+import "./chunk-7IUQLMWK.js";
 import "./chunk-4UOO7GJQ.js";
+import "./chunk-QODR4S6D.js";
 import "./chunk-ZVOY2GPJ.js";
 import "./chunk-D4UE5VFS.js";
 import "./chunk-JIBT2MMA.js";

@@ -3,7 +3,7 @@ import {
 } from "./chunk-J4J4264W.js";
 import {
   AnimationEngine
-} from "./chunk-6UEW7PLC.js";
+} from "./chunk-VWL4RCA6.js";
 import {
   animate,
   animateChild,
@@ -12,12 +12,7 @@ import {
   style,
   transition,
   trigger
-} from "./chunk-B6D3TQPO.js";
-import {
-  DomSanitizer,
-  EVENT_MANAGER_PLUGINS,
-  Title
-} from "./chunk-QODR4S6D.js";
+} from "./chunk-7IUQLMWK.js";
 import {
   ControlContainer,
   DefaultValueAccessor,
@@ -29,6 +24,11 @@ import {
   NgModel,
   Validators
 } from "./chunk-4UOO7GJQ.js";
+import {
+  DomSanitizer,
+  EVENT_MANAGER_PLUGINS,
+  Title
+} from "./chunk-QODR4S6D.js";
 import {
   AsyncPipe,
   CommonModule,
@@ -26990,4 +26990,4 @@ export {
   tuiSmartSearch,
   tuiZonefulMap
 };
-//# sourceMappingURL=chunk-ZCMKX7LW.js.map
+//# sourceMappingURL=chunk-YYZ25BTP.js.map

@@ -268,15 +268,12 @@ import {
   tuiWatch,
   tuiZoneOptimized,
   tuiZonefree
-} from "./chunk-ZCMKX7LW.js";
+} from "./chunk-YYZ25BTP.js";
 import {
   ActivatedRoute,
   Router,
   RouterLinkActive
 } from "./chunk-J4J4264W.js";
-import {
-  DomSanitizer
-} from "./chunk-QODR4S6D.js";
 import {
   COMPOSITION_BUFFER_MODE,
   ControlContainer,
@@ -292,6 +289,9 @@ import {
   ReactiveFormsModule,
   ɵNgSelectMultipleOption
 } from "./chunk-4UOO7GJQ.js";
+import {
+  DomSanitizer
+} from "./chunk-QODR4S6D.js";
 import {
   AsyncPipe,
   CommonModule,
@@ -31773,4 +31773,4 @@ export {
   TuiTreeModule,
   TuiDialogFormService
 };
-//# sourceMappingURL=chunk-WQ3YKBMM.js.map
+//# sourceMappingURL=chunk-UQAIKJRN.js.map

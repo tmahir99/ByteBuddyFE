@@ -22,9 +22,6 @@ function style(tokens) {
 function state(name, styles, options) {
   return { type: 0, name, styles, options };
 }
-function keyframes(steps) {
-  return { type: 5, steps };
-}
 function transition(stateChangeExpr, steps, options = null) {
   return { type: 1, expr: stateChangeExpr, animation: steps, options };
 }
@@ -274,7 +271,6 @@ export {
   sequence,
   style,
   state,
-  keyframes,
   transition,
   animation,
   animateChild,
@@ -294,4 +290,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-B6D3TQPO.js.map
+//# sourceMappingURL=chunk-7IUQLMWK.js.map
