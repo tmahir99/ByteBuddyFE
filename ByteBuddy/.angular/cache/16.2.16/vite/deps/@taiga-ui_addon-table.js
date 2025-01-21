@@ -8,9 +8,10 @@ import {
   TuiTileHandleDirective,
   TuiTilesComponent,
   TuiTilesModule
-} from "./chunk-UQAIKJRN.js";
+} from "./chunk-XCNBYUSU.js";
 import {
   ALWAYS_TRUE_HANDLER,
+  AbstractTuiControl,
   AbstractTuiController,
   EMPTY_QUERY,
   MODE_PROVIDER,
@@ -30,6 +31,7 @@ import {
   TuiDataListComponent,
   TuiDataListModule,
   TuiDestroyService,
+  TuiDirectiveStylesService,
   TuiHostedDropdownComponent,
   TuiHostedDropdownModule,
   TuiLinkComponent,
@@ -51,15 +53,15 @@ import {
   tuiQueryListChanges,
   tuiTypedFromEvent,
   tuiWatchedControllerFactory
-} from "./chunk-YYZ25BTP.js";
-import "./chunk-J4J4264W.js";
-import "./chunk-VWL4RCA6.js";
+} from "./chunk-RR5V7I6F.js";
+import "./chunk-IAUAQAXW.js";
+import "./chunk-LVLVFURQ.js";
 import "./chunk-7IUQLMWK.js";
 import {
   NgControl
-} from "./chunk-4UOO7GJQ.js";
-import "./chunk-QODR4S6D.js";
-import "./chunk-ZVOY2GPJ.js";
+} from "./chunk-77AJVJKV.js";
+import "./chunk-TDYWTNPZ.js";
+import "./chunk-Z3RPYORF.js";
 import {
   AsyncPipe,
   CommonModule,
@@ -67,7 +69,7 @@ import {
   NgForOf,
   NgIf,
   NgTemplateOutlet
-} from "./chunk-D4UE5VFS.js";
+} from "./chunk-O7YDPHBW.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -88,6 +90,7 @@ import {
   Pipe,
   SkipSelf,
   TemplateRef,
+  ViewEncapsulation$1,
   forwardRef,
   setClassMetadata,
   ɵɵInheritDefinitionFeature,
@@ -132,12 +135,12 @@ import {
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
   ɵɵtextInterpolate2
-} from "./chunk-JIBT2MMA.js";
-import "./chunk-JD4XVWEJ.js";
+} from "./chunk-BWVQMFWU.js";
+import "./chunk-N6VY3YJC.js";
 import {
   defer,
   merge
-} from "./chunk-WCP4RZ4Y.js";
+} from "./chunk-Z4SRTAKC.js";
 import {
   EMPTY,
   Observable,
@@ -152,7 +155,7 @@ import {
   startWith,
   switchMap,
   takeUntil
-} from "./chunk-7A7WJ6DX.js";
+} from "./chunk-I7RWPURI.js";
 import "./chunk-XSKKLE2R.js";
 
 // node_modules/@taiga-ui/addon-table/fesm2015/taiga-ui-addon-table-tokens.js
@@ -726,6 +729,7 @@ var TUI_TABLE_DEFAULT_OPTIONS = {
   open: true,
   size: "m",
   direction: 1,
+  requiredSort: false,
   sortIcons: {
     asc: "tuiIconSortAscending",
     desc: "tuiIconSortDescending",
@@ -736,8 +740,39 @@ var TUI_TABLE_OPTIONS = tuiCreateToken(TUI_TABLE_DEFAULT_OPTIONS);
 function tuiTableOptionsProvider(options) {
   return tuiProvideOptions(TUI_TABLE_OPTIONS, options, TUI_TABLE_DEFAULT_OPTIONS);
 }
+var TuiTableStylesComponent = class {
+};
+TuiTableStylesComponent.ɵfac = function TuiTableStylesComponent_Factory(t) {
+  return new (t || TuiTableStylesComponent)();
+};
+TuiTableStylesComponent.ɵcmp = ɵɵdefineComponent({
+  type: TuiTableStylesComponent,
+  selectors: [["ng-component"]],
+  hostAttrs: [1, "tui-table"],
+  decls: 0,
+  vars: 0,
+  template: function TuiTableStylesComponent_Template(rf, ctx) {
+  },
+  styles: ["table[tuiTable]{border-collapse:separate}table[tuiTable] [tuiCell]{padding:0}table[tuiTable] [tuiTitle]{white-space:nowrap}table[tuiTable] [tuiTitle] tui-icon{font-size:1rem}table[tuiTable] [tuiSubtitle]{color:var(--tui-text-02)}table[tuiTable] [tuiTh] [tuiCell],table[tuiTable] [tuiTh] [tuiTitle]{font:inherit;color:inherit}\n"],
+  encapsulation: 2,
+  changeDetection: 0
+});
+(function() {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TuiTableStylesComponent, [{
+    type: Component,
+    args: [{
+      template: "",
+      styleUrls: ["./table.style.less"],
+      encapsulation: ViewEncapsulation$1.None,
+      changeDetection: ChangeDetectionStrategy.OnPush,
+      host: {
+        class: "tui-table"
+      }
+    }]
+  }], null, null);
+})();
 var TuiTableDirective = class extends AbstractTuiController {
-  constructor(entries$, mode$, stuck$, options, cdr) {
+  constructor(entries$, mode$, stuck$, options, cdr, directiveStyles) {
     super();
     this.entries$ = entries$;
     this.mode$ = mode$;
@@ -750,6 +785,7 @@ var TuiTableDirective = class extends AbstractTuiController {
     this.directionChange = new EventEmitter();
     this.sorterChange = new EventEmitter();
     this.sorter = () => 0;
+    directiveStyles.addComponent(TuiTableStylesComponent);
   }
   updateSorterAndDirection(sorter) {
     if (this.sorter === sorter) {
@@ -774,12 +810,11 @@ var TuiTableDirective = class extends AbstractTuiController {
   }
 };
 TuiTableDirective.ɵfac = function TuiTableDirective_Factory(t) {
-  return new (t || TuiTableDirective)(ɵɵdirectiveInject(IntersectionObserverService), ɵɵdirectiveInject(TUI_MODE), ɵɵdirectiveInject(TUI_STUCK), ɵɵdirectiveInject(TUI_TABLE_OPTIONS), ɵɵdirectiveInject(ChangeDetectorRef));
+  return new (t || TuiTableDirective)(ɵɵdirectiveInject(IntersectionObserverService), ɵɵdirectiveInject(TUI_MODE), ɵɵdirectiveInject(TUI_STUCK), ɵɵdirectiveInject(TUI_TABLE_OPTIONS), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(TuiDirectiveStylesService));
 };
 TuiTableDirective.ɵdir = ɵɵdefineDirective({
   type: TuiTableDirective,
   selectors: [["table", "tuiTable", ""]],
-  hostAttrs: [2, "border-collapse", "separate"],
   hostVars: 1,
   hostBindings: function TuiTableDirective_HostBindings(rf, ctx) {
     if (rf & 1) {
@@ -813,8 +848,7 @@ TuiTableDirective.ɵdir = ɵɵdefineDirective({
       providers: TUI_TABLE_PROVIDERS,
       host: {
         "($.data-mode.attr)": "mode$",
-        "($.class._stuck)": "stuck$",
-        style: "border-collapse: separate"
+        "($.class._stuck)": "stuck$"
       }
     }]
   }], function() {
@@ -847,6 +881,12 @@ TuiTableDirective.ɵdir = ɵɵdefineDirective({
       decorators: [{
         type: Inject,
         args: [ChangeDetectorRef]
+      }]
+    }, {
+      type: TuiDirectiveStylesService,
+      decorators: [{
+        type: Inject,
+        args: [TuiDirectiveStylesService]
       }]
     }];
   }, {
@@ -1059,6 +1099,7 @@ var TuiThComponent = class {
     this.sorter = this.head ? (a, b) => tuiDefaultSort(a[this.key], b[this.key]) : null;
     this.resizable = this.options.resizable;
     this.sticky = this.options.sticky;
+    this.requiredSort = this.options.requiredSort;
     this.width = null;
   }
   get key() {
@@ -1079,7 +1120,8 @@ var TuiThComponent = class {
   }
   updateSorterAndDirection() {
     var _a;
-    (_a = this.table) === null || _a === void 0 ? void 0 : _a.updateSorterAndDirection(this.isCurrentAndAscDirection ? null : this.sorter);
+    const sorter = this.requiredSort ? this.sorter : null;
+    (_a = this.table) === null || _a === void 0 ? void 0 : _a.updateSorterAndDirection(this.isCurrentAndAscDirection ? sorter : this.sorter);
   }
   onResized(width) {
     this.width = width;
@@ -1105,7 +1147,8 @@ TuiThComponent.ɵcmp = ɵɵdefineComponent({
   inputs: {
     sorter: "sorter",
     resizable: "resizable",
-    sticky: "sticky"
+    sticky: "sticky",
+    requiredSort: "requiredSort"
   },
   features: [ɵɵProvidersFeature([{
     provide: TUI_ELEMENT_REF,
@@ -1131,7 +1174,7 @@ TuiThComponent.ɵcmp = ɵɵdefineComponent({
     }
   },
   dependencies: [TuiSvgComponent, NgIf, NgTemplateOutlet, TuiResizedDirective, AsyncPipe],
-  styles: ['[_nghost-%COMP%]{transition-property:box-shadow;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;position:relative;top:0;height:var(--tui-height-m);font:var(--tui-font-text-s);text-align:left;font-weight:bold;color:var(--tui-text-02);background:var(--tui-base-01);cursor:default;padding:0 .75rem;box-sizing:border-box;box-shadow:0 .3125rem #ededed00;border:1px solid var(--tui-base-04);filter:opacity(1)}@supports (-webkit-hyphens: none){[_nghost-%COMP%]{transform:translate(0)}}[_nghost-%COMP%]:not(:first-child){border-left:none}._sticky[_nghost-%COMP%], ._stuck   ._sticky[_nghost-%COMP%]{position:-webkit-sticky;position:sticky;z-index:30}._sticky[_nghost-%COMP%]:first-child, ._stuck   ._sticky[_nghost-%COMP%]:first-child{left:0}._sticky[_nghost-%COMP%]:after, ._stuck   ._sticky[_nghost-%COMP%]:after{transition-property:opacity;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;content:"";position:absolute;top:0;left:100%;bottom:0;width:.3125rem;pointer-events:none;background:rgba(237,237,237,.7);opacity:0}._stuck   [_nghost-%COMP%]{z-index:20}tr:not(:first-child)[_nghost-%COMP%], tr:not(:first-child)   [_nghost-%COMP%]{border-top:none}table[data-size="l"][_nghost-%COMP%], table[data-size="l"]   [_nghost-%COMP%]{height:var(--tui-height-l);font:var(--tui-font-text-m);font-weight:bold;padding:0 1rem}thead[tuiThead][_nghost-%COMP%], thead[tuiThead]   [_nghost-%COMP%]{position:-webkit-sticky;position:sticky}table._stuck._sticky[_nghost-%COMP%]:after, table._stuck   ._sticky[_nghost-%COMP%]:after{opacity:1}thead[tuiThead]._stuck[_nghost-%COMP%], thead[tuiThead]._stuck   [_nghost-%COMP%]{box-shadow:0 .3125rem #edededb3}table[data-mode="onDark"][_nghost-%COMP%]:after, table[data-mode="onDark"]   [_nghost-%COMP%]:after{background:rgba(60,60,60,.9)}table[data-mode="onDark"]   thead[tuiThead]._stuck[_nghost-%COMP%], table[data-mode="onDark"]   thead[tuiThead]._stuck   [_nghost-%COMP%]{box-shadow:0 .3125rem #3c3c3ce6}table[data-mode="onDark"]   thead[tuiThead]._stuck[_nghost-%COMP%]:first-child, table[data-mode="onDark"]   thead[tuiThead]._stuck   [_nghost-%COMP%]:first-child{box-shadow:.0625rem .3125rem #3c3c3ce6}table[data-size="l"]   thead[tuiThead]   tr:nth-child(2)[_nghost-%COMP%], table[data-size="l"]   thead[tuiThead]   tr:nth-child(2)   [_nghost-%COMP%]{top:var(--tui-height-l)}table[data-size="m"]   thead[tuiThead]   tr:nth-child(2)[_nghost-%COMP%], table[data-size="m"]   thead[tuiThead]   tr:nth-child(2)   [_nghost-%COMP%]{top:var(--tui-height-m)}table[data-size="s"]   thead[tuiThead]   tr:nth-child(2)[_nghost-%COMP%], table[data-size="s"]   thead[tuiThead]   tr:nth-child(2)   [_nghost-%COMP%]{top:var(--tui-height-s)}.t-sort[_ngcontent-%COMP%]{transition-property:color;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;-webkit-appearance:none;-moz-appearance:none;appearance:none;padding:0;border:0;background:none;font-size:inherit;line-height:inherit;text-decoration:none;display:inline-flex;flex-direction:inherit;align-items:center;outline:none;font-weight:bold;cursor:pointer}.t-sort_sorted[_ngcontent-%COMP%]{color:var(--tui-text-01)}.t-sort[_ngcontent-%COMP%]:focus-visible{background:var(--tui-selection)}.t-sort[_ngcontent-%COMP%]:hover{color:var(--tui-text-01)}.t-bar[_ngcontent-%COMP%]{transition-property:opacity;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;position:absolute;top:0;bottom:0;right:-1px;width:3px;justify-self:flex-end;border-left:2px solid transparent;background:var(--tui-support-12);background-clip:content-box;cursor:ew-resize;opacity:0}.t-bar[_ngcontent-%COMP%]:hover, .t-bar[_ngcontent-%COMP%]:active{opacity:1}'],
+  styles: ['[_nghost-%COMP%]{transition-property:box-shadow;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;position:relative;top:0;height:var(--tui-height-m);font:var(--tui-font-text-s);text-align:left;font-weight:bold;color:var(--tui-text-02);background:var(--tui-base-01);cursor:default;padding:0 .75rem;box-sizing:border-box;box-shadow:0 .3125rem #ededed00;border:1px solid var(--tui-base-04);filter:opacity(1)}@supports (-webkit-hyphens: none){[_nghost-%COMP%]{transform:translate(0)}}[_nghost-%COMP%]:not(:first-child){border-left:none}._sticky[_nghost-%COMP%], ._stuck   ._sticky[_nghost-%COMP%]{position:-webkit-sticky;position:sticky;z-index:30}._sticky[_nghost-%COMP%]:first-child, ._stuck   ._sticky[_nghost-%COMP%]:first-child{left:0}._sticky[_nghost-%COMP%]:after, ._stuck   ._sticky[_nghost-%COMP%]:after{transition-property:opacity;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;content:"";position:absolute;top:0;left:100%;bottom:0;width:.3125rem;pointer-events:none;background:rgba(237,237,237,.7);opacity:0}._stuck   [_nghost-%COMP%]{z-index:20}tr:not(:first-child)[_nghost-%COMP%], tr:not(:first-child)   [_nghost-%COMP%]{border-top:none}table[data-size="l"][_nghost-%COMP%], table[data-size="l"]   [_nghost-%COMP%]{height:var(--tui-height-l);font:var(--tui-font-text-m);font-weight:bold;padding:0 1rem}table[data-size="s"][_nghost-%COMP%], table[data-size="s"]   [_nghost-%COMP%]{height:var(--tui-height-s);font:var(--tui-font-text-s);font-weight:bold;padding:0 .5rem}thead[tuiThead][_nghost-%COMP%], thead[tuiThead]   [_nghost-%COMP%]{position:-webkit-sticky;position:sticky}table._stuck._sticky[_nghost-%COMP%]:after, table._stuck   ._sticky[_nghost-%COMP%]:after{opacity:1}thead[tuiThead]._stuck[_nghost-%COMP%], thead[tuiThead]._stuck   [_nghost-%COMP%]{box-shadow:0 .3125rem #edededb3}table[data-mode="onDark"][_nghost-%COMP%]:after, table[data-mode="onDark"]   [_nghost-%COMP%]:after{background:rgba(60,60,60,.9)}table[data-mode="onDark"]   thead[tuiThead]._stuck[_nghost-%COMP%], table[data-mode="onDark"]   thead[tuiThead]._stuck   [_nghost-%COMP%]{box-shadow:0 .3125rem #3c3c3ce6}table[data-mode="onDark"]   thead[tuiThead]._stuck[_nghost-%COMP%]:first-child, table[data-mode="onDark"]   thead[tuiThead]._stuck   [_nghost-%COMP%]:first-child{box-shadow:.0625rem .3125rem #3c3c3ce6}table[data-size="l"]   thead[tuiThead]   tr:nth-child(2)[_nghost-%COMP%], table[data-size="l"]   thead[tuiThead]   tr:nth-child(2)   [_nghost-%COMP%]{top:var(--tui-height-l)}table[data-size="m"]   thead[tuiThead]   tr:nth-child(2)[_nghost-%COMP%], table[data-size="m"]   thead[tuiThead]   tr:nth-child(2)   [_nghost-%COMP%]{top:var(--tui-height-m)}table[data-size="s"]   thead[tuiThead]   tr:nth-child(2)[_nghost-%COMP%], table[data-size="s"]   thead[tuiThead]   tr:nth-child(2)   [_nghost-%COMP%]{top:var(--tui-height-s)}.t-sort[_ngcontent-%COMP%]{transition-property:color;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;-webkit-appearance:none;-moz-appearance:none;appearance:none;padding:0;border:0;background:none;font-size:inherit;line-height:inherit;text-decoration:none;display:inline-flex;flex-direction:inherit;align-items:center;outline:none;font-weight:bold;cursor:pointer}.t-sort_sorted[_ngcontent-%COMP%]{color:var(--tui-text-01)}.t-sort[_ngcontent-%COMP%]:focus-visible{background:var(--tui-selection)}.t-sort[_ngcontent-%COMP%]:hover{color:var(--tui-text-01)}.t-bar[_ngcontent-%COMP%]{transition-property:opacity;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;position:absolute;top:0;bottom:0;right:-1px;width:3px;justify-self:flex-end;border-left:2px solid transparent;background:var(--tui-support-12);background-clip:content-box;cursor:ew-resize;opacity:0}.t-bar[_ngcontent-%COMP%]:hover, .t-bar[_ngcontent-%COMP%]:active{opacity:1}'],
   changeDetection: 0
 });
 (function() {
@@ -1183,6 +1226,9 @@ TuiThComponent.ɵcmp = ɵɵdefineComponent({
     }, {
       type: HostBinding,
       args: ["class._sticky"]
+    }],
+    requiredSort: [{
+      type: Input
     }],
     width: [{
       type: HostBinding,
@@ -1375,7 +1421,7 @@ var TuiTableSortPipe = class {
     this.table = table;
   }
   transform(data) {
-    return this.sort(data, this.table.sorter, this.table.direction);
+    return this.sort(data !== null && data !== void 0 ? data : [], this.table.sorter, this.table.direction);
   }
   sort(data, sorter, direction) {
     return [...data].sort((a, b) => direction * sorter(a, b));
@@ -1424,17 +1470,17 @@ TuiTdComponent.ɵcmp = ɵɵdefineComponent({
   selectors: [["th", "tuiTd", ""], ["td", "tuiTd", ""]],
   contentQueries: function TuiTdComponent_ContentQueries(rf, ctx, dirIndex) {
     if (rf & 1) {
-      ɵɵcontentQuery(dirIndex, NgControl, 5);
+      ɵɵcontentQuery(dirIndex, AbstractTuiControl, 5);
     }
     if (rf & 2) {
       let _t;
-      ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.control = _t.first);
+      ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx.legacy = _t.first);
     }
   },
   hostVars: 2,
   hostBindings: function TuiTdComponent_HostBindings(rf, ctx) {
     if (rf & 2) {
-      ɵɵclassProp("_editable", ctx.control);
+      ɵɵclassProp("_editable", ctx.legacy);
     }
   },
   attrs: _c2,
@@ -1447,7 +1493,7 @@ TuiTdComponent.ɵcmp = ɵɵdefineComponent({
       ɵɵprojection(0);
     }
   },
-  styles: ['[_nghost-%COMP%]{position:relative;height:var(--tui-height-m);font:var(--tui-font-text-s);text-align:left;padding:0 .75rem;background:var(--tui-base-01);border:1px solid var(--tui-base-04);border-top:none;box-sizing:border-box;filter:opacity(1)}@supports (-webkit-hyphens: none){[_nghost-%COMP%]{transform:translate(0)}}[_nghost-%COMP%]:first-child{left:0}[_nghost-%COMP%]:not(:first-child){border-left:none}._editable[_nghost-%COMP%]:focus-within{z-index:1}._editable[_nghost-%COMP%]{padding:0;vertical-align:top}th[_nghost-%COMP%]{position:-webkit-sticky;position:sticky;z-index:1}th[_nghost-%COMP%]:after{transition-property:opacity;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;content:"";position:absolute;top:0;bottom:0;left:100%;width:.3125rem;pointer-events:none;background:rgba(237,237,237,.7);opacity:0}th[_nghost-%COMP%]:focus-within:not(:disabled){z-index:11}table[data-mode="onDark"][_nghost-%COMP%]:after, table[data-mode="onDark"]   [_nghost-%COMP%]:after{background:rgba(60,60,60,.9)}table._stuck[_nghost-%COMP%], table._stuck   [_nghost-%COMP%]{z-index:10}table._stuck[_nghost-%COMP%]:last-of-type:after, table._stuck   [_nghost-%COMP%]:last-of-type:after{opacity:1}table[data-size="l"][_nghost-%COMP%], table[data-size="l"]   [_nghost-%COMP%]{font:var(--tui-font-text-m);height:var(--tui-height-l);padding-left:1rem;padding-right:1rem}table[data-size="l"]._editable[_nghost-%COMP%], table[data-size="l"]   ._editable[_nghost-%COMP%]{padding:0}td[_nghost-%COMP%]:focus-within{z-index:1}td[_nghost-%COMP%]:not(:focus-within){z-index:0}'],
+  styles: ['[_nghost-%COMP%]{position:relative;text-align:left;background:var(--tui-base-01);border:1px solid var(--tui-base-04);border-top:none;box-sizing:border-box;filter:opacity(1)}@supports (-webkit-hyphens: none){[_nghost-%COMP%]{transform:translate(0)}}._editable[_nghost-%COMP%]{padding:0!important}[_nghost-%COMP%]:first-child{left:0}[_nghost-%COMP%]:not(:first-child){border-left:none}._editable[_nghost-%COMP%]:focus-within{z-index:1}._editable[_nghost-%COMP%]{padding:0;vertical-align:top}th[_nghost-%COMP%]{position:-webkit-sticky;position:sticky;z-index:1}th[_nghost-%COMP%]:after{transition-property:opacity;transition-duration:var(--tui-duration, .3s);transition-timing-function:ease-in-out;content:"";position:absolute;top:0;bottom:0;left:100%;width:.3125rem;pointer-events:none;background:rgba(237,237,237,.7);opacity:0}th[_nghost-%COMP%]:focus-within:not(:disabled){z-index:11}table[data-mode="onDark"][_nghost-%COMP%]:after, table[data-mode="onDark"]   [_nghost-%COMP%]:after{background:rgba(60,60,60,.9)}table._stuck[_nghost-%COMP%], table._stuck   [_nghost-%COMP%]{z-index:10}table._stuck[_nghost-%COMP%]:last-of-type:after, table._stuck   [_nghost-%COMP%]:last-of-type:after{opacity:1}table[data-size="l"][_nghost-%COMP%], table[data-size="l"]   [_nghost-%COMP%]{font:var(--tui-font-text-m);height:var(--tui-height-l);padding:1rem}table[data-size="m"][_nghost-%COMP%], table[data-size="m"]   [_nghost-%COMP%]{height:var(--tui-height-m);font:var(--tui-font-text-s);padding:.75rem}table[data-size="s"][_nghost-%COMP%], table[data-size="s"]   [_nghost-%COMP%]{height:var(--tui-height-s);font:var(--tui-font-text-s);padding:.25rem .5rem}td[_nghost-%COMP%]:focus-within{z-index:1}td[_nghost-%COMP%]:not(:focus-within){z-index:0}'],
   changeDetection: 0
 });
 (function() {
@@ -1459,15 +1505,15 @@ TuiTdComponent.ɵcmp = ɵɵdefineComponent({
         <ng-content></ng-content>
     `,
       styleUrls: ["./td.style.less"],
-      changeDetection: ChangeDetectionStrategy.OnPush
+      changeDetection: ChangeDetectionStrategy.OnPush,
+      host: {
+        "[class._editable]": "legacy"
+      }
     }]
   }], null, {
-    control: [{
-      type: HostBinding,
-      args: ["class._editable"]
-    }, {
+    legacy: [{
       type: ContentChild,
-      args: [NgControl]
+      args: [AbstractTuiControl]
     }]
   });
 })();

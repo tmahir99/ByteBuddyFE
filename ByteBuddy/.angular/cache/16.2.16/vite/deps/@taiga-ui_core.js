@@ -27,6 +27,7 @@ import {
   TUI_DEFAULT_ICONS_PLACE,
   TUI_DEFAULT_MARKER_HANDLER,
   TUI_DEFAULT_NUMBER_FORMAT,
+  TUI_DEFAULT_SCROLLBAR_OPTIONS,
   TUI_DEPRECATED_ICONS,
   TUI_DIALOGS_CLOSE,
   TUI_DIALOG_DEFAULT_OPTIONS,
@@ -77,6 +78,7 @@ import {
   TUI_REDUCED_MOTION,
   TUI_SANITIZER,
   TUI_SCROLLABLE,
+  TUI_SCROLLBAR_OPTIONS,
   TUI_SCROLL_INTO_VIEW,
   TUI_SCROLL_REF,
   TUI_SELECTION_STREAM,
@@ -321,6 +323,7 @@ import {
   tuiRectAccessorFor,
   tuiScaleIn,
   tuiScaleInList,
+  tuiScrollbarOptionsProvider,
   tuiSizeBigger,
   tuiSlideIn,
   tuiSlideInBottom,
@@ -339,18 +342,18 @@ import {
   tuiWidthCollapse,
   tuiWidthCollapseList,
   tuiZonefulMap
-} from "./chunk-YYZ25BTP.js";
-import "./chunk-J4J4264W.js";
-import "./chunk-VWL4RCA6.js";
+} from "./chunk-RR5V7I6F.js";
+import "./chunk-IAUAQAXW.js";
+import "./chunk-LVLVFURQ.js";
 import "./chunk-7IUQLMWK.js";
-import "./chunk-4UOO7GJQ.js";
-import "./chunk-QODR4S6D.js";
-import "./chunk-ZVOY2GPJ.js";
-import "./chunk-D4UE5VFS.js";
-import "./chunk-JIBT2MMA.js";
-import "./chunk-JD4XVWEJ.js";
-import "./chunk-WCP4RZ4Y.js";
-import "./chunk-7A7WJ6DX.js";
+import "./chunk-77AJVJKV.js";
+import "./chunk-TDYWTNPZ.js";
+import "./chunk-Z3RPYORF.js";
+import "./chunk-O7YDPHBW.js";
+import "./chunk-BWVQMFWU.js";
+import "./chunk-N6VY3YJC.js";
+import "./chunk-Z4SRTAKC.js";
+import "./chunk-I7RWPURI.js";
 import "./chunk-XSKKLE2R.js";
 export {
   AbstractTuiDriverDirective,
@@ -381,6 +384,7 @@ export {
   TUI_DEFAULT_ICONS_PLACE,
   TUI_DEFAULT_MARKER_HANDLER,
   TUI_DEFAULT_NUMBER_FORMAT,
+  TUI_DEFAULT_SCROLLBAR_OPTIONS,
   TUI_DEPRECATED_ICONS,
   TUI_DIALOGS_CLOSE,
   TUI_DIALOG_DEFAULT_OPTIONS,
@@ -431,6 +435,7 @@ export {
   TUI_REDUCED_MOTION,
   TUI_SANITIZER,
   TUI_SCROLLABLE,
+  TUI_SCROLLBAR_OPTIONS,
   TUI_SCROLL_INTO_VIEW,
   TUI_SCROLL_REF,
   TUI_SELECTION_STREAM,
@@ -675,6 +680,7 @@ export {
   tuiRectAccessorFor,
   tuiScaleIn,
   tuiScaleInList,
+  tuiScrollbarOptionsProvider,
   tuiSizeBigger,
   tuiSlideIn,
   tuiSlideInBottom,

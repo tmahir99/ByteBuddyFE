@@ -87,6 +87,8 @@ import {
   TUI_PDF_VIEWER_OPTIONS,
   TUI_PHONE_MASK,
   TUI_PLUS_MINUS_TEXTS,
+  TUI_PROGRESS_DEFAULT_OPTIONS,
+  TUI_PROGRESS_OPTIONS,
   TUI_PROMPT,
   TUI_PROMPT_WORDS,
   TUI_PUSH_DEFAULT_OPTIONS,
@@ -113,6 +115,7 @@ import {
   TUI_TAG_OPTIONS,
   TUI_TIME_MASK,
   TUI_TIME_TEXTS,
+  TUI_TIME_VALUE_TRANSFORMER,
   TUI_TOGGLE_DEFAULT_OPTIONS,
   TUI_TOGGLE_OPTIONS,
   TUI_TREE_ACCESSOR,
@@ -421,6 +424,7 @@ import {
   tuiNotKzRegion,
   tuiPdfViewerOptionsProvider,
   tuiPercentageToKeyStepValue,
+  tuiProgressOptionsProvider,
   tuiPushOptionsProvider,
   tuiRadioOptionsProvider,
   tuiRatingOptionsProvider,
@@ -430,19 +434,19 @@ import {
   tuiTabsOptionsProvider,
   tuiTagOptionsProvider,
   tuiToggleOptionsProvider
-} from "./chunk-UQAIKJRN.js";
-import "./chunk-YYZ25BTP.js";
-import "./chunk-J4J4264W.js";
-import "./chunk-VWL4RCA6.js";
+} from "./chunk-XCNBYUSU.js";
+import "./chunk-RR5V7I6F.js";
+import "./chunk-IAUAQAXW.js";
+import "./chunk-LVLVFURQ.js";
 import "./chunk-7IUQLMWK.js";
-import "./chunk-4UOO7GJQ.js";
-import "./chunk-QODR4S6D.js";
-import "./chunk-ZVOY2GPJ.js";
-import "./chunk-D4UE5VFS.js";
-import "./chunk-JIBT2MMA.js";
-import "./chunk-JD4XVWEJ.js";
-import "./chunk-WCP4RZ4Y.js";
-import "./chunk-7A7WJ6DX.js";
+import "./chunk-77AJVJKV.js";
+import "./chunk-TDYWTNPZ.js";
+import "./chunk-Z3RPYORF.js";
+import "./chunk-O7YDPHBW.js";
+import "./chunk-BWVQMFWU.js";
+import "./chunk-N6VY3YJC.js";
+import "./chunk-Z4SRTAKC.js";
+import "./chunk-I7RWPURI.js";
 import "./chunk-XSKKLE2R.js";
 export {
   AbstractTuiDataListWrapper,
@@ -533,6 +537,8 @@ export {
   TUI_PDF_VIEWER_OPTIONS,
   TUI_PHONE_MASK,
   TUI_PLUS_MINUS_TEXTS,
+  TUI_PROGRESS_DEFAULT_OPTIONS,
+  TUI_PROGRESS_OPTIONS,
   TUI_PROMPT,
   TUI_PROMPT_WORDS,
   TUI_PUSH_DEFAULT_OPTIONS,
@@ -559,6 +565,7 @@ export {
   TUI_TAG_OPTIONS,
   TUI_TIME_MASK,
   TUI_TIME_TEXTS,
+  TUI_TIME_VALUE_TRANSFORMER,
   TUI_TOGGLE_DEFAULT_OPTIONS,
   TUI_TOGGLE_OPTIONS,
   TUI_TREE_ACCESSOR,
@@ -867,6 +874,7 @@ export {
   tuiNotKzRegion,
   tuiPdfViewerOptionsProvider,
   tuiPercentageToKeyStepValue,
+  tuiProgressOptionsProvider,
   tuiPushOptionsProvider,
   tuiRadioOptionsProvider,
   tuiRatingOptionsProvider,

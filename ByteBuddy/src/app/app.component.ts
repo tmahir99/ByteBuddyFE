@@ -30,7 +30,7 @@ export class AppComponent {
             .get(
                 `https://naprednebaze.azurewebsites.net//api/Auth/GetAllUserNames`,
                 { headers }
-            ) // Replace '/your-endpoint' with your actual endpoint
+            ) 
             .pipe(
                 map((response) => {
                     console.log('API Response:', response)

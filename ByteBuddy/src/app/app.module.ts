@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core'
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
+import { MarkdownModule } from 'ngx-markdown';
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -28,22 +29,23 @@ import { AppRoutingModule } from './app-routing.module'
 import { MakeRoleComponent } from './make-role/make-role.component'
 import { TuiTableModule } from '@taiga-ui/addon-table'
 import { TuiTagModule } from '@taiga-ui/kit'
-import { DocumentsComponent } from './documents/documents.component'
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { TableModule } from 'primeng/table'
 import { ButtonModule } from 'primeng/button'
 import { DialogModule } from 'primeng/dialog'
 import { InputTextModule } from 'primeng/inputtext'
-import { OrdersComponent } from './orders/orders.component'
-import { JobComponent } from './job/job.component'
 
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 import { HttpErrorInterceptor } from './http-error.interceptor'
 import { FooterComponent } from './footer/footer.component'
 import { ContactComponent } from './contact/contact.component'
-import { ManageUsersComponent } from './manage-users/manage-users.component'
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { PageComponent } from './page/page.component';
+import { CodeSnippetComponent } from './code-snippet/code-snippet.component'
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+
 
 @NgModule({
     declarations: [
@@ -53,12 +55,11 @@ import { ManageUsersComponent } from './manage-users/manage-users.component'
         HomeComponent,
         HeaderComponent,
         MakeRoleComponent,
-        DocumentsComponent,
-        OrdersComponent,
-        JobComponent,
         FooterComponent,
         ContactComponent,
         ManageUsersComponent,
+        PageComponent,
+        CodeSnippetComponent,
     ],
     imports: [
         BrowserModule,
@@ -83,8 +84,17 @@ import { ManageUsersComponent } from './manage-users/manage-users.component'
         InputTextModule,
         FormsModule,
         MatSnackBarModule,
+        MarkdownModule.forRoot({loader: HttpClient}),
+        HighlightModule
     ],
     providers: [
+        {
+            provide: HIGHLIGHT_OPTIONS,
+            useValue: {
+              coreLibraryLoader: () => import('highlight.js/lib/core'),
+              lineNumbers: true,
+            },
+          },
         AuthService,
         { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
         {
@@ -95,5 +105,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component'
         provideHttpClient(withInterceptorsFromDi()),
     ],
     bootstrap: [AppComponent],
+    exports: [CodeSnippetComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppModule {}

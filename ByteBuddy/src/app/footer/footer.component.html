@@ -1,5 +1,6 @@
-<footer *ngIf="!hide" class="footer">
-    <div class="footer-content p-4">
+<div class="footer bg-OuterSpace">
+<footer *ngIf="!hide">
+    <div class="footer-content">
         <p class="text-white">All rights reserved &copy; {{ year }}</p>
         <ul class="footer-links flex justify-center space-x-4">
             <li><a routerLink="/home" class="text-white">Home</a></li>
@@ -36,3 +37,4 @@
         </ul>
     </div>
 </footer>
+</div>

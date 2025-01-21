@@ -1,19 +1,80 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 
-body {
-    color: #000000; /* Set your default text color here */
-}
-
-html,
-body {
-    height: 100%;
-}
+/* Add custom styles here */
 body {
     margin: 0;
-    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    padding: 0;
+    color: #333; /* Dark grey for better readability */
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4; /* Light grey background for contrast */
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1a1a1a; /* Slightly darker for headings */
+    margin-bottom: 15px;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
+
+p {
+    margin: 0 0 1em;
+    font-size: 1rem;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+a {
+    color: #0077CC; /* A nice blue for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0055AA;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+code {
+    font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 90%;
+    background-color: rgba(27, 31, 35, 0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+blockquote {
+    margin: 0 0 1em;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    main {
+        padding: 10px;
+    }
 }

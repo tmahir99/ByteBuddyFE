@@ -26,11 +26,12 @@ export class LoginComponent {
             const { username, password } = this.loginForm.value
             this.authService.login(username, password).subscribe(
                 (response) => {
+                    console.log('Login response', response)
                     this.authService.storeToken(response.message)
-                    this.authService.storeUserName(response.firstName)
-                    this.authService.storeUserSurname(response.lastName)
-                    this.authService.storeUserUsername(response.userName)
-                    this.authService.storeUserRoles(response.roles)
+                    this.authService.storeUserName(response.user.firstName)
+                    this.authService.storeUserSurname(response.user.lastName)
+                    this.authService.storeUserUsername(response.user.userName)
+                    this.authService.storeUserRoles(response.user.roles)
 
                     this.router.navigate(['/home'])
                 },

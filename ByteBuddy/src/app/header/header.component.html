@@ -1,7 +1,6 @@
-<nav
-    *ngIf="!hide"
-    class="navbar bg-orange-200 p-4 flex justify-around items-center"
->
+<div class="navbar bg-OuterSpace">
+
+<nav *ngIf="!hide">
     <div class="flex space-x-4">
         <a routerLink="/home" class="text-white">Home</a>
         <a *ngIf="canViewDocuments()" routerLink="/documents" class="text-white"
@@ -23,6 +22,7 @@
         (click)="logoutUser()"
         class="bg-red-500 text-white px-4 py-2 rounded"
     >
-        Logout {{ currentUser }}
+        Logout {{currentUser}}
     </button>
 </nav>
+</div>

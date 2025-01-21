@@ -19,9 +19,9 @@ import {
   mixinColor,
   mixinDisableRipple,
   mixinDisabled
-} from "./chunk-NCSC7SHF.js";
-import "./chunk-WNP5Z7X6.js";
-import "./chunk-VWL4RCA6.js";
+} from "./chunk-F7ZZQ3SA.js";
+import "./chunk-YQ2BQF2E.js";
+import "./chunk-LVLVFURQ.js";
 import {
   animate,
   state,
@@ -29,13 +29,13 @@ import {
   transition,
   trigger
 } from "./chunk-7IUQLMWK.js";
-import "./chunk-QODR4S6D.js";
-import "./chunk-ZVOY2GPJ.js";
+import "./chunk-TDYWTNPZ.js";
+import "./chunk-Z3RPYORF.js";
 import {
   CommonModule,
   DOCUMENT,
   NgIf
-} from "./chunk-D4UE5VFS.js";
+} from "./chunk-O7YDPHBW.js";
 import {
   ANIMATION_MODULE_TYPE,
   ChangeDetectionStrategy,
@@ -88,14 +88,14 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-JIBT2MMA.js";
-import "./chunk-JD4XVWEJ.js";
-import "./chunk-WCP4RZ4Y.js";
+} from "./chunk-BWVQMFWU.js";
+import "./chunk-N6VY3YJC.js";
+import "./chunk-Z4SRTAKC.js";
 import {
   Subject,
   take,
   takeUntil
-} from "./chunk-7A7WJ6DX.js";
+} from "./chunk-I7RWPURI.js";
 import {
   __spreadProps,
   __spreadValues
@@ -152,7 +152,7 @@ var _MatButtonMixin = mixinColor(mixinDisabled(mixinDisableRipple(class {
     this._elementRef = _elementRef;
   }
 })));
-var _MatButtonBase = class _MatButtonBase extends _MatButtonMixin {
+var MatButtonBase = class _MatButtonBase extends _MatButtonMixin {
   /**
    * Reference to the MatRipple instance of the button.
    * @deprecated Considered an implementation detail. To be removed.
@@ -225,15 +225,18 @@ var _MatButtonBase = class _MatButtonBase extends _MatButtonMixin {
   _updateRippleDisabled() {
     this._rippleLoader?.setDisabled(this._elementRef.nativeElement, this.disableRipple || this.disabled);
   }
+  static {
+    this.ɵfac = function MatButtonBase_Factory(t) {
+      ɵɵinvalidFactory();
+    };
+  }
+  static {
+    this.ɵdir = ɵɵdefineDirective({
+      type: _MatButtonBase,
+      features: [ɵɵInheritDefinitionFeature]
+    });
+  }
 };
-_MatButtonBase.ɵfac = function MatButtonBase_Factory(t) {
-  ɵɵinvalidFactory();
-};
-_MatButtonBase.ɵdir = ɵɵdefineDirective({
-  type: _MatButtonBase,
-  features: [ɵɵInheritDefinitionFeature]
-});
-var MatButtonBase = _MatButtonBase;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatButtonBase, [{
     type: Directive
@@ -266,7 +269,7 @@ var MAT_ANCHOR_HOST = {
   // wants to target all Material buttons.
   "[class.mat-mdc-button-base]": "true"
 };
-var _MatAnchorBase = class _MatAnchorBase extends MatButtonBase {
+var MatAnchorBase = class _MatAnchorBase extends MatButtonBase {
   constructor(elementRef, platform, ngZone, animationMode) {
     super(elementRef, platform, ngZone, animationMode);
     this._haltDisabledEvents = (event) => {
@@ -285,15 +288,18 @@ var _MatAnchorBase = class _MatAnchorBase extends MatButtonBase {
     super.ngOnDestroy();
     this._elementRef.nativeElement.removeEventListener("click", this._haltDisabledEvents);
   }
+  static {
+    this.ɵfac = function MatAnchorBase_Factory(t) {
+      ɵɵinvalidFactory();
+    };
+  }
+  static {
+    this.ɵdir = ɵɵdefineDirective({
+      type: _MatAnchorBase,
+      features: [ɵɵInheritDefinitionFeature]
+    });
+  }
 };
-_MatAnchorBase.ɵfac = function MatAnchorBase_Factory(t) {
-  ɵɵinvalidFactory();
-};
-_MatAnchorBase.ɵdir = ɵɵdefineDirective({
-  type: _MatAnchorBase,
-  features: [ɵɵInheritDefinitionFeature]
-});
-var MatAnchorBase = _MatAnchorBase;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatAnchorBase, [{
     type: Directive
@@ -309,56 +315,59 @@ var MatAnchorBase = _MatAnchorBase;
     }];
   }, null);
 })();
-var _MatButton = class _MatButton extends MatButtonBase {
+var MatButton = class _MatButton extends MatButtonBase {
   constructor(elementRef, platform, ngZone, animationMode) {
     super(elementRef, platform, ngZone, animationMode);
   }
+  static {
+    this.ɵfac = function MatButton_Factory(t) {
+      return new (t || _MatButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatButton,
+      selectors: [["button", "mat-button", ""], ["button", "mat-raised-button", ""], ["button", "mat-flat-button", ""], ["button", "mat-stroked-button", ""]],
+      hostVars: 7,
+      hostBindings: function MatButton_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null);
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color"
+      },
+      exportAs: ["matButton"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c0,
+      ngContentSelectors: _c2,
+      decls: 7,
+      vars: 4,
+      consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatButton_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef(_c1);
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelementStart(2, "span", 1);
+          ɵɵprojection(3, 1);
+          ɵɵelementEnd();
+          ɵɵprojection(4, 2);
+          ɵɵelement(5, "span", 2)(6, "span", 3);
+        }
+        if (rf & 2) {
+          ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
+        }
+      },
+      styles: ['.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;pointer-events:none;opacity:var(--mdc-elevation-overlay-opacity, 0);transition:opacity 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button{position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;background:rgba(0,0,0,0)}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button[hidden]{display:none}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top}[dir=rtl] .mdc-button .mdc-button__icon,.mdc-button .mdc-button__icon[dir=rtl]{margin-left:8px;margin-right:0}.mdc-button .mdc-button__progress-indicator{font-size:0;position:absolute;transform:translate(-50%, -50%);top:50%;left:50%;line-height:initial}.mdc-button .mdc-button__label{position:relative}.mdc-button .mdc-button__focus-ring{pointer-events:none;border:2px solid rgba(0,0,0,0);border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(\n      100% + 4px\n    );width:calc(\n      100% + 4px\n    );display:none}@media screen and (forced-colors: active){.mdc-button .mdc-button__focus-ring{border-color:CanvasText}}.mdc-button .mdc-button__focus-ring::after{content:"";border:2px solid rgba(0,0,0,0);border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}@media screen and (forced-colors: active){.mdc-button .mdc-button__focus-ring::after{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring{display:block}}.mdc-button .mdc-button__touch{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}[dir=rtl] .mdc-button__label+.mdc-button__icon,.mdc-button__label+.mdc-button__icon[dir=rtl]{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--touch{margin-top:6px;margin-bottom:6px}.mdc-button{padding:0 8px 0 8px}.mdc-button--unelevated{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--unelevated.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--unelevated.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--raised{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--raised.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--raised.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--outlined{border-style:solid;transition:border 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button--outlined .mdc-button__ripple{border-style:solid;border-color:rgba(0,0,0,0)}.mat-mdc-button{height:var(--mdc-text-button-container-height, 36px);border-radius:var(--mdc-text-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-button:not(:disabled){color:var(--mdc-text-button-label-text-color, inherit)}.mat-mdc-button:disabled{color:var(--mdc-text-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-button .mdc-button__ripple{border-radius:var(--mdc-text-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-unelevated-button{height:var(--mdc-filled-button-container-height, 36px);border-radius:var(--mdc-filled-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-unelevated-button:not(:disabled){background-color:var(--mdc-filled-button-container-color, transparent)}.mat-mdc-unelevated-button:disabled{background-color:var(--mdc-filled-button-disabled-container-color, rgba(0, 0, 0, 0.12))}.mat-mdc-unelevated-button:not(:disabled){color:var(--mdc-filled-button-label-text-color, inherit)}.mat-mdc-unelevated-button:disabled{color:var(--mdc-filled-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-unelevated-button .mdc-button__ripple{border-radius:var(--mdc-filled-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-raised-button{height:var(--mdc-protected-button-container-height, 36px);border-radius:var(--mdc-protected-button-container-shape, var(--mdc-shape-small, 4px));box-shadow:var(--mdc-protected-button-container-elevation, 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:not(:disabled){background-color:var(--mdc-protected-button-container-color, transparent)}.mat-mdc-raised-button:disabled{background-color:var(--mdc-protected-button-disabled-container-color, rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:not(:disabled){color:var(--mdc-protected-button-label-text-color, inherit)}.mat-mdc-raised-button:disabled{color:var(--mdc-protected-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-raised-button .mdc-button__ripple{border-radius:var(--mdc-protected-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-raised-button.mdc-ripple-upgraded--background-focused,.mat-mdc-raised-button:not(.mdc-ripple-upgraded):focus{box-shadow:var(--mdc-protected-button-focus-container-elevation, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:hover{box-shadow:var(--mdc-protected-button-hover-container-elevation, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:not(:disabled):active{box-shadow:var(--mdc-protected-button-pressed-container-elevation, 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:disabled{box-shadow:var(--mdc-protected-button-disabled-container-elevation, 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-outlined-button{height:var(--mdc-outlined-button-container-height, 36px);border-radius:var(--mdc-outlined-button-container-shape, var(--mdc-shape-small, 4px));padding:0 15px 0 15px;border-width:var(--mdc-outlined-button-outline-width, 1px)}.mat-mdc-outlined-button:not(:disabled){color:var(--mdc-outlined-button-label-text-color, inherit)}.mat-mdc-outlined-button:disabled{color:var(--mdc-outlined-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-outlined-button .mdc-button__ripple{border-radius:var(--mdc-outlined-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-outlined-button:not(:disabled){border-color:var(--mdc-outlined-button-outline-color, rgba(0, 0, 0, 0.12))}.mat-mdc-outlined-button:disabled{border-color:var(--mdc-outlined-button-disabled-outline-color, rgba(0, 0, 0, 0.12))}.mat-mdc-outlined-button.mdc-button--icon-trailing{padding:0 11px 0 15px}.mat-mdc-outlined-button.mdc-button--icon-leading{padding:0 15px 0 11px}.mat-mdc-outlined-button .mdc-button__ripple{top:-1px;left:-1px;bottom:-1px;right:-1px;border-width:var(--mdc-outlined-button-outline-width, 1px)}.mat-mdc-outlined-button .mdc-button__touch{left:calc(-1 * var(--mdc-outlined-button-outline-width, 1px));width:calc(100% + 2 * var(--mdc-outlined-button-outline-width, 1px))}.mat-mdc-button,.mat-mdc-unelevated-button,.mat-mdc-raised-button,.mat-mdc-outlined-button{-webkit-tap-highlight-color:rgba(0,0,0,0)}.mat-mdc-button .mat-mdc-button-ripple,.mat-mdc-button .mat-mdc-button-persistent-ripple,.mat-mdc-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-unelevated-button .mat-mdc-button-ripple,.mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple,.mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-raised-button .mat-mdc-button-ripple,.mat-mdc-raised-button .mat-mdc-button-persistent-ripple,.mat-mdc-raised-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-outlined-button .mat-mdc-button-ripple,.mat-mdc-outlined-button .mat-mdc-button-persistent-ripple,.mat-mdc-outlined-button .mat-mdc-button-persistent-ripple::before{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit}.mat-mdc-button .mat-mdc-button-ripple,.mat-mdc-unelevated-button .mat-mdc-button-ripple,.mat-mdc-raised-button .mat-mdc-button-ripple,.mat-mdc-outlined-button .mat-mdc-button-ripple{overflow:hidden}.mat-mdc-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-raised-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-outlined-button .mat-mdc-button-persistent-ripple::before{content:"";opacity:0;background-color:var(--mat-mdc-button-persistent-ripple-color)}.mat-mdc-button .mat-ripple-element,.mat-mdc-unelevated-button .mat-ripple-element,.mat-mdc-raised-button .mat-ripple-element,.mat-mdc-outlined-button .mat-ripple-element{background-color:var(--mat-mdc-button-ripple-color)}.mat-mdc-button .mdc-button__label,.mat-mdc-unelevated-button .mdc-button__label,.mat-mdc-raised-button .mdc-button__label,.mat-mdc-outlined-button .mdc-button__label{z-index:1}.mat-mdc-button .mat-mdc-focus-indicator,.mat-mdc-unelevated-button .mat-mdc-focus-indicator,.mat-mdc-raised-button .mat-mdc-focus-indicator,.mat-mdc-outlined-button .mat-mdc-focus-indicator{top:0;left:0;right:0;bottom:0;position:absolute}.mat-mdc-button:focus .mat-mdc-focus-indicator::before,.mat-mdc-unelevated-button:focus .mat-mdc-focus-indicator::before,.mat-mdc-raised-button:focus .mat-mdc-focus-indicator::before,.mat-mdc-outlined-button:focus .mat-mdc-focus-indicator::before{content:""}.mat-mdc-button[disabled],.mat-mdc-unelevated-button[disabled],.mat-mdc-raised-button[disabled],.mat-mdc-outlined-button[disabled]{cursor:default;pointer-events:none}.mat-mdc-button .mat-mdc-button-touch-target,.mat-mdc-unelevated-button .mat-mdc-button-touch-target,.mat-mdc-raised-button .mat-mdc-button-touch-target,.mat-mdc-outlined-button .mat-mdc-button-touch-target{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}.mat-mdc-button._mat-animation-noopable,.mat-mdc-unelevated-button._mat-animation-noopable,.mat-mdc-raised-button._mat-animation-noopable,.mat-mdc-outlined-button._mat-animation-noopable{transition:none !important;animation:none !important}.mat-mdc-button>.mat-icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top;font-size:1.125rem;height:1.125rem;width:1.125rem}[dir=rtl] .mat-mdc-button>.mat-icon,.mat-mdc-button>.mat-icon[dir=rtl]{margin-left:8px;margin-right:0}.mat-mdc-button .mdc-button__label+.mat-icon{margin-left:8px;margin-right:0}[dir=rtl] .mat-mdc-button .mdc-button__label+.mat-icon,.mat-mdc-button .mdc-button__label+.mat-icon[dir=rtl]{margin-left:0;margin-right:8px}.mat-mdc-unelevated-button>.mat-icon,.mat-mdc-raised-button>.mat-icon,.mat-mdc-outlined-button>.mat-icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top;font-size:1.125rem;height:1.125rem;width:1.125rem;margin-left:-4px;margin-right:8px}[dir=rtl] .mat-mdc-unelevated-button>.mat-icon,[dir=rtl] .mat-mdc-raised-button>.mat-icon,[dir=rtl] .mat-mdc-outlined-button>.mat-icon,.mat-mdc-unelevated-button>.mat-icon[dir=rtl],.mat-mdc-raised-button>.mat-icon[dir=rtl],.mat-mdc-outlined-button>.mat-icon[dir=rtl]{margin-left:8px;margin-right:0}[dir=rtl] .mat-mdc-unelevated-button>.mat-icon,[dir=rtl] .mat-mdc-raised-button>.mat-icon,[dir=rtl] .mat-mdc-outlined-button>.mat-icon,.mat-mdc-unelevated-button>.mat-icon[dir=rtl],.mat-mdc-raised-button>.mat-icon[dir=rtl],.mat-mdc-outlined-button>.mat-icon[dir=rtl]{margin-left:8px;margin-right:-4px}.mat-mdc-unelevated-button .mdc-button__label+.mat-icon,.mat-mdc-raised-button .mdc-button__label+.mat-icon,.mat-mdc-outlined-button .mdc-button__label+.mat-icon{margin-left:8px;margin-right:-4px}[dir=rtl] .mat-mdc-unelevated-button .mdc-button__label+.mat-icon,[dir=rtl] .mat-mdc-raised-button .mdc-button__label+.mat-icon,[dir=rtl] .mat-mdc-outlined-button .mdc-button__label+.mat-icon,.mat-mdc-unelevated-button .mdc-button__label+.mat-icon[dir=rtl],.mat-mdc-raised-button .mdc-button__label+.mat-icon[dir=rtl],.mat-mdc-outlined-button .mdc-button__label+.mat-icon[dir=rtl]{margin-left:-4px;margin-right:8px}.mat-mdc-outlined-button .mat-mdc-button-ripple,.mat-mdc-outlined-button .mdc-button__ripple{top:-1px;left:-1px;bottom:-1px;right:-1px;border-width:-1px}.mat-mdc-unelevated-button .mat-mdc-focus-indicator::before,.mat-mdc-raised-button .mat-mdc-focus-indicator::before{margin:calc(calc(var(--mat-mdc-focus-indicator-border-width, 3px) + 2px) * -1)}.mat-mdc-outlined-button .mat-mdc-focus-indicator::before{margin:calc(calc(var(--mat-mdc-focus-indicator-border-width, 3px) + 3px) * -1)}', ".cdk-high-contrast-active .mat-mdc-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-unelevated-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-raised-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-outlined-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-icon-button{outline:solid 1px}"],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatButton.ɵfac = function MatButton_Factory(t) {
-  return new (t || _MatButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
-};
-_MatButton.ɵcmp = ɵɵdefineComponent({
-  type: _MatButton,
-  selectors: [["button", "mat-button", ""], ["button", "mat-raised-button", ""], ["button", "mat-flat-button", ""], ["button", "mat-stroked-button", ""]],
-  hostVars: 7,
-  hostBindings: function MatButton_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null);
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color"
-  },
-  exportAs: ["matButton"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c0,
-  ngContentSelectors: _c2,
-  decls: 7,
-  vars: 4,
-  consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatButton_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef(_c1);
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelementStart(2, "span", 1);
-      ɵɵprojection(3, 1);
-      ɵɵelementEnd();
-      ɵɵprojection(4, 2);
-      ɵɵelement(5, "span", 2)(6, "span", 3);
-    }
-    if (rf & 2) {
-      ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
-    }
-  },
-  styles: ['.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;pointer-events:none;opacity:var(--mdc-elevation-overlay-opacity, 0);transition:opacity 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button{position:relative;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:64px;border:none;outline:none;line-height:inherit;user-select:none;-webkit-appearance:none;overflow:visible;vertical-align:middle;background:rgba(0,0,0,0)}.mdc-button .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-button::-moz-focus-inner{padding:0;border:0}.mdc-button:active{outline:none}.mdc-button:hover{cursor:pointer}.mdc-button:disabled{cursor:default;pointer-events:none}.mdc-button[hidden]{display:none}.mdc-button .mdc-button__icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top}[dir=rtl] .mdc-button .mdc-button__icon,.mdc-button .mdc-button__icon[dir=rtl]{margin-left:8px;margin-right:0}.mdc-button .mdc-button__progress-indicator{font-size:0;position:absolute;transform:translate(-50%, -50%);top:50%;left:50%;line-height:initial}.mdc-button .mdc-button__label{position:relative}.mdc-button .mdc-button__focus-ring{pointer-events:none;border:2px solid rgba(0,0,0,0);border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(\n      100% + 4px\n    );width:calc(\n      100% + 4px\n    );display:none}@media screen and (forced-colors: active){.mdc-button .mdc-button__focus-ring{border-color:CanvasText}}.mdc-button .mdc-button__focus-ring::after{content:"";border:2px solid rgba(0,0,0,0);border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}@media screen and (forced-colors: active){.mdc-button .mdc-button__focus-ring::after{border-color:CanvasText}}@media screen and (forced-colors: active){.mdc-button.mdc-ripple-upgraded--background-focused .mdc-button__focus-ring,.mdc-button:not(.mdc-ripple-upgraded):focus .mdc-button__focus-ring{display:block}}.mdc-button .mdc-button__touch{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}.mdc-button__label+.mdc-button__icon{margin-left:8px;margin-right:0}[dir=rtl] .mdc-button__label+.mdc-button__icon,.mdc-button__label+.mdc-button__icon[dir=rtl]{margin-left:0;margin-right:8px}svg.mdc-button__icon{fill:currentColor}.mdc-button--touch{margin-top:6px;margin-bottom:6px}.mdc-button{padding:0 8px 0 8px}.mdc-button--unelevated{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--unelevated.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--unelevated.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--raised{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);padding:0 16px 0 16px}.mdc-button--raised.mdc-button--icon-trailing{padding:0 12px 0 16px}.mdc-button--raised.mdc-button--icon-leading{padding:0 16px 0 12px}.mdc-button--outlined{border-style:solid;transition:border 280ms cubic-bezier(0.4, 0, 0.2, 1)}.mdc-button--outlined .mdc-button__ripple{border-style:solid;border-color:rgba(0,0,0,0)}.mat-mdc-button{height:var(--mdc-text-button-container-height, 36px);border-radius:var(--mdc-text-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-button:not(:disabled){color:var(--mdc-text-button-label-text-color, inherit)}.mat-mdc-button:disabled{color:var(--mdc-text-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-button .mdc-button__ripple{border-radius:var(--mdc-text-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-unelevated-button{height:var(--mdc-filled-button-container-height, 36px);border-radius:var(--mdc-filled-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-unelevated-button:not(:disabled){background-color:var(--mdc-filled-button-container-color, transparent)}.mat-mdc-unelevated-button:disabled{background-color:var(--mdc-filled-button-disabled-container-color, rgba(0, 0, 0, 0.12))}.mat-mdc-unelevated-button:not(:disabled){color:var(--mdc-filled-button-label-text-color, inherit)}.mat-mdc-unelevated-button:disabled{color:var(--mdc-filled-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-unelevated-button .mdc-button__ripple{border-radius:var(--mdc-filled-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-raised-button{height:var(--mdc-protected-button-container-height, 36px);border-radius:var(--mdc-protected-button-container-shape, var(--mdc-shape-small, 4px));box-shadow:var(--mdc-protected-button-container-elevation, 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:not(:disabled){background-color:var(--mdc-protected-button-container-color, transparent)}.mat-mdc-raised-button:disabled{background-color:var(--mdc-protected-button-disabled-container-color, rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:not(:disabled){color:var(--mdc-protected-button-label-text-color, inherit)}.mat-mdc-raised-button:disabled{color:var(--mdc-protected-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-raised-button .mdc-button__ripple{border-radius:var(--mdc-protected-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-raised-button.mdc-ripple-upgraded--background-focused,.mat-mdc-raised-button:not(.mdc-ripple-upgraded):focus{box-shadow:var(--mdc-protected-button-focus-container-elevation, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:hover{box-shadow:var(--mdc-protected-button-hover-container-elevation, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:not(:disabled):active{box-shadow:var(--mdc-protected-button-pressed-container-elevation, 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12))}.mat-mdc-raised-button:disabled{box-shadow:var(--mdc-protected-button-disabled-container-elevation, 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12))}.mat-mdc-outlined-button{height:var(--mdc-outlined-button-container-height, 36px);border-radius:var(--mdc-outlined-button-container-shape, var(--mdc-shape-small, 4px));padding:0 15px 0 15px;border-width:var(--mdc-outlined-button-outline-width, 1px)}.mat-mdc-outlined-button:not(:disabled){color:var(--mdc-outlined-button-label-text-color, inherit)}.mat-mdc-outlined-button:disabled{color:var(--mdc-outlined-button-disabled-label-text-color, rgba(0, 0, 0, 0.38))}.mat-mdc-outlined-button .mdc-button__ripple{border-radius:var(--mdc-outlined-button-container-shape, var(--mdc-shape-small, 4px))}.mat-mdc-outlined-button:not(:disabled){border-color:var(--mdc-outlined-button-outline-color, rgba(0, 0, 0, 0.12))}.mat-mdc-outlined-button:disabled{border-color:var(--mdc-outlined-button-disabled-outline-color, rgba(0, 0, 0, 0.12))}.mat-mdc-outlined-button.mdc-button--icon-trailing{padding:0 11px 0 15px}.mat-mdc-outlined-button.mdc-button--icon-leading{padding:0 15px 0 11px}.mat-mdc-outlined-button .mdc-button__ripple{top:-1px;left:-1px;bottom:-1px;right:-1px;border-width:var(--mdc-outlined-button-outline-width, 1px)}.mat-mdc-outlined-button .mdc-button__touch{left:calc(-1 * var(--mdc-outlined-button-outline-width, 1px));width:calc(100% + 2 * var(--mdc-outlined-button-outline-width, 1px))}.mat-mdc-button,.mat-mdc-unelevated-button,.mat-mdc-raised-button,.mat-mdc-outlined-button{-webkit-tap-highlight-color:rgba(0,0,0,0)}.mat-mdc-button .mat-mdc-button-ripple,.mat-mdc-button .mat-mdc-button-persistent-ripple,.mat-mdc-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-unelevated-button .mat-mdc-button-ripple,.mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple,.mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-raised-button .mat-mdc-button-ripple,.mat-mdc-raised-button .mat-mdc-button-persistent-ripple,.mat-mdc-raised-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-outlined-button .mat-mdc-button-ripple,.mat-mdc-outlined-button .mat-mdc-button-persistent-ripple,.mat-mdc-outlined-button .mat-mdc-button-persistent-ripple::before{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit}.mat-mdc-button .mat-mdc-button-ripple,.mat-mdc-unelevated-button .mat-mdc-button-ripple,.mat-mdc-raised-button .mat-mdc-button-ripple,.mat-mdc-outlined-button .mat-mdc-button-ripple{overflow:hidden}.mat-mdc-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-raised-button .mat-mdc-button-persistent-ripple::before,.mat-mdc-outlined-button .mat-mdc-button-persistent-ripple::before{content:"";opacity:0;background-color:var(--mat-mdc-button-persistent-ripple-color)}.mat-mdc-button .mat-ripple-element,.mat-mdc-unelevated-button .mat-ripple-element,.mat-mdc-raised-button .mat-ripple-element,.mat-mdc-outlined-button .mat-ripple-element{background-color:var(--mat-mdc-button-ripple-color)}.mat-mdc-button .mdc-button__label,.mat-mdc-unelevated-button .mdc-button__label,.mat-mdc-raised-button .mdc-button__label,.mat-mdc-outlined-button .mdc-button__label{z-index:1}.mat-mdc-button .mat-mdc-focus-indicator,.mat-mdc-unelevated-button .mat-mdc-focus-indicator,.mat-mdc-raised-button .mat-mdc-focus-indicator,.mat-mdc-outlined-button .mat-mdc-focus-indicator{top:0;left:0;right:0;bottom:0;position:absolute}.mat-mdc-button:focus .mat-mdc-focus-indicator::before,.mat-mdc-unelevated-button:focus .mat-mdc-focus-indicator::before,.mat-mdc-raised-button:focus .mat-mdc-focus-indicator::before,.mat-mdc-outlined-button:focus .mat-mdc-focus-indicator::before{content:""}.mat-mdc-button[disabled],.mat-mdc-unelevated-button[disabled],.mat-mdc-raised-button[disabled],.mat-mdc-outlined-button[disabled]{cursor:default;pointer-events:none}.mat-mdc-button .mat-mdc-button-touch-target,.mat-mdc-unelevated-button .mat-mdc-button-touch-target,.mat-mdc-raised-button .mat-mdc-button-touch-target,.mat-mdc-outlined-button .mat-mdc-button-touch-target{position:absolute;top:50%;height:48px;left:0;right:0;transform:translateY(-50%)}.mat-mdc-button._mat-animation-noopable,.mat-mdc-unelevated-button._mat-animation-noopable,.mat-mdc-raised-button._mat-animation-noopable,.mat-mdc-outlined-button._mat-animation-noopable{transition:none !important;animation:none !important}.mat-mdc-button>.mat-icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top;font-size:1.125rem;height:1.125rem;width:1.125rem}[dir=rtl] .mat-mdc-button>.mat-icon,.mat-mdc-button>.mat-icon[dir=rtl]{margin-left:8px;margin-right:0}.mat-mdc-button .mdc-button__label+.mat-icon{margin-left:8px;margin-right:0}[dir=rtl] .mat-mdc-button .mdc-button__label+.mat-icon,.mat-mdc-button .mdc-button__label+.mat-icon[dir=rtl]{margin-left:0;margin-right:8px}.mat-mdc-unelevated-button>.mat-icon,.mat-mdc-raised-button>.mat-icon,.mat-mdc-outlined-button>.mat-icon{margin-left:0;margin-right:8px;display:inline-block;position:relative;vertical-align:top;font-size:1.125rem;height:1.125rem;width:1.125rem;margin-left:-4px;margin-right:8px}[dir=rtl] .mat-mdc-unelevated-button>.mat-icon,[dir=rtl] .mat-mdc-raised-button>.mat-icon,[dir=rtl] .mat-mdc-outlined-button>.mat-icon,.mat-mdc-unelevated-button>.mat-icon[dir=rtl],.mat-mdc-raised-button>.mat-icon[dir=rtl],.mat-mdc-outlined-button>.mat-icon[dir=rtl]{margin-left:8px;margin-right:0}[dir=rtl] .mat-mdc-unelevated-button>.mat-icon,[dir=rtl] .mat-mdc-raised-button>.mat-icon,[dir=rtl] .mat-mdc-outlined-button>.mat-icon,.mat-mdc-unelevated-button>.mat-icon[dir=rtl],.mat-mdc-raised-button>.mat-icon[dir=rtl],.mat-mdc-outlined-button>.mat-icon[dir=rtl]{margin-left:8px;margin-right:-4px}.mat-mdc-unelevated-button .mdc-button__label+.mat-icon,.mat-mdc-raised-button .mdc-button__label+.mat-icon,.mat-mdc-outlined-button .mdc-button__label+.mat-icon{margin-left:8px;margin-right:-4px}[dir=rtl] .mat-mdc-unelevated-button .mdc-button__label+.mat-icon,[dir=rtl] .mat-mdc-raised-button .mdc-button__label+.mat-icon,[dir=rtl] .mat-mdc-outlined-button .mdc-button__label+.mat-icon,.mat-mdc-unelevated-button .mdc-button__label+.mat-icon[dir=rtl],.mat-mdc-raised-button .mdc-button__label+.mat-icon[dir=rtl],.mat-mdc-outlined-button .mdc-button__label+.mat-icon[dir=rtl]{margin-left:-4px;margin-right:8px}.mat-mdc-outlined-button .mat-mdc-button-ripple,.mat-mdc-outlined-button .mdc-button__ripple{top:-1px;left:-1px;bottom:-1px;right:-1px;border-width:-1px}.mat-mdc-unelevated-button .mat-mdc-focus-indicator::before,.mat-mdc-raised-button .mat-mdc-focus-indicator::before{margin:calc(calc(var(--mat-mdc-focus-indicator-border-width, 3px) + 2px) * -1)}.mat-mdc-outlined-button .mat-mdc-focus-indicator::before{margin:calc(calc(var(--mat-mdc-focus-indicator-border-width, 3px) + 3px) * -1)}', ".cdk-high-contrast-active .mat-mdc-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-unelevated-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-raised-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-outlined-button:not(.mdc-button--outlined),.cdk-high-contrast-active .mat-mdc-icon-button{outline:solid 1px}"],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatButton = _MatButton;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatButton, [{
     type: Component,
@@ -413,57 +422,60 @@ var MatButton = _MatButton;
     }];
   }, null);
 })();
-var _MatAnchor = class _MatAnchor extends MatAnchorBase {
+var MatAnchor = class _MatAnchor extends MatAnchorBase {
   constructor(elementRef, platform, ngZone, animationMode) {
     super(elementRef, platform, ngZone, animationMode);
   }
+  static {
+    this.ɵfac = function MatAnchor_Factory(t) {
+      return new (t || _MatAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatAnchor,
+      selectors: [["a", "mat-button", ""], ["a", "mat-raised-button", ""], ["a", "mat-flat-button", ""], ["a", "mat-stroked-button", ""]],
+      hostVars: 9,
+      hostBindings: function MatAnchor_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color",
+        tabIndex: "tabIndex"
+      },
+      exportAs: ["matButton", "matAnchor"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c0,
+      ngContentSelectors: _c2,
+      decls: 7,
+      vars: 4,
+      consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatAnchor_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef(_c1);
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelementStart(2, "span", 1);
+          ɵɵprojection(3, 1);
+          ɵɵelementEnd();
+          ɵɵprojection(4, 2);
+          ɵɵelement(5, "span", 2)(6, "span", 3);
+        }
+        if (rf & 2) {
+          ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
+        }
+      },
+      styles: [_c3, _c4],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatAnchor.ɵfac = function MatAnchor_Factory(t) {
-  return new (t || _MatAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
-};
-_MatAnchor.ɵcmp = ɵɵdefineComponent({
-  type: _MatAnchor,
-  selectors: [["a", "mat-button", ""], ["a", "mat-raised-button", ""], ["a", "mat-flat-button", ""], ["a", "mat-stroked-button", ""]],
-  hostVars: 9,
-  hostBindings: function MatAnchor_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color",
-    tabIndex: "tabIndex"
-  },
-  exportAs: ["matButton", "matAnchor"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c0,
-  ngContentSelectors: _c2,
-  decls: 7,
-  vars: 4,
-  consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatAnchor_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef(_c1);
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelementStart(2, "span", 1);
-      ɵɵprojection(3, 1);
-      ɵɵelementEnd();
-      ɵɵprojection(4, 2);
-      ɵɵelement(5, "span", 2)(6, "span", 3);
-    }
-    if (rf & 2) {
-      ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
-    }
-  },
-  styles: [_c3, _c4],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatAnchor = _MatAnchor;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatAnchor, [{
     type: Component,
@@ -527,7 +539,7 @@ function MAT_FAB_DEFAULT_OPTIONS_FACTORY() {
 }
 var defaults = MAT_FAB_DEFAULT_OPTIONS_FACTORY();
 var buttonInputs = [...MAT_ANCHOR_INPUTS, "extended"];
-var _MatFabButton = class _MatFabButton extends MatButtonBase {
+var MatFabButton = class _MatFabButton extends MatButtonBase {
   get extended() {
     return this._extended;
   }
@@ -541,54 +553,57 @@ var _MatFabButton = class _MatFabButton extends MatButtonBase {
     this._options = this._options || defaults;
     this.color = this.defaultColor = this._options.color || defaults.color;
   }
+  static {
+    this.ɵfac = function MatFabButton_Factory(t) {
+      return new (t || _MatFabButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatFabButton,
+      selectors: [["button", "mat-fab", ""]],
+      hostVars: 11,
+      hostBindings: function MatFabButton_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null);
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true)("mdc-fab--extended", ctx.extended)("mat-mdc-extended-fab", ctx.extended);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color",
+        tabIndex: "tabIndex",
+        extended: "extended"
+      },
+      exportAs: ["matButton"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c5,
+      ngContentSelectors: _c2,
+      decls: 7,
+      vars: 4,
+      consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatFabButton_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef(_c1);
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelementStart(2, "span", 1);
+          ɵɵprojection(3, 1);
+          ɵɵelementEnd();
+          ɵɵprojection(4, 2);
+          ɵɵelement(5, "span", 2)(6, "span", 3);
+        }
+        if (rf & 2) {
+          ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
+        }
+      },
+      styles: ['.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;pointer-events:none;opacity:var(--mdc-elevation-overlay-opacity);transition:opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);background-color:var(--mdc-elevation-overlay-color)}.mdc-fab{position:relative;display:inline-flex;position:relative;align-items:center;justify-content:center;box-sizing:border-box;width:56px;height:56px;padding:0;border:none;fill:currentColor;text-decoration:none;cursor:pointer;user-select:none;-moz-appearance:none;-webkit-appearance:none;overflow:visible;transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),opacity 15ms linear 30ms,transform 270ms 0ms cubic-bezier(0, 0, 0.2, 1)}.mdc-fab .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-fab[hidden]{display:none}.mdc-fab::-moz-focus-inner{padding:0;border:0}.mdc-fab:hover{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)}.mdc-fab.mdc-ripple-upgraded--background-focused,.mdc-fab:not(.mdc-ripple-upgraded):focus{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)}.mdc-fab .mdc-fab__focus-ring{position:absolute}.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring{pointer-events:none;border:2px solid rgba(0,0,0,0);border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(\n      100% + 4px\n    );width:calc(\n      100% + 4px\n    )}@media screen and (forced-colors: active){.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring{border-color:CanvasText}}.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring::after,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring::after{content:"";border:2px solid rgba(0,0,0,0);border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}@media screen and (forced-colors: active){.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring::after,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring::after{border-color:CanvasText}}.mdc-fab:active,.mdc-fab:focus:active{box-shadow:0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12)}.mdc-fab:active,.mdc-fab:focus{outline:none}.mdc-fab:hover{cursor:pointer}.mdc-fab>svg{width:100%}.mdc-fab--mini{width:40px;height:40px}.mdc-fab--extended{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:var(--mdc-typography-button-font-family);font-size:var(--mdc-typography-button-font-size);line-height:var(--mdc-typography-button-line-height);font-weight:var(--mdc-typography-button-font-weight);letter-spacing:var(--mdc-typography-button-letter-spacing);text-decoration:var(--mdc-typography-button-text-decoration);text-transform:var(--mdc-typography-button-text-transform);border-radius:24px;padding-left:20px;padding-right:20px;width:auto;max-width:100%;height:48px;line-height:normal}.mdc-fab--extended .mdc-fab__ripple{border-radius:24px}.mdc-fab--extended .mdc-fab__icon{margin-left:calc(12px - 20px);margin-right:12px}[dir=rtl] .mdc-fab--extended .mdc-fab__icon,.mdc-fab--extended .mdc-fab__icon[dir=rtl]{margin-left:12px;margin-right:calc(12px - 20px)}.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon{margin-left:12px;margin-right:calc(12px - 20px)}[dir=rtl] .mdc-fab--extended .mdc-fab__label+.mdc-fab__icon,.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon[dir=rtl]{margin-left:calc(12px - 20px);margin-right:12px}.mdc-fab--touch{margin-top:4px;margin-bottom:4px;margin-right:4px;margin-left:4px}.mdc-fab--touch .mdc-fab__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-fab::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid rgba(0,0,0,0);border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-fab::before{border-color:CanvasText}}.mdc-fab__label{justify-content:flex-start;text-overflow:ellipsis;white-space:nowrap;overflow-x:hidden;overflow-y:visible}.mdc-fab__icon{transition:transform 180ms 90ms cubic-bezier(0, 0, 0.2, 1);fill:currentColor;will-change:transform}.mdc-fab .mdc-fab__icon{display:inline-flex;align-items:center;justify-content:center}.mdc-fab--exited{transform:scale(0);opacity:0;transition:opacity 15ms linear 150ms,transform 180ms 0ms cubic-bezier(0.4, 0, 1, 1)}.mdc-fab--exited .mdc-fab__icon{transform:scale(0);transition:transform 135ms 0ms cubic-bezier(0.4, 0, 1, 1)}.mat-mdc-fab,.mat-mdc-mini-fab{background-color:var(--mdc-fab-container-color);--mdc-fab-container-shape:50%;--mdc-fab-icon-size:24px}.mat-mdc-fab .mdc-fab__icon,.mat-mdc-mini-fab .mdc-fab__icon{width:var(--mdc-fab-icon-size);height:var(--mdc-fab-icon-size);font-size:var(--mdc-fab-icon-size)}.mat-mdc-fab:not(:disabled) .mdc-fab__icon,.mat-mdc-mini-fab:not(:disabled) .mdc-fab__icon{color:var(--mdc-fab-icon-color)}.mat-mdc-fab:not(.mdc-fab--extended),.mat-mdc-mini-fab:not(.mdc-fab--extended){border-radius:var(--mdc-fab-container-shape)}.mat-mdc-fab:not(.mdc-fab--extended) .mdc-fab__ripple,.mat-mdc-mini-fab:not(.mdc-fab--extended) .mdc-fab__ripple{border-radius:var(--mdc-fab-container-shape)}.mat-mdc-extended-fab{font-family:var(--mdc-extended-fab-label-text-font);font-size:var(--mdc-extended-fab-label-text-size);font-weight:var(--mdc-extended-fab-label-text-weight);letter-spacing:var(--mdc-extended-fab-label-text-tracking)}.mat-mdc-fab,.mat-mdc-mini-fab{-webkit-tap-highlight-color:rgba(0,0,0,0);box-shadow:0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);color:var(--mat-mdc-fab-color, inherit);flex-shrink:0}.mat-mdc-fab .mat-mdc-button-ripple,.mat-mdc-fab .mat-mdc-button-persistent-ripple,.mat-mdc-fab .mat-mdc-button-persistent-ripple::before,.mat-mdc-mini-fab .mat-mdc-button-ripple,.mat-mdc-mini-fab .mat-mdc-button-persistent-ripple,.mat-mdc-mini-fab .mat-mdc-button-persistent-ripple::before{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit}.mat-mdc-fab .mat-mdc-button-ripple,.mat-mdc-mini-fab .mat-mdc-button-ripple{overflow:hidden}.mat-mdc-fab .mat-mdc-button-persistent-ripple::before,.mat-mdc-mini-fab .mat-mdc-button-persistent-ripple::before{content:"";opacity:0;background-color:var(--mat-mdc-button-persistent-ripple-color)}.mat-mdc-fab .mat-ripple-element,.mat-mdc-mini-fab .mat-ripple-element{background-color:var(--mat-mdc-button-ripple-color)}.mat-mdc-fab .mdc-button__label,.mat-mdc-mini-fab .mdc-button__label{z-index:1}.mat-mdc-fab .mat-mdc-focus-indicator,.mat-mdc-mini-fab .mat-mdc-focus-indicator{top:0;left:0;right:0;bottom:0;position:absolute}.mat-mdc-fab:focus .mat-mdc-focus-indicator::before,.mat-mdc-mini-fab:focus .mat-mdc-focus-indicator::before{content:""}.mat-mdc-fab .mat-mdc-button-touch-target,.mat-mdc-mini-fab .mat-mdc-button-touch-target{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mat-mdc-fab._mat-animation-noopable,.mat-mdc-mini-fab._mat-animation-noopable{transition:none !important;animation:none !important}.mat-mdc-fab:hover,.mat-mdc-fab:focus,.mat-mdc-mini-fab:hover,.mat-mdc-mini-fab:focus{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)}.mat-mdc-fab:active,.mat-mdc-fab:focus:active,.mat-mdc-mini-fab:active,.mat-mdc-mini-fab:focus:active{box-shadow:0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12)}.mat-mdc-fab[disabled],.mat-mdc-mini-fab[disabled]{cursor:default;pointer-events:none;box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12)}.mat-mdc-fab:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-mini-fab:not(.mdc-ripple-upgraded):focus::before{background:rgba(0,0,0,0);opacity:1}.mat-mdc-fab .mat-icon,.mat-mdc-fab .material-icons,.mat-mdc-mini-fab .mat-icon,.mat-mdc-mini-fab .material-icons{transition:transform 180ms 90ms cubic-bezier(0, 0, 0.2, 1);fill:currentColor;will-change:transform}.mat-mdc-fab .mat-mdc-focus-indicator::before,.mat-mdc-mini-fab .mat-mdc-focus-indicator::before{margin:calc(calc(var(--mat-mdc-focus-indicator-border-width, 3px) + 2px) * -1)}.mat-mdc-extended-fab>.mat-icon,.mat-mdc-extended-fab>.material-icons{margin-left:calc(12px - 20px);margin-right:12px}[dir=rtl] .mat-mdc-extended-fab>.mat-icon,[dir=rtl] .mat-mdc-extended-fab>.material-icons,.mat-mdc-extended-fab>.mat-icon[dir=rtl],.mat-mdc-extended-fab>.material-icons[dir=rtl]{margin-left:12px;margin-right:calc(12px - 20px)}.mat-mdc-extended-fab .mdc-button__label+.mat-icon,.mat-mdc-extended-fab .mdc-button__label+.material-icons{margin-left:12px;margin-right:calc(12px - 20px)}[dir=rtl] .mat-mdc-extended-fab .mdc-button__label+.mat-icon,[dir=rtl] .mat-mdc-extended-fab .mdc-button__label+.material-icons,.mat-mdc-extended-fab .mdc-button__label+.mat-icon[dir=rtl],.mat-mdc-extended-fab .mdc-button__label+.material-icons[dir=rtl]{margin-left:calc(12px - 20px);margin-right:12px}.mat-mdc-extended-fab .mat-mdc-button-touch-target{width:100%}'],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatFabButton.ɵfac = function MatFabButton_Factory(t) {
-  return new (t || _MatFabButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
-};
-_MatFabButton.ɵcmp = ɵɵdefineComponent({
-  type: _MatFabButton,
-  selectors: [["button", "mat-fab", ""]],
-  hostVars: 11,
-  hostBindings: function MatFabButton_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null);
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true)("mdc-fab--extended", ctx.extended)("mat-mdc-extended-fab", ctx.extended);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color",
-    tabIndex: "tabIndex",
-    extended: "extended"
-  },
-  exportAs: ["matButton"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c5,
-  ngContentSelectors: _c2,
-  decls: 7,
-  vars: 4,
-  consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatFabButton_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef(_c1);
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelementStart(2, "span", 1);
-      ɵɵprojection(3, 1);
-      ɵɵelementEnd();
-      ɵɵprojection(4, 2);
-      ɵɵelement(5, "span", 2)(6, "span", 3);
-    }
-    if (rf & 2) {
-      ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
-    }
-  },
-  styles: ['.mdc-touch-target-wrapper{display:inline}.mdc-elevation-overlay{position:absolute;border-radius:inherit;pointer-events:none;opacity:var(--mdc-elevation-overlay-opacity);transition:opacity 280ms cubic-bezier(0.4, 0, 0.2, 1);background-color:var(--mdc-elevation-overlay-color)}.mdc-fab{position:relative;display:inline-flex;position:relative;align-items:center;justify-content:center;box-sizing:border-box;width:56px;height:56px;padding:0;border:none;fill:currentColor;text-decoration:none;cursor:pointer;user-select:none;-moz-appearance:none;-webkit-appearance:none;overflow:visible;transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),opacity 15ms linear 30ms,transform 270ms 0ms cubic-bezier(0, 0, 0.2, 1)}.mdc-fab .mdc-elevation-overlay{width:100%;height:100%;top:0;left:0}.mdc-fab[hidden]{display:none}.mdc-fab::-moz-focus-inner{padding:0;border:0}.mdc-fab:hover{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)}.mdc-fab.mdc-ripple-upgraded--background-focused,.mdc-fab:not(.mdc-ripple-upgraded):focus{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)}.mdc-fab .mdc-fab__focus-ring{position:absolute}.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring{pointer-events:none;border:2px solid rgba(0,0,0,0);border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(\n      100% + 4px\n    );width:calc(\n      100% + 4px\n    )}@media screen and (forced-colors: active){.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring{border-color:CanvasText}}.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring::after,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring::after{content:"";border:2px solid rgba(0,0,0,0);border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}@media screen and (forced-colors: active){.mdc-fab.mdc-ripple-upgraded--background-focused .mdc-fab__focus-ring::after,.mdc-fab:not(.mdc-ripple-upgraded):focus .mdc-fab__focus-ring::after{border-color:CanvasText}}.mdc-fab:active,.mdc-fab:focus:active{box-shadow:0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12)}.mdc-fab:active,.mdc-fab:focus{outline:none}.mdc-fab:hover{cursor:pointer}.mdc-fab>svg{width:100%}.mdc-fab--mini{width:40px;height:40px}.mdc-fab--extended{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:var(--mdc-typography-button-font-family);font-size:var(--mdc-typography-button-font-size);line-height:var(--mdc-typography-button-line-height);font-weight:var(--mdc-typography-button-font-weight);letter-spacing:var(--mdc-typography-button-letter-spacing);text-decoration:var(--mdc-typography-button-text-decoration);text-transform:var(--mdc-typography-button-text-transform);border-radius:24px;padding-left:20px;padding-right:20px;width:auto;max-width:100%;height:48px;line-height:normal}.mdc-fab--extended .mdc-fab__ripple{border-radius:24px}.mdc-fab--extended .mdc-fab__icon{margin-left:calc(12px - 20px);margin-right:12px}[dir=rtl] .mdc-fab--extended .mdc-fab__icon,.mdc-fab--extended .mdc-fab__icon[dir=rtl]{margin-left:12px;margin-right:calc(12px - 20px)}.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon{margin-left:12px;margin-right:calc(12px - 20px)}[dir=rtl] .mdc-fab--extended .mdc-fab__label+.mdc-fab__icon,.mdc-fab--extended .mdc-fab__label+.mdc-fab__icon[dir=rtl]{margin-left:calc(12px - 20px);margin-right:12px}.mdc-fab--touch{margin-top:4px;margin-bottom:4px;margin-right:4px;margin-left:4px}.mdc-fab--touch .mdc-fab__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mdc-fab::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid rgba(0,0,0,0);border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-fab::before{border-color:CanvasText}}.mdc-fab__label{justify-content:flex-start;text-overflow:ellipsis;white-space:nowrap;overflow-x:hidden;overflow-y:visible}.mdc-fab__icon{transition:transform 180ms 90ms cubic-bezier(0, 0, 0.2, 1);fill:currentColor;will-change:transform}.mdc-fab .mdc-fab__icon{display:inline-flex;align-items:center;justify-content:center}.mdc-fab--exited{transform:scale(0);opacity:0;transition:opacity 15ms linear 150ms,transform 180ms 0ms cubic-bezier(0.4, 0, 1, 1)}.mdc-fab--exited .mdc-fab__icon{transform:scale(0);transition:transform 135ms 0ms cubic-bezier(0.4, 0, 1, 1)}.mat-mdc-fab,.mat-mdc-mini-fab{background-color:var(--mdc-fab-container-color);--mdc-fab-container-shape:50%;--mdc-fab-icon-size:24px}.mat-mdc-fab .mdc-fab__icon,.mat-mdc-mini-fab .mdc-fab__icon{width:var(--mdc-fab-icon-size);height:var(--mdc-fab-icon-size);font-size:var(--mdc-fab-icon-size)}.mat-mdc-fab:not(:disabled) .mdc-fab__icon,.mat-mdc-mini-fab:not(:disabled) .mdc-fab__icon{color:var(--mdc-fab-icon-color)}.mat-mdc-fab:not(.mdc-fab--extended),.mat-mdc-mini-fab:not(.mdc-fab--extended){border-radius:var(--mdc-fab-container-shape)}.mat-mdc-fab:not(.mdc-fab--extended) .mdc-fab__ripple,.mat-mdc-mini-fab:not(.mdc-fab--extended) .mdc-fab__ripple{border-radius:var(--mdc-fab-container-shape)}.mat-mdc-extended-fab{font-family:var(--mdc-extended-fab-label-text-font);font-size:var(--mdc-extended-fab-label-text-size);font-weight:var(--mdc-extended-fab-label-text-weight);letter-spacing:var(--mdc-extended-fab-label-text-tracking)}.mat-mdc-fab,.mat-mdc-mini-fab{-webkit-tap-highlight-color:rgba(0,0,0,0);box-shadow:0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);color:var(--mat-mdc-fab-color, inherit);flex-shrink:0}.mat-mdc-fab .mat-mdc-button-ripple,.mat-mdc-fab .mat-mdc-button-persistent-ripple,.mat-mdc-fab .mat-mdc-button-persistent-ripple::before,.mat-mdc-mini-fab .mat-mdc-button-ripple,.mat-mdc-mini-fab .mat-mdc-button-persistent-ripple,.mat-mdc-mini-fab .mat-mdc-button-persistent-ripple::before{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit}.mat-mdc-fab .mat-mdc-button-ripple,.mat-mdc-mini-fab .mat-mdc-button-ripple{overflow:hidden}.mat-mdc-fab .mat-mdc-button-persistent-ripple::before,.mat-mdc-mini-fab .mat-mdc-button-persistent-ripple::before{content:"";opacity:0;background-color:var(--mat-mdc-button-persistent-ripple-color)}.mat-mdc-fab .mat-ripple-element,.mat-mdc-mini-fab .mat-ripple-element{background-color:var(--mat-mdc-button-ripple-color)}.mat-mdc-fab .mdc-button__label,.mat-mdc-mini-fab .mdc-button__label{z-index:1}.mat-mdc-fab .mat-mdc-focus-indicator,.mat-mdc-mini-fab .mat-mdc-focus-indicator{top:0;left:0;right:0;bottom:0;position:absolute}.mat-mdc-fab:focus .mat-mdc-focus-indicator::before,.mat-mdc-mini-fab:focus .mat-mdc-focus-indicator::before{content:""}.mat-mdc-fab .mat-mdc-button-touch-target,.mat-mdc-mini-fab .mat-mdc-button-touch-target{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mat-mdc-fab._mat-animation-noopable,.mat-mdc-mini-fab._mat-animation-noopable{transition:none !important;animation:none !important}.mat-mdc-fab:hover,.mat-mdc-fab:focus,.mat-mdc-mini-fab:hover,.mat-mdc-mini-fab:focus{box-shadow:0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12)}.mat-mdc-fab:active,.mat-mdc-fab:focus:active,.mat-mdc-mini-fab:active,.mat-mdc-mini-fab:focus:active{box-shadow:0px 7px 8px -4px rgba(0, 0, 0, 0.2), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12)}.mat-mdc-fab[disabled],.mat-mdc-mini-fab[disabled]{cursor:default;pointer-events:none;box-shadow:0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12)}.mat-mdc-fab:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-mini-fab:not(.mdc-ripple-upgraded):focus::before{background:rgba(0,0,0,0);opacity:1}.mat-mdc-fab .mat-icon,.mat-mdc-fab .material-icons,.mat-mdc-mini-fab .mat-icon,.mat-mdc-mini-fab .material-icons{transition:transform 180ms 90ms cubic-bezier(0, 0, 0.2, 1);fill:currentColor;will-change:transform}.mat-mdc-fab .mat-mdc-focus-indicator::before,.mat-mdc-mini-fab .mat-mdc-focus-indicator::before{margin:calc(calc(var(--mat-mdc-focus-indicator-border-width, 3px) + 2px) * -1)}.mat-mdc-extended-fab>.mat-icon,.mat-mdc-extended-fab>.material-icons{margin-left:calc(12px - 20px);margin-right:12px}[dir=rtl] .mat-mdc-extended-fab>.mat-icon,[dir=rtl] .mat-mdc-extended-fab>.material-icons,.mat-mdc-extended-fab>.mat-icon[dir=rtl],.mat-mdc-extended-fab>.material-icons[dir=rtl]{margin-left:12px;margin-right:calc(12px - 20px)}.mat-mdc-extended-fab .mdc-button__label+.mat-icon,.mat-mdc-extended-fab .mdc-button__label+.material-icons{margin-left:12px;margin-right:calc(12px - 20px)}[dir=rtl] .mat-mdc-extended-fab .mdc-button__label+.mat-icon,[dir=rtl] .mat-mdc-extended-fab .mdc-button__label+.material-icons,.mat-mdc-extended-fab .mdc-button__label+.mat-icon[dir=rtl],.mat-mdc-extended-fab .mdc-button__label+.material-icons[dir=rtl]{margin-left:calc(12px - 20px);margin-right:12px}.mat-mdc-extended-fab .mat-mdc-button-touch-target{width:100%}'],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatFabButton = _MatFabButton;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatFabButton, [{
     type: Component,
@@ -651,7 +666,7 @@ var MatFabButton = _MatFabButton;
     }];
   }, null);
 })();
-var _MatMiniFabButton = class _MatMiniFabButton extends MatButtonBase {
+var MatMiniFabButton = class _MatMiniFabButton extends MatButtonBase {
   constructor(elementRef, platform, ngZone, animationMode, _options) {
     super(elementRef, platform, ngZone, animationMode);
     this._options = _options;
@@ -659,52 +674,55 @@ var _MatMiniFabButton = class _MatMiniFabButton extends MatButtonBase {
     this._options = this._options || defaults;
     this.color = this.defaultColor = this._options.color || defaults.color;
   }
+  static {
+    this.ɵfac = function MatMiniFabButton_Factory(t) {
+      return new (t || _MatMiniFabButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatMiniFabButton,
+      selectors: [["button", "mat-mini-fab", ""]],
+      hostVars: 7,
+      hostBindings: function MatMiniFabButton_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null);
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color"
+      },
+      exportAs: ["matButton"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c6,
+      ngContentSelectors: _c2,
+      decls: 7,
+      vars: 4,
+      consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatMiniFabButton_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef(_c1);
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelementStart(2, "span", 1);
+          ɵɵprojection(3, 1);
+          ɵɵelementEnd();
+          ɵɵprojection(4, 2);
+          ɵɵelement(5, "span", 2)(6, "span", 3);
+        }
+        if (rf & 2) {
+          ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
+        }
+      },
+      styles: [_c7],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatMiniFabButton.ɵfac = function MatMiniFabButton_Factory(t) {
-  return new (t || _MatMiniFabButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
-};
-_MatMiniFabButton.ɵcmp = ɵɵdefineComponent({
-  type: _MatMiniFabButton,
-  selectors: [["button", "mat-mini-fab", ""]],
-  hostVars: 7,
-  hostBindings: function MatMiniFabButton_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null);
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color"
-  },
-  exportAs: ["matButton"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c6,
-  ngContentSelectors: _c2,
-  decls: 7,
-  vars: 4,
-  consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatMiniFabButton_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef(_c1);
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelementStart(2, "span", 1);
-      ɵɵprojection(3, 1);
-      ɵɵelementEnd();
-      ɵɵprojection(4, 2);
-      ɵɵelement(5, "span", 2)(6, "span", 3);
-    }
-    if (rf & 2) {
-      ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
-    }
-  },
-  styles: [_c7],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatMiniFabButton = _MatMiniFabButton;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatMiniFabButton, [{
     type: Component,
@@ -764,7 +782,7 @@ var MatMiniFabButton = _MatMiniFabButton;
     }];
   }, null);
 })();
-var _MatFabAnchor = class _MatFabAnchor extends MatAnchor {
+var MatFabAnchor = class _MatFabAnchor extends MatAnchor {
   get extended() {
     return this._extended;
   }
@@ -778,54 +796,57 @@ var _MatFabAnchor = class _MatFabAnchor extends MatAnchor {
     this._options = this._options || defaults;
     this.color = this.defaultColor = this._options.color || defaults.color;
   }
+  static {
+    this.ɵfac = function MatFabAnchor_Factory(t) {
+      return new (t || _MatFabAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatFabAnchor,
+      selectors: [["a", "mat-fab", ""]],
+      hostVars: 13,
+      hostBindings: function MatFabAnchor_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true)("mdc-fab--extended", ctx.extended)("mat-mdc-extended-fab", ctx.extended);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color",
+        tabIndex: "tabIndex",
+        extended: "extended"
+      },
+      exportAs: ["matButton", "matAnchor"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c5,
+      ngContentSelectors: _c2,
+      decls: 7,
+      vars: 4,
+      consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatFabAnchor_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef(_c1);
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelementStart(2, "span", 1);
+          ɵɵprojection(3, 1);
+          ɵɵelementEnd();
+          ɵɵprojection(4, 2);
+          ɵɵelement(5, "span", 2)(6, "span", 3);
+        }
+        if (rf & 2) {
+          ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
+        }
+      },
+      styles: [_c7],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatFabAnchor.ɵfac = function MatFabAnchor_Factory(t) {
-  return new (t || _MatFabAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
-};
-_MatFabAnchor.ɵcmp = ɵɵdefineComponent({
-  type: _MatFabAnchor,
-  selectors: [["a", "mat-fab", ""]],
-  hostVars: 13,
-  hostBindings: function MatFabAnchor_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true)("mdc-fab--extended", ctx.extended)("mat-mdc-extended-fab", ctx.extended);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color",
-    tabIndex: "tabIndex",
-    extended: "extended"
-  },
-  exportAs: ["matButton", "matAnchor"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c5,
-  ngContentSelectors: _c2,
-  decls: 7,
-  vars: 4,
-  consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatFabAnchor_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef(_c1);
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelementStart(2, "span", 1);
-      ɵɵprojection(3, 1);
-      ɵɵelementEnd();
-      ɵɵprojection(4, 2);
-      ɵɵelement(5, "span", 2)(6, "span", 3);
-    }
-    if (rf & 2) {
-      ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
-    }
-  },
-  styles: [_c7],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatFabAnchor = _MatFabAnchor;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatFabAnchor, [{
     type: Component,
@@ -888,7 +909,7 @@ var MatFabAnchor = _MatFabAnchor;
     }];
   }, null);
 })();
-var _MatMiniFabAnchor = class _MatMiniFabAnchor extends MatAnchor {
+var MatMiniFabAnchor = class _MatMiniFabAnchor extends MatAnchor {
   constructor(elementRef, platform, ngZone, animationMode, _options) {
     super(elementRef, platform, ngZone, animationMode);
     this._options = _options;
@@ -896,53 +917,56 @@ var _MatMiniFabAnchor = class _MatMiniFabAnchor extends MatAnchor {
     this._options = this._options || defaults;
     this.color = this.defaultColor = this._options.color || defaults.color;
   }
+  static {
+    this.ɵfac = function MatMiniFabAnchor_Factory(t) {
+      return new (t || _MatMiniFabAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatMiniFabAnchor,
+      selectors: [["a", "mat-mini-fab", ""]],
+      hostVars: 9,
+      hostBindings: function MatMiniFabAnchor_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color",
+        tabIndex: "tabIndex"
+      },
+      exportAs: ["matButton", "matAnchor"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c6,
+      ngContentSelectors: _c2,
+      decls: 7,
+      vars: 4,
+      consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatMiniFabAnchor_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef(_c1);
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelementStart(2, "span", 1);
+          ɵɵprojection(3, 1);
+          ɵɵelementEnd();
+          ɵɵprojection(4, 2);
+          ɵɵelement(5, "span", 2)(6, "span", 3);
+        }
+        if (rf & 2) {
+          ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
+        }
+      },
+      styles: [_c7],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatMiniFabAnchor.ɵfac = function MatMiniFabAnchor_Factory(t) {
-  return new (t || _MatMiniFabAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8), ɵɵdirectiveInject(MAT_FAB_DEFAULT_OPTIONS, 8));
-};
-_MatMiniFabAnchor.ɵcmp = ɵɵdefineComponent({
-  type: _MatMiniFabAnchor,
-  selectors: [["a", "mat-mini-fab", ""]],
-  hostVars: 9,
-  hostBindings: function MatMiniFabAnchor_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color",
-    tabIndex: "tabIndex"
-  },
-  exportAs: ["matButton", "matAnchor"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c6,
-  ngContentSelectors: _c2,
-  decls: 7,
-  vars: 4,
-  consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatMiniFabAnchor_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef(_c1);
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelementStart(2, "span", 1);
-      ɵɵprojection(3, 1);
-      ɵɵelementEnd();
-      ɵɵprojection(4, 2);
-      ɵɵelement(5, "span", 2)(6, "span", 3);
-    }
-    if (rf & 2) {
-      ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
-    }
-  },
-  styles: [_c7],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatMiniFabAnchor = _MatMiniFabAnchor;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatMiniFabAnchor, [{
     type: Component,
@@ -1002,52 +1026,55 @@ var MatMiniFabAnchor = _MatMiniFabAnchor;
     }];
   }, null);
 })();
-var _MatIconButton = class _MatIconButton extends MatButtonBase {
+var MatIconButton = class _MatIconButton extends MatButtonBase {
   constructor(elementRef, platform, ngZone, animationMode) {
     super(elementRef, platform, ngZone, animationMode);
     this._rippleLoader.configureRipple(this._elementRef.nativeElement, {
       centered: true
     });
   }
+  static {
+    this.ɵfac = function MatIconButton_Factory(t) {
+      return new (t || _MatIconButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatIconButton,
+      selectors: [["button", "mat-icon-button", ""]],
+      hostVars: 7,
+      hostBindings: function MatIconButton_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null);
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color"
+      },
+      exportAs: ["matButton"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c8,
+      ngContentSelectors: _c9,
+      decls: 4,
+      vars: 0,
+      consts: [[1, "mat-mdc-button-persistent-ripple", "mdc-icon-button__ripple"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatIconButton_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef();
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelement(2, "span", 1)(3, "span", 2);
+        }
+      },
+      styles: ['.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:rgba(0,0,0,0);fill:currentColor;color:inherit;text-decoration:none;cursor:pointer;user-select:none;z-index:0;overflow:visible}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}@media screen and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{display:block}}.mdc-icon-button:disabled{cursor:default;pointer-events:none}.mdc-icon-button[hidden]{display:none}.mdc-icon-button--display-flex{align-items:center;display:inline-flex;justify-content:center}.mdc-icon-button__focus-ring{pointer-events:none;border:2px solid rgba(0,0,0,0);border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:100%;width:100%;display:none}@media screen and (forced-colors: active){.mdc-icon-button__focus-ring{border-color:CanvasText}}.mdc-icon-button__focus-ring::after{content:"";border:2px solid rgba(0,0,0,0);border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}@media screen and (forced-colors: active){.mdc-icon-button__focus-ring::after{border-color:CanvasText}}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button__link{height:100%;left:0;outline:none;position:absolute;top:0;width:100%}.mat-mdc-icon-button{height:var(--mdc-icon-button-state-layer-size);width:var(--mdc-icon-button-state-layer-size);color:var(--mdc-icon-button-icon-color);--mdc-icon-button-state-layer-size:48px;--mdc-icon-button-icon-size:24px;--mdc-icon-button-disabled-icon-color:black;--mdc-icon-button-disabled-icon-opacity:0.38}.mat-mdc-icon-button .mdc-button__icon{font-size:var(--mdc-icon-button-icon-size)}.mat-mdc-icon-button svg,.mat-mdc-icon-button img{width:var(--mdc-icon-button-icon-size);height:var(--mdc-icon-button-icon-size)}.mat-mdc-icon-button:disabled{opacity:var(--mdc-icon-button-disabled-icon-opacity)}.mat-mdc-icon-button:disabled{color:var(--mdc-icon-button-disabled-icon-color)}.mat-mdc-icon-button{padding:12px;font-size:var(--mdc-icon-button-icon-size);border-radius:50%;flex-shrink:0;text-align:center;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mat-mdc-icon-button svg{vertical-align:baseline}.mat-mdc-icon-button[disabled]{cursor:default;pointer-events:none;opacity:1}.mat-mdc-icon-button .mat-mdc-button-ripple,.mat-mdc-icon-button .mat-mdc-button-persistent-ripple,.mat-mdc-icon-button .mat-mdc-button-persistent-ripple::before{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit}.mat-mdc-icon-button .mat-mdc-button-ripple{overflow:hidden}.mat-mdc-icon-button .mat-mdc-button-persistent-ripple::before{content:"";opacity:0;background-color:var(--mat-mdc-button-persistent-ripple-color)}.mat-mdc-icon-button .mat-ripple-element{background-color:var(--mat-mdc-button-ripple-color)}.mat-mdc-icon-button .mdc-button__label{z-index:1}.mat-mdc-icon-button .mat-mdc-focus-indicator{top:0;left:0;right:0;bottom:0;position:absolute}.mat-mdc-icon-button:focus .mat-mdc-focus-indicator::before{content:""}.mat-mdc-icon-button .mat-mdc-button-touch-target{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mat-mdc-icon-button._mat-animation-noopable{transition:none !important;animation:none !important}.mat-mdc-icon-button .mat-mdc-button-persistent-ripple{border-radius:50%}.mat-mdc-icon-button.mat-unthemed:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-icon-button.mat-primary:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-icon-button.mat-accent:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-icon-button.mat-warn:not(.mdc-ripple-upgraded):focus::before{background:rgba(0,0,0,0);opacity:1}', _c4],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatIconButton.ɵfac = function MatIconButton_Factory(t) {
-  return new (t || _MatIconButton)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
-};
-_MatIconButton.ɵcmp = ɵɵdefineComponent({
-  type: _MatIconButton,
-  selectors: [["button", "mat-icon-button", ""]],
-  hostVars: 7,
-  hostBindings: function MatIconButton_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null);
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color"
-  },
-  exportAs: ["matButton"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c8,
-  ngContentSelectors: _c9,
-  decls: 4,
-  vars: 0,
-  consts: [[1, "mat-mdc-button-persistent-ripple", "mdc-icon-button__ripple"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatIconButton_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef();
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelement(2, "span", 1)(3, "span", 2);
-    }
-  },
-  styles: ['.mdc-icon-button{display:inline-block;position:relative;box-sizing:border-box;border:none;outline:none;background-color:rgba(0,0,0,0);fill:currentColor;color:inherit;text-decoration:none;cursor:pointer;user-select:none;z-index:0;overflow:visible}.mdc-icon-button .mdc-icon-button__touch{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}@media screen and (forced-colors: active){.mdc-icon-button.mdc-ripple-upgraded--background-focused .mdc-icon-button__focus-ring,.mdc-icon-button:not(.mdc-ripple-upgraded):focus .mdc-icon-button__focus-ring{display:block}}.mdc-icon-button:disabled{cursor:default;pointer-events:none}.mdc-icon-button[hidden]{display:none}.mdc-icon-button--display-flex{align-items:center;display:inline-flex;justify-content:center}.mdc-icon-button__focus-ring{pointer-events:none;border:2px solid rgba(0,0,0,0);border-radius:6px;box-sizing:content-box;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:100%;width:100%;display:none}@media screen and (forced-colors: active){.mdc-icon-button__focus-ring{border-color:CanvasText}}.mdc-icon-button__focus-ring::after{content:"";border:2px solid rgba(0,0,0,0);border-radius:8px;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);height:calc(100% + 4px);width:calc(100% + 4px)}@media screen and (forced-colors: active){.mdc-icon-button__focus-ring::after{border-color:CanvasText}}.mdc-icon-button__icon{display:inline-block}.mdc-icon-button__icon.mdc-icon-button__icon--on{display:none}.mdc-icon-button--on .mdc-icon-button__icon{display:none}.mdc-icon-button--on .mdc-icon-button__icon.mdc-icon-button__icon--on{display:inline-block}.mdc-icon-button__link{height:100%;left:0;outline:none;position:absolute;top:0;width:100%}.mat-mdc-icon-button{height:var(--mdc-icon-button-state-layer-size);width:var(--mdc-icon-button-state-layer-size);color:var(--mdc-icon-button-icon-color);--mdc-icon-button-state-layer-size:48px;--mdc-icon-button-icon-size:24px;--mdc-icon-button-disabled-icon-color:black;--mdc-icon-button-disabled-icon-opacity:0.38}.mat-mdc-icon-button .mdc-button__icon{font-size:var(--mdc-icon-button-icon-size)}.mat-mdc-icon-button svg,.mat-mdc-icon-button img{width:var(--mdc-icon-button-icon-size);height:var(--mdc-icon-button-icon-size)}.mat-mdc-icon-button:disabled{opacity:var(--mdc-icon-button-disabled-icon-opacity)}.mat-mdc-icon-button:disabled{color:var(--mdc-icon-button-disabled-icon-color)}.mat-mdc-icon-button{padding:12px;font-size:var(--mdc-icon-button-icon-size);border-radius:50%;flex-shrink:0;text-align:center;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mat-mdc-icon-button svg{vertical-align:baseline}.mat-mdc-icon-button[disabled]{cursor:default;pointer-events:none;opacity:1}.mat-mdc-icon-button .mat-mdc-button-ripple,.mat-mdc-icon-button .mat-mdc-button-persistent-ripple,.mat-mdc-icon-button .mat-mdc-button-persistent-ripple::before{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit}.mat-mdc-icon-button .mat-mdc-button-ripple{overflow:hidden}.mat-mdc-icon-button .mat-mdc-button-persistent-ripple::before{content:"";opacity:0;background-color:var(--mat-mdc-button-persistent-ripple-color)}.mat-mdc-icon-button .mat-ripple-element{background-color:var(--mat-mdc-button-ripple-color)}.mat-mdc-icon-button .mdc-button__label{z-index:1}.mat-mdc-icon-button .mat-mdc-focus-indicator{top:0;left:0;right:0;bottom:0;position:absolute}.mat-mdc-icon-button:focus .mat-mdc-focus-indicator::before{content:""}.mat-mdc-icon-button .mat-mdc-button-touch-target{position:absolute;top:50%;height:48px;left:50%;width:48px;transform:translate(-50%, -50%)}.mat-mdc-icon-button._mat-animation-noopable{transition:none !important;animation:none !important}.mat-mdc-icon-button .mat-mdc-button-persistent-ripple{border-radius:50%}.mat-mdc-icon-button.mat-unthemed:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-icon-button.mat-primary:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-icon-button.mat-accent:not(.mdc-ripple-upgraded):focus::before,.mat-mdc-icon-button.mat-warn:not(.mdc-ripple-upgraded):focus::before{background:rgba(0,0,0,0);opacity:1}', _c4],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatIconButton = _MatIconButton;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatIconButton, [{
     type: Component,
@@ -1090,57 +1117,60 @@ var MatIconButton = _MatIconButton;
     }];
   }, null);
 })();
-var _MatIconAnchor = class _MatIconAnchor extends MatAnchorBase {
+var MatIconAnchor = class _MatIconAnchor extends MatAnchorBase {
   constructor(elementRef, platform, ngZone, animationMode) {
     super(elementRef, platform, ngZone, animationMode);
   }
+  static {
+    this.ɵfac = function MatIconAnchor_Factory(t) {
+      return new (t || _MatIconAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatIconAnchor,
+      selectors: [["a", "mat-icon-button", ""]],
+      hostVars: 9,
+      hostBindings: function MatIconAnchor_HostBindings(rf, ctx) {
+        if (rf & 2) {
+          ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
+          ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
+        }
+      },
+      inputs: {
+        disabled: "disabled",
+        disableRipple: "disableRipple",
+        color: "color",
+        tabIndex: "tabIndex"
+      },
+      exportAs: ["matButton", "matAnchor"],
+      features: [ɵɵInheritDefinitionFeature],
+      attrs: _c8,
+      ngContentSelectors: _c2,
+      decls: 7,
+      vars: 4,
+      consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
+      template: function MatIconAnchor_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵprojectionDef(_c1);
+          ɵɵelement(0, "span", 0);
+          ɵɵprojection(1);
+          ɵɵelementStart(2, "span", 1);
+          ɵɵprojection(3, 1);
+          ɵɵelementEnd();
+          ɵɵprojection(4, 2);
+          ɵɵelement(5, "span", 2)(6, "span", 3);
+        }
+        if (rf & 2) {
+          ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
+        }
+      },
+      styles: [_c10, _c4],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_MatIconAnchor.ɵfac = function MatIconAnchor_Factory(t) {
-  return new (t || _MatIconAnchor)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ANIMATION_MODULE_TYPE, 8));
-};
-_MatIconAnchor.ɵcmp = ɵɵdefineComponent({
-  type: _MatIconAnchor,
-  selectors: [["a", "mat-icon-button", ""]],
-  hostVars: 9,
-  hostBindings: function MatIconAnchor_HostBindings(rf, ctx) {
-    if (rf & 2) {
-      ɵɵattribute("disabled", ctx.disabled || null)("tabindex", ctx.disabled ? -1 : ctx.tabIndex)("aria-disabled", ctx.disabled.toString());
-      ɵɵclassProp("_mat-animation-noopable", ctx._animationMode === "NoopAnimations")("mat-unthemed", !ctx.color)("mat-mdc-button-base", true);
-    }
-  },
-  inputs: {
-    disabled: "disabled",
-    disableRipple: "disableRipple",
-    color: "color",
-    tabIndex: "tabIndex"
-  },
-  exportAs: ["matButton", "matAnchor"],
-  features: [ɵɵInheritDefinitionFeature],
-  attrs: _c8,
-  ngContentSelectors: _c2,
-  decls: 7,
-  vars: 4,
-  consts: [[1, "mat-mdc-button-persistent-ripple"], [1, "mdc-button__label"], [1, "mat-mdc-focus-indicator"], [1, "mat-mdc-button-touch-target"]],
-  template: function MatIconAnchor_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵprojectionDef(_c1);
-      ɵɵelement(0, "span", 0);
-      ɵɵprojection(1);
-      ɵɵelementStart(2, "span", 1);
-      ɵɵprojection(3, 1);
-      ɵɵelementEnd();
-      ɵɵprojection(4, 2);
-      ɵɵelement(5, "span", 2)(6, "span", 3);
-    }
-    if (rf & 2) {
-      ɵɵclassProp("mdc-button__ripple", !ctx._isFab)("mdc-fab__ripple", ctx._isFab);
-    }
-  },
-  styles: [_c10, _c4],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var MatIconAnchor = _MatIconAnchor;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatIconAnchor, [{
     type: Component,
@@ -1192,21 +1222,26 @@ var MatIconAnchor = _MatIconAnchor;
     }];
   }, null);
 })();
-var _MatButtonModule = class _MatButtonModule {
+var MatButtonModule = class _MatButtonModule {
+  static {
+    this.ɵfac = function MatButtonModule_Factory(t) {
+      return new (t || _MatButtonModule)();
+    };
+  }
+  static {
+    this.ɵmod = ɵɵdefineNgModule({
+      type: _MatButtonModule,
+      declarations: [MatAnchor, MatButton, MatIconAnchor, MatMiniFabAnchor, MatMiniFabButton, MatIconButton, MatFabAnchor, MatFabButton],
+      imports: [MatCommonModule, MatRippleModule],
+      exports: [MatAnchor, MatButton, MatIconAnchor, MatIconButton, MatMiniFabAnchor, MatMiniFabButton, MatFabAnchor, MatFabButton, MatCommonModule]
+    });
+  }
+  static {
+    this.ɵinj = ɵɵdefineInjector({
+      imports: [MatCommonModule, MatRippleModule, MatCommonModule]
+    });
+  }
 };
-_MatButtonModule.ɵfac = function MatButtonModule_Factory(t) {
-  return new (t || _MatButtonModule)();
-};
-_MatButtonModule.ɵmod = ɵɵdefineNgModule({
-  type: _MatButtonModule,
-  declarations: [MatAnchor, MatButton, MatIconAnchor, MatMiniFabAnchor, MatMiniFabButton, MatIconButton, MatFabAnchor, MatFabButton],
-  imports: [MatCommonModule, MatRippleModule],
-  exports: [MatAnchor, MatButton, MatIconAnchor, MatIconButton, MatMiniFabAnchor, MatMiniFabButton, MatFabAnchor, MatFabButton, MatCommonModule]
-});
-_MatButtonModule.ɵinj = ɵɵdefineInjector({
-  imports: [MatCommonModule, MatRippleModule, MatCommonModule]
-});
-var MatButtonModule = _MatButtonModule;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatButtonModule, [{
     type: NgModule,
@@ -1323,17 +1358,20 @@ var MatSnackBarConfig = class {
     this.verticalPosition = "bottom";
   }
 };
-var _MatSnackBarLabel = class _MatSnackBarLabel {
+var MatSnackBarLabel = class _MatSnackBarLabel {
+  static {
+    this.ɵfac = function MatSnackBarLabel_Factory(t) {
+      return new (t || _MatSnackBarLabel)();
+    };
+  }
+  static {
+    this.ɵdir = ɵɵdefineDirective({
+      type: _MatSnackBarLabel,
+      selectors: [["", "matSnackBarLabel", ""]],
+      hostAttrs: [1, "mat-mdc-snack-bar-label", "mdc-snackbar__label"]
+    });
+  }
 };
-_MatSnackBarLabel.ɵfac = function MatSnackBarLabel_Factory(t) {
-  return new (t || _MatSnackBarLabel)();
-};
-_MatSnackBarLabel.ɵdir = ɵɵdefineDirective({
-  type: _MatSnackBarLabel,
-  selectors: [["", "matSnackBarLabel", ""]],
-  hostAttrs: [1, "mat-mdc-snack-bar-label", "mdc-snackbar__label"]
-});
-var MatSnackBarLabel = _MatSnackBarLabel;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatSnackBarLabel, [{
     type: Directive,
@@ -1345,17 +1383,20 @@ var MatSnackBarLabel = _MatSnackBarLabel;
     }]
   }], null, null);
 })();
-var _MatSnackBarActions = class _MatSnackBarActions {
+var MatSnackBarActions = class _MatSnackBarActions {
+  static {
+    this.ɵfac = function MatSnackBarActions_Factory(t) {
+      return new (t || _MatSnackBarActions)();
+    };
+  }
+  static {
+    this.ɵdir = ɵɵdefineDirective({
+      type: _MatSnackBarActions,
+      selectors: [["", "matSnackBarActions", ""]],
+      hostAttrs: [1, "mat-mdc-snack-bar-actions", "mdc-snackbar__actions"]
+    });
+  }
 };
-_MatSnackBarActions.ɵfac = function MatSnackBarActions_Factory(t) {
-  return new (t || _MatSnackBarActions)();
-};
-_MatSnackBarActions.ɵdir = ɵɵdefineDirective({
-  type: _MatSnackBarActions,
-  selectors: [["", "matSnackBarActions", ""]],
-  hostAttrs: [1, "mat-mdc-snack-bar-actions", "mdc-snackbar__actions"]
-});
-var MatSnackBarActions = _MatSnackBarActions;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatSnackBarActions, [{
     type: Directive,
@@ -1367,17 +1408,20 @@ var MatSnackBarActions = _MatSnackBarActions;
     }]
   }], null, null);
 })();
-var _MatSnackBarAction = class _MatSnackBarAction {
+var MatSnackBarAction = class _MatSnackBarAction {
+  static {
+    this.ɵfac = function MatSnackBarAction_Factory(t) {
+      return new (t || _MatSnackBarAction)();
+    };
+  }
+  static {
+    this.ɵdir = ɵɵdefineDirective({
+      type: _MatSnackBarAction,
+      selectors: [["", "matSnackBarAction", ""]],
+      hostAttrs: [1, "mat-mdc-snack-bar-action", "mdc-snackbar__action"]
+    });
+  }
 };
-_MatSnackBarAction.ɵfac = function MatSnackBarAction_Factory(t) {
-  return new (t || _MatSnackBarAction)();
-};
-_MatSnackBarAction.ɵdir = ɵɵdefineDirective({
-  type: _MatSnackBarAction,
-  selectors: [["", "matSnackBarAction", ""]],
-  hostAttrs: [1, "mat-mdc-snack-bar-action", "mdc-snackbar__action"]
-});
-var MatSnackBarAction = _MatSnackBarAction;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatSnackBarAction, [{
     type: Directive,
@@ -1389,7 +1433,7 @@ var MatSnackBarAction = _MatSnackBarAction;
     }]
   }], null, null);
 })();
-var _SimpleSnackBar = class _SimpleSnackBar {
+var SimpleSnackBar = class _SimpleSnackBar {
   constructor(snackBarRef, data) {
     this.snackBarRef = snackBarRef;
     this.data = data;
@@ -1402,38 +1446,41 @@ var _SimpleSnackBar = class _SimpleSnackBar {
   get hasAction() {
     return !!this.data.action;
   }
+  static {
+    this.ɵfac = function SimpleSnackBar_Factory(t) {
+      return new (t || _SimpleSnackBar)(ɵɵdirectiveInject(MatSnackBarRef), ɵɵdirectiveInject(MAT_SNACK_BAR_DATA));
+    };
+  }
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _SimpleSnackBar,
+      selectors: [["simple-snack-bar"]],
+      hostAttrs: [1, "mat-mdc-simple-snack-bar"],
+      exportAs: ["matSnackBar"],
+      decls: 3,
+      vars: 2,
+      consts: [["matSnackBarLabel", ""], ["matSnackBarActions", "", 4, "ngIf"], ["matSnackBarActions", ""], ["mat-button", "", "matSnackBarAction", "", 3, "click"]],
+      template: function SimpleSnackBar_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵelementStart(0, "div", 0);
+          ɵɵtext(1);
+          ɵɵelementEnd();
+          ɵɵtemplate(2, SimpleSnackBar_div_2_Template, 3, 1, "div", 1);
+        }
+        if (rf & 2) {
+          ɵɵadvance(1);
+          ɵɵtextInterpolate1(" ", ctx.data.message, "\n");
+          ɵɵadvance(1);
+          ɵɵproperty("ngIf", ctx.hasAction);
+        }
+      },
+      dependencies: [NgIf, MatButton, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction],
+      styles: [".mat-mdc-simple-snack-bar{display:flex}"],
+      encapsulation: 2,
+      changeDetection: 0
+    });
+  }
 };
-_SimpleSnackBar.ɵfac = function SimpleSnackBar_Factory(t) {
-  return new (t || _SimpleSnackBar)(ɵɵdirectiveInject(MatSnackBarRef), ɵɵdirectiveInject(MAT_SNACK_BAR_DATA));
-};
-_SimpleSnackBar.ɵcmp = ɵɵdefineComponent({
-  type: _SimpleSnackBar,
-  selectors: [["simple-snack-bar"]],
-  hostAttrs: [1, "mat-mdc-simple-snack-bar"],
-  exportAs: ["matSnackBar"],
-  decls: 3,
-  vars: 2,
-  consts: [["matSnackBarLabel", ""], ["matSnackBarActions", "", 4, "ngIf"], ["matSnackBarActions", ""], ["mat-button", "", "matSnackBarAction", "", 3, "click"]],
-  template: function SimpleSnackBar_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵelementStart(0, "div", 0);
-      ɵɵtext(1);
-      ɵɵelementEnd();
-      ɵɵtemplate(2, SimpleSnackBar_div_2_Template, 3, 1, "div", 1);
-    }
-    if (rf & 2) {
-      ɵɵadvance(1);
-      ɵɵtextInterpolate1(" ", ctx.data.message, "\n");
-      ɵɵadvance(1);
-      ɵɵproperty("ngIf", ctx.hasAction);
-    }
-  },
-  dependencies: [NgIf, MatButton, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction],
-  styles: [".mat-mdc-simple-snack-bar{display:flex}"],
-  encapsulation: 2,
-  changeDetection: 0
-});
-var SimpleSnackBar = _SimpleSnackBar;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SimpleSnackBar, [{
     type: Component,
@@ -1473,7 +1520,7 @@ var matSnackBarAnimations = {
   })))])
 };
 var uniqueId = 0;
-var __MatSnackBarContainerBase = class __MatSnackBarContainerBase extends BasePortalOutlet {
+var _MatSnackBarContainerBase = class __MatSnackBarContainerBase extends BasePortalOutlet {
   constructor(_ngZone, _elementRef, _changeDetectorRef, _platform, snackBarConfig) {
     super();
     this._ngZone = _ngZone;
@@ -1659,24 +1706,27 @@ var __MatSnackBarContainerBase = class __MatSnackBarContainerBase extends BasePo
       });
     }
   }
+  static {
+    this.ɵfac = function _MatSnackBarContainerBase_Factory(t) {
+      return new (t || __MatSnackBarContainerBase)(ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(MatSnackBarConfig));
+    };
+  }
+  static {
+    this.ɵdir = ɵɵdefineDirective({
+      type: __MatSnackBarContainerBase,
+      viewQuery: function _MatSnackBarContainerBase_Query(rf, ctx) {
+        if (rf & 1) {
+          ɵɵviewQuery(CdkPortalOutlet, 7);
+        }
+        if (rf & 2) {
+          let _t;
+          ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx._portalOutlet = _t.first);
+        }
+      },
+      features: [ɵɵInheritDefinitionFeature]
+    });
+  }
 };
-__MatSnackBarContainerBase.ɵfac = function _MatSnackBarContainerBase_Factory(t) {
-  return new (t || __MatSnackBarContainerBase)(ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(MatSnackBarConfig));
-};
-__MatSnackBarContainerBase.ɵdir = ɵɵdefineDirective({
-  type: __MatSnackBarContainerBase,
-  viewQuery: function _MatSnackBarContainerBase_Query(rf, ctx) {
-    if (rf & 1) {
-      ɵɵviewQuery(CdkPortalOutlet, 7);
-    }
-    if (rf & 2) {
-      let _t;
-      ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx._portalOutlet = _t.first);
-    }
-  },
-  features: [ɵɵInheritDefinitionFeature]
-});
-var _MatSnackBarContainerBase = __MatSnackBarContainerBase;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_MatSnackBarContainerBase, [{
     type: Directive
@@ -1701,7 +1751,7 @@ var _MatSnackBarContainerBase = __MatSnackBarContainerBase;
     }]
   });
 })();
-var _MatSnackBarContainer = class _MatSnackBarContainer extends _MatSnackBarContainerBase {
+var MatSnackBarContainer = class _MatSnackBarContainer extends _MatSnackBarContainerBase {
   /** Applies the correct CSS class to the label based on its content. */
   _afterPortalAttached() {
     super._afterPortalAttached();
@@ -1709,62 +1759,65 @@ var _MatSnackBarContainer = class _MatSnackBarContainer extends _MatSnackBarCont
     const labelClass = "mdc-snackbar__label";
     label.classList.toggle(labelClass, !label.querySelector(`.${labelClass}`));
   }
-};
-_MatSnackBarContainer.ɵfac = function() {
-  let ɵMatSnackBarContainer_BaseFactory;
-  return function MatSnackBarContainer_Factory(t) {
-    return (ɵMatSnackBarContainer_BaseFactory || (ɵMatSnackBarContainer_BaseFactory = ɵɵgetInheritedFactory(_MatSnackBarContainer)))(t || _MatSnackBarContainer);
-  };
-}();
-_MatSnackBarContainer.ɵcmp = ɵɵdefineComponent({
-  type: _MatSnackBarContainer,
-  selectors: [["mat-snack-bar-container"]],
-  viewQuery: function MatSnackBarContainer_Query(rf, ctx) {
-    if (rf & 1) {
-      ɵɵviewQuery(_c02, 7);
-    }
-    if (rf & 2) {
-      let _t;
-      ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx._label = _t.first);
-    }
-  },
-  hostAttrs: [1, "mdc-snackbar", "mat-mdc-snack-bar-container", "mdc-snackbar--open"],
-  hostVars: 1,
-  hostBindings: function MatSnackBarContainer_HostBindings(rf, ctx) {
-    if (rf & 1) {
-      ɵɵsyntheticHostListener("@state.done", function MatSnackBarContainer_animation_state_done_HostBindingHandler($event) {
-        return ctx.onAnimationEnd($event);
-      });
-    }
-    if (rf & 2) {
-      ɵɵsyntheticHostProperty("@state", ctx._animationState);
-    }
-  },
-  features: [ɵɵInheritDefinitionFeature],
-  decls: 6,
-  vars: 3,
-  consts: [[1, "mdc-snackbar__surface"], [1, "mat-mdc-snack-bar-label"], ["label", ""], ["aria-hidden", "true"], ["cdkPortalOutlet", ""]],
-  template: function MatSnackBarContainer_Template(rf, ctx) {
-    if (rf & 1) {
-      ɵɵelementStart(0, "div", 0)(1, "div", 1, 2)(3, "div", 3);
-      ɵɵtemplate(4, MatSnackBarContainer_ng_template_4_Template, 0, 0, "ng-template", 4);
-      ɵɵelementEnd();
-      ɵɵelement(5, "div");
-      ɵɵelementEnd()();
-    }
-    if (rf & 2) {
-      ɵɵadvance(5);
-      ɵɵattribute("aria-live", ctx._live)("role", ctx._role)("id", ctx._liveElementId);
-    }
-  },
-  dependencies: [CdkPortalOutlet],
-  styles: ['.mdc-snackbar{display:none;position:fixed;right:0;bottom:0;left:0;align-items:center;justify-content:center;box-sizing:border-box;pointer-events:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-snackbar--opening,.mdc-snackbar--open,.mdc-snackbar--closing{display:flex}.mdc-snackbar--open .mdc-snackbar__label,.mdc-snackbar--open .mdc-snackbar__actions{visibility:visible}.mdc-snackbar__surface{padding-left:0;padding-right:8px;display:flex;align-items:center;justify-content:flex-start;box-sizing:border-box;transform:scale(0.8);opacity:0}.mdc-snackbar__surface::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid rgba(0,0,0,0);border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-snackbar__surface::before{border-color:CanvasText}}[dir=rtl] .mdc-snackbar__surface,.mdc-snackbar__surface[dir=rtl]{padding-left:8px;padding-right:0}.mdc-snackbar--open .mdc-snackbar__surface{transform:scale(1);opacity:1;pointer-events:auto}.mdc-snackbar--closing .mdc-snackbar__surface{transform:scale(1)}.mdc-snackbar__label{padding-left:16px;padding-right:8px;width:100%;flex-grow:1;box-sizing:border-box;margin:0;visibility:hidden;padding-top:14px;padding-bottom:14px}[dir=rtl] .mdc-snackbar__label,.mdc-snackbar__label[dir=rtl]{padding-left:8px;padding-right:16px}.mdc-snackbar__label::before{display:inline;content:attr(data-mdc-snackbar-label-text)}.mdc-snackbar__actions{display:flex;flex-shrink:0;align-items:center;box-sizing:border-box;visibility:hidden}.mdc-snackbar__action+.mdc-snackbar__dismiss{margin-left:8px;margin-right:0}[dir=rtl] .mdc-snackbar__action+.mdc-snackbar__dismiss,.mdc-snackbar__action+.mdc-snackbar__dismiss[dir=rtl]{margin-left:0;margin-right:8px}.mat-mdc-snack-bar-container{margin:8px;--mdc-snackbar-container-shape:4px;position:static}.mat-mdc-snack-bar-container .mdc-snackbar__surface{min-width:344px}@media(max-width: 480px),(max-width: 344px){.mat-mdc-snack-bar-container .mdc-snackbar__surface{min-width:100%}}@media(max-width: 480px),(max-width: 344px){.mat-mdc-snack-bar-container{width:100vw}}.mat-mdc-snack-bar-container .mdc-snackbar__surface{max-width:672px}.mat-mdc-snack-bar-container .mdc-snackbar__surface{box-shadow:0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)}.mat-mdc-snack-bar-container .mdc-snackbar__surface{background-color:var(--mdc-snackbar-container-color)}.mat-mdc-snack-bar-container .mdc-snackbar__surface{border-radius:var(--mdc-snackbar-container-shape)}.mat-mdc-snack-bar-container .mdc-snackbar__label{color:var(--mdc-snackbar-supporting-text-color)}.mat-mdc-snack-bar-container .mdc-snackbar__label{font-size:var(--mdc-snackbar-supporting-text-size);font-family:var(--mdc-snackbar-supporting-text-font);font-weight:var(--mdc-snackbar-supporting-text-weight);line-height:var(--mdc-snackbar-supporting-text-line-height)}.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){color:var(--mat-snack-bar-button-color);--mat-mdc-button-persistent-ripple-color: currentColor}.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) .mat-ripple-element{background-color:currentColor;opacity:.1}.mat-mdc-snack-bar-container .mdc-snackbar__label::before{display:none}.mat-mdc-snack-bar-handset,.mat-mdc-snack-bar-container,.mat-mdc-snack-bar-label{flex:1 1 auto}.mat-mdc-snack-bar-handset .mdc-snackbar__surface{width:100%}'],
-  encapsulation: 2,
-  data: {
-    animation: [matSnackBarAnimations.snackBarState]
+  static {
+    this.ɵfac = function() {
+      let ɵMatSnackBarContainer_BaseFactory;
+      return function MatSnackBarContainer_Factory(t) {
+        return (ɵMatSnackBarContainer_BaseFactory || (ɵMatSnackBarContainer_BaseFactory = ɵɵgetInheritedFactory(_MatSnackBarContainer)))(t || _MatSnackBarContainer);
+      };
+    }();
   }
-});
-var MatSnackBarContainer = _MatSnackBarContainer;
+  static {
+    this.ɵcmp = ɵɵdefineComponent({
+      type: _MatSnackBarContainer,
+      selectors: [["mat-snack-bar-container"]],
+      viewQuery: function MatSnackBarContainer_Query(rf, ctx) {
+        if (rf & 1) {
+          ɵɵviewQuery(_c02, 7);
+        }
+        if (rf & 2) {
+          let _t;
+          ɵɵqueryRefresh(_t = ɵɵloadQuery()) && (ctx._label = _t.first);
+        }
+      },
+      hostAttrs: [1, "mdc-snackbar", "mat-mdc-snack-bar-container", "mdc-snackbar--open"],
+      hostVars: 1,
+      hostBindings: function MatSnackBarContainer_HostBindings(rf, ctx) {
+        if (rf & 1) {
+          ɵɵsyntheticHostListener("@state.done", function MatSnackBarContainer_animation_state_done_HostBindingHandler($event) {
+            return ctx.onAnimationEnd($event);
+          });
+        }
+        if (rf & 2) {
+          ɵɵsyntheticHostProperty("@state", ctx._animationState);
+        }
+      },
+      features: [ɵɵInheritDefinitionFeature],
+      decls: 6,
+      vars: 3,
+      consts: [[1, "mdc-snackbar__surface"], [1, "mat-mdc-snack-bar-label"], ["label", ""], ["aria-hidden", "true"], ["cdkPortalOutlet", ""]],
+      template: function MatSnackBarContainer_Template(rf, ctx) {
+        if (rf & 1) {
+          ɵɵelementStart(0, "div", 0)(1, "div", 1, 2)(3, "div", 3);
+          ɵɵtemplate(4, MatSnackBarContainer_ng_template_4_Template, 0, 0, "ng-template", 4);
+          ɵɵelementEnd();
+          ɵɵelement(5, "div");
+          ɵɵelementEnd()();
+        }
+        if (rf & 2) {
+          ɵɵadvance(5);
+          ɵɵattribute("aria-live", ctx._live)("role", ctx._role)("id", ctx._liveElementId);
+        }
+      },
+      dependencies: [CdkPortalOutlet],
+      styles: ['.mdc-snackbar{display:none;position:fixed;right:0;bottom:0;left:0;align-items:center;justify-content:center;box-sizing:border-box;pointer-events:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}.mdc-snackbar--opening,.mdc-snackbar--open,.mdc-snackbar--closing{display:flex}.mdc-snackbar--open .mdc-snackbar__label,.mdc-snackbar--open .mdc-snackbar__actions{visibility:visible}.mdc-snackbar__surface{padding-left:0;padding-right:8px;display:flex;align-items:center;justify-content:flex-start;box-sizing:border-box;transform:scale(0.8);opacity:0}.mdc-snackbar__surface::before{position:absolute;box-sizing:border-box;width:100%;height:100%;top:0;left:0;border:1px solid rgba(0,0,0,0);border-radius:inherit;content:"";pointer-events:none}@media screen and (forced-colors: active){.mdc-snackbar__surface::before{border-color:CanvasText}}[dir=rtl] .mdc-snackbar__surface,.mdc-snackbar__surface[dir=rtl]{padding-left:8px;padding-right:0}.mdc-snackbar--open .mdc-snackbar__surface{transform:scale(1);opacity:1;pointer-events:auto}.mdc-snackbar--closing .mdc-snackbar__surface{transform:scale(1)}.mdc-snackbar__label{padding-left:16px;padding-right:8px;width:100%;flex-grow:1;box-sizing:border-box;margin:0;visibility:hidden;padding-top:14px;padding-bottom:14px}[dir=rtl] .mdc-snackbar__label,.mdc-snackbar__label[dir=rtl]{padding-left:8px;padding-right:16px}.mdc-snackbar__label::before{display:inline;content:attr(data-mdc-snackbar-label-text)}.mdc-snackbar__actions{display:flex;flex-shrink:0;align-items:center;box-sizing:border-box;visibility:hidden}.mdc-snackbar__action+.mdc-snackbar__dismiss{margin-left:8px;margin-right:0}[dir=rtl] .mdc-snackbar__action+.mdc-snackbar__dismiss,.mdc-snackbar__action+.mdc-snackbar__dismiss[dir=rtl]{margin-left:0;margin-right:8px}.mat-mdc-snack-bar-container{margin:8px;--mdc-snackbar-container-shape:4px;position:static}.mat-mdc-snack-bar-container .mdc-snackbar__surface{min-width:344px}@media(max-width: 480px),(max-width: 344px){.mat-mdc-snack-bar-container .mdc-snackbar__surface{min-width:100%}}@media(max-width: 480px),(max-width: 344px){.mat-mdc-snack-bar-container{width:100vw}}.mat-mdc-snack-bar-container .mdc-snackbar__surface{max-width:672px}.mat-mdc-snack-bar-container .mdc-snackbar__surface{box-shadow:0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)}.mat-mdc-snack-bar-container .mdc-snackbar__surface{background-color:var(--mdc-snackbar-container-color)}.mat-mdc-snack-bar-container .mdc-snackbar__surface{border-radius:var(--mdc-snackbar-container-shape)}.mat-mdc-snack-bar-container .mdc-snackbar__label{color:var(--mdc-snackbar-supporting-text-color)}.mat-mdc-snack-bar-container .mdc-snackbar__label{font-size:var(--mdc-snackbar-supporting-text-size);font-family:var(--mdc-snackbar-supporting-text-font);font-weight:var(--mdc-snackbar-supporting-text-weight);line-height:var(--mdc-snackbar-supporting-text-line-height)}.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled){color:var(--mat-snack-bar-button-color);--mat-mdc-button-persistent-ripple-color: currentColor}.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) .mat-ripple-element{background-color:currentColor;opacity:.1}.mat-mdc-snack-bar-container .mdc-snackbar__label::before{display:none}.mat-mdc-snack-bar-handset,.mat-mdc-snack-bar-container,.mat-mdc-snack-bar-label{flex:1 1 auto}.mat-mdc-snack-bar-handset .mdc-snackbar__surface{width:100%}'],
+      encapsulation: 2,
+      data: {
+        animation: [matSnackBarAnimations.snackBarState]
+      }
+    });
+  }
+};
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatSnackBarContainer, [{
     type: Component,
@@ -1790,21 +1843,26 @@ var MatSnackBarContainer = _MatSnackBarContainer;
     }]
   });
 })();
-var _MatSnackBarModule = class _MatSnackBarModule {
+var MatSnackBarModule = class _MatSnackBarModule {
+  static {
+    this.ɵfac = function MatSnackBarModule_Factory(t) {
+      return new (t || _MatSnackBarModule)();
+    };
+  }
+  static {
+    this.ɵmod = ɵɵdefineNgModule({
+      type: _MatSnackBarModule,
+      declarations: [SimpleSnackBar, MatSnackBarContainer, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction],
+      imports: [OverlayModule, PortalModule, CommonModule, MatButtonModule, MatCommonModule],
+      exports: [MatCommonModule, MatSnackBarContainer, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction]
+    });
+  }
+  static {
+    this.ɵinj = ɵɵdefineInjector({
+      imports: [OverlayModule, PortalModule, CommonModule, MatButtonModule, MatCommonModule, MatCommonModule]
+    });
+  }
 };
-_MatSnackBarModule.ɵfac = function MatSnackBarModule_Factory(t) {
-  return new (t || _MatSnackBarModule)();
-};
-_MatSnackBarModule.ɵmod = ɵɵdefineNgModule({
-  type: _MatSnackBarModule,
-  declarations: [SimpleSnackBar, MatSnackBarContainer, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction],
-  imports: [OverlayModule, PortalModule, CommonModule, MatButtonModule, MatCommonModule],
-  exports: [MatCommonModule, MatSnackBarContainer, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction]
-});
-_MatSnackBarModule.ɵinj = ɵɵdefineInjector({
-  imports: [OverlayModule, PortalModule, CommonModule, MatButtonModule, MatCommonModule, MatCommonModule]
-});
-var MatSnackBarModule = _MatSnackBarModule;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatSnackBarModule, [{
     type: NgModule,
@@ -1822,7 +1880,7 @@ var MAT_SNACK_BAR_DEFAULT_OPTIONS = new InjectionToken("mat-snack-bar-default-op
   providedIn: "root",
   factory: MAT_SNACK_BAR_DEFAULT_OPTIONS_FACTORY
 });
-var __MatSnackBarBase = class __MatSnackBarBase {
+var _MatSnackBarBase = class __MatSnackBarBase {
   /** Reference to the currently opened snackbar at *any* level. */
   get _openedSnackBarRef() {
     const parent = this._parentSnackBar;
@@ -2009,15 +2067,18 @@ var __MatSnackBarBase = class __MatSnackBarBase {
       }]
     });
   }
+  static {
+    this.ɵfac = function _MatSnackBarBase_Factory(t) {
+      return new (t || __MatSnackBarBase)(ɵɵinject(Overlay), ɵɵinject(LiveAnnouncer), ɵɵinject(Injector), ɵɵinject(BreakpointObserver), ɵɵinject(__MatSnackBarBase, 12), ɵɵinject(MAT_SNACK_BAR_DEFAULT_OPTIONS));
+    };
+  }
+  static {
+    this.ɵprov = ɵɵdefineInjectable({
+      token: __MatSnackBarBase,
+      factory: __MatSnackBarBase.ɵfac
+    });
+  }
 };
-__MatSnackBarBase.ɵfac = function _MatSnackBarBase_Factory(t) {
-  return new (t || __MatSnackBarBase)(ɵɵinject(Overlay), ɵɵinject(LiveAnnouncer), ɵɵinject(Injector), ɵɵinject(BreakpointObserver), ɵɵinject(__MatSnackBarBase, 12), ɵɵinject(MAT_SNACK_BAR_DEFAULT_OPTIONS));
-};
-__MatSnackBarBase.ɵprov = ɵɵdefineInjectable({
-  token: __MatSnackBarBase,
-  factory: __MatSnackBarBase.ɵfac
-});
-var _MatSnackBarBase = __MatSnackBarBase;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_MatSnackBarBase, [{
     type: Injectable
@@ -2046,23 +2107,26 @@ var _MatSnackBarBase = __MatSnackBarBase;
     }];
   }, null);
 })();
-var _MatSnackBar = class _MatSnackBar extends _MatSnackBarBase {
+var MatSnackBar = class _MatSnackBar extends _MatSnackBarBase {
   constructor(overlay, live, injector, breakpointObserver, parentSnackBar, defaultConfig) {
     super(overlay, live, injector, breakpointObserver, parentSnackBar, defaultConfig);
     this.simpleSnackBarComponent = SimpleSnackBar;
     this.snackBarContainerComponent = MatSnackBarContainer;
     this.handsetCssClass = "mat-mdc-snack-bar-handset";
   }
+  static {
+    this.ɵfac = function MatSnackBar_Factory(t) {
+      return new (t || _MatSnackBar)(ɵɵinject(Overlay), ɵɵinject(LiveAnnouncer), ɵɵinject(Injector), ɵɵinject(BreakpointObserver), ɵɵinject(_MatSnackBar, 12), ɵɵinject(MAT_SNACK_BAR_DEFAULT_OPTIONS));
+    };
+  }
+  static {
+    this.ɵprov = ɵɵdefineInjectable({
+      token: _MatSnackBar,
+      factory: _MatSnackBar.ɵfac,
+      providedIn: MatSnackBarModule
+    });
+  }
 };
-_MatSnackBar.ɵfac = function MatSnackBar_Factory(t) {
-  return new (t || _MatSnackBar)(ɵɵinject(Overlay), ɵɵinject(LiveAnnouncer), ɵɵinject(Injector), ɵɵinject(BreakpointObserver), ɵɵinject(_MatSnackBar, 12), ɵɵinject(MAT_SNACK_BAR_DEFAULT_OPTIONS));
-};
-_MatSnackBar.ɵprov = ɵɵdefineInjectable({
-  token: _MatSnackBar,
-  factory: _MatSnackBar.ɵfac,
-  providedIn: MatSnackBarModule
-});
-var MatSnackBar = _MatSnackBar;
 (function() {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(MatSnackBar, [{
     type: Injectable,

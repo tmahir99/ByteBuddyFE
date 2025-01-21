@@ -1,0 +1,29 @@
+<div class="snippet-container">
+    <h2>{{ title }}</h2>
+    <p>By: {{ createdBy.userName }} | Created: {{ createdAt | date }}</p>
+    <div class="tags">
+      <span *ngFor="let tag of tags" class="tag">{{ tag.name }}</span>
+    </div>
+    <div class="description">
+      <p>{{ description }}</p>
+    </div>
+    <ng-template #buttonTemplate>
+      <button (click)="onCopyToClipboard()">.COPY ME..</button>
+    </ng-template>
+    <markdown class="bg-blue-300" [data]="codeContent" clipboard linenumbers [clipboardButtonTemplate]="buttonTemplate"></markdown>
+    <div class="stats">
+      <p>Likes: {{ likesCount }} | Comments: {{ commentsCount }}</p>
+    </div>
+    <p>ID: {{ id }}</p>
+    <p>Programming Language: {{ programmingLanguage }}</p>
+    <p>File URL: {{ fileUrl }}</p>
+    <p>Created By ID: {{ createdById }}</p>
+    <div *ngIf="createdBy">
+      <p>User Details:</p>
+      <p>First Name: {{ createdBy.firstName }}</p>
+      <p>Last Name: {{ createdBy.lastName }}</p>
+      <p>Email: {{ createdBy.email }}</p>
+      <p>Date of Birth: {{ createdBy.dateOfBirth }}</p>
+      <!-- Note: You might not want to display some of these fields in a real app -->
+    </div>
+  </div>
