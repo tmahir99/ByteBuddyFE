@@ -68,7 +68,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         config.duration = 5000 // 5 seconds
         config.horizontalPosition = 'right'
         config.verticalPosition = 'bottom'
-        config.panelClass = ['error-snackbar'] // Custom CSS class for styling
 
         this.snackBar.open(message, action, config)
     }

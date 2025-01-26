@@ -15,6 +15,31 @@ body {
     flex-direction: column;
 }
 
+/* Success Snackbar */
+.success-snackbar {
+    --mdc-snackbar-container-color: green;
+    --mat-mdc-snack-bar-button-color: white;
+  }
+  
+  /* Error Snackbar */
+  .error-snackbar {
+    --mdc-snackbar-container-color: #f44336;
+    --mat-mdc-snack-bar-button-color: white;
+  }
+  
+  /* Info Snackbar */
+  .info-snackbar {
+    --mdc-snackbar-container-color: #2196f3;
+    --mat-mdc-snack-bar-button-color: white;
+  }
+  
+  /* Warning Snackbar */
+  .warning-snackbar {
+    --mdc-snackbar-container-color: #ff9800;
+    --mat-mdc-snack-bar-button-color: white;
+  }
+  
+
 h1, h2, h3, h4, h5, h6 {
     color: #1a1a1a; /* Slightly darker for headings */
     margin-bottom: 15px;
