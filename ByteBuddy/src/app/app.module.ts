@@ -47,6 +47,7 @@ import { PageComponent } from './page/page.component';
 import { CodeSnippetComponent } from './code-snippet/code-snippet.component'
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { CreateSnippetComponent } from './create-snippet/create-snippet.component';
+import { CommentComponent } from './comment/comment.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { CreateSnippetComponent } from './create-snippet/create-snippet.componen
         PageComponent,
         CodeSnippetComponent,
         CreateSnippetComponent,
+        CommentComponent,
     ],
     imports: [
         BrowserModule,

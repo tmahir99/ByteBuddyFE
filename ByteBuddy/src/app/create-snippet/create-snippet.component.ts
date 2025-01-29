@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth.service';
-
-interface Tag {
-  id: number;
-  name: string;
-  area: string;
-}
+import { Tag } from '../code-snippet';
 
 @Component({
   selector: 'app-create-snippet',

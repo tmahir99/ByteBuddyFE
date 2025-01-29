@@ -1,0 +1,25 @@
+<div class="comment-section">
+    <h3>Comments</h3>
+  
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  
+    <div *ngIf="comments.length > 0; else noComments">
+      <div *ngFor="let comment of comments" class="comment">
+        <div class="comment-header">
+          <span class="comment-user">{{ comment.createdBy.userName }}</span>
+          <span class="comment-date">{{ comment.createdAt | date: 'short' }}</span>
+        </div>
+        <p class="comment-content">{{ comment.content }}</p>
+      </div>
+    </div>
+  
+    <ng-template #noComments>
+      <p class="no-comments">No comments yet. Be the first to comment!</p>
+    </ng-template>
+  
+    <div class="add-comment">
+      <input [(ngModel)]="newComment" placeholder="Write a comment..." />
+      <button (click)="addComment()">Post</button>
+    </div>
+  </div>
+  

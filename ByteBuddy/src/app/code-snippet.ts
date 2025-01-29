@@ -28,7 +28,7 @@ export interface User {
     id: number;
     content: string;
     createdAt: string;
-    createdById: string;
+    createdBy: User;
   }
   
   export interface CodeSnippet {
@@ -44,6 +44,7 @@ export interface User {
     tags: Tag[];
     likesCount: number;
     commentsCount: number;
+    likedByUsers: string[];
   }
   
   export interface PagedResponse<T> {
