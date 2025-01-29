@@ -8,7 +8,7 @@ import {
   TuiTileHandleDirective,
   TuiTilesComponent,
   TuiTilesModule
-} from "./chunk-XCNBYUSU.js";
+} from "./chunk-D6ZJC764.js";
 import {
   ALWAYS_TRUE_HANDLER,
   AbstractTuiControl,
@@ -53,15 +53,15 @@ import {
   tuiQueryListChanges,
   tuiTypedFromEvent,
   tuiWatchedControllerFactory
-} from "./chunk-RR5V7I6F.js";
-import "./chunk-IAUAQAXW.js";
-import "./chunk-LVLVFURQ.js";
-import "./chunk-7IUQLMWK.js";
+} from "./chunk-YTPTBXJK.js";
 import {
   NgControl
-} from "./chunk-77AJVJKV.js";
-import "./chunk-TDYWTNPZ.js";
-import "./chunk-Z3RPYORF.js";
+} from "./chunk-URYBJV6V.js";
+import "./chunk-WTFXD3X5.js";
+import "./chunk-TAQQTY2B.js";
+import "./chunk-7IUQLMWK.js";
+import "./chunk-3DDK7KHM.js";
+import "./chunk-DS6Z6SBO.js";
 import {
   AsyncPipe,
   CommonModule,
@@ -69,7 +69,7 @@ import {
   NgForOf,
   NgIf,
   NgTemplateOutlet
-} from "./chunk-O7YDPHBW.js";
+} from "./chunk-KQO2OZVL.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -135,18 +135,16 @@ import {
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
   ɵɵtextInterpolate2
-} from "./chunk-BWVQMFWU.js";
-import "./chunk-N6VY3YJC.js";
+} from "./chunk-DEK5RUFH.js";
 import {
   defer,
   merge
-} from "./chunk-Z4SRTAKC.js";
+} from "./chunk-MOXL5CJG.js";
+import "./chunk-5VI6HJQQ.js";
 import {
   EMPTY,
   Observable,
   ReplaySubject,
-  __awaiter,
-  __decorate,
   delay,
   distinctUntilChanged,
   filter,
@@ -155,7 +153,11 @@ import {
   startWith,
   switchMap,
   takeUntil
-} from "./chunk-I7RWPURI.js";
+} from "./chunk-HY7P5UUD.js";
+import {
+  __awaiter,
+  __decorate
+} from "./chunk-W44PFRPX.js";
 import "./chunk-XSKKLE2R.js";
 
 // node_modules/@taiga-ui/addon-table/fesm2015/taiga-ui-addon-table-tokens.js

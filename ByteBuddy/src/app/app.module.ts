@@ -7,6 +7,8 @@ import {
     HTTP_INTERCEPTORS,
     provideHttpClient,
     withInterceptorsFromDi,
+    HttpClient,
+    HttpClientModule
 } from '@angular/common/http'
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify'
 import {
@@ -30,7 +32,6 @@ import { MakeRoleComponent } from './make-role/make-role.component'
 import { TuiTableModule } from '@taiga-ui/addon-table'
 import { TuiTagModule } from '@taiga-ui/kit'
 
-import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { TableModule } from 'primeng/table'
 import { ButtonModule } from 'primeng/button'
 import { DialogModule } from 'primeng/dialog'
@@ -45,6 +46,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { PageComponent } from './page/page.component';
 import { CodeSnippetComponent } from './code-snippet/code-snippet.component'
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { CreateSnippetComponent } from './create-snippet/create-snippet.component';
 
 
 @NgModule({
@@ -60,6 +62,7 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
         ManageUsersComponent,
         PageComponent,
         CodeSnippetComponent,
+        CreateSnippetComponent,
     ],
     imports: [
         BrowserModule,
@@ -85,7 +88,7 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
         FormsModule,
         MatSnackBarModule,
         MarkdownModule.forRoot({loader: HttpClient}),
-        HighlightModule
+        HighlightModule,
     ],
     providers: [
         {

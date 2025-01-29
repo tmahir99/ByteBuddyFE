@@ -23,7 +23,7 @@ export class AppComponent {
         console.log(this.router.url)
 
         const headers = new HttpHeaders({
-            Authorization: `Basic ${btoa(`11184805:60-dayfreetrial`)}`,
+            Authorization: `Baerer ${this.authService.getToken()}`,
         })
 
         this.http
