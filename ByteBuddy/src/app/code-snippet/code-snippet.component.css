@@ -1,0 +1,204 @@
+.code-snippet-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f4f4f4;
+}
+
+.code-snippet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.copy-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.code-snippet-description {
+    margin-bottom: 12px;
+    color: #666;
+}
+
+pre {
+    margin: 0;
+    padding: 12px;
+    background-color: #282c34;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+.code-snippet-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.tags .tag {
+    background-color: #e0e0e0;
+    padding: 4px 8px;
+    margin-right: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.created-at,
+.created-by {
+    font-size: 12px;
+    color: #888;
+}
+
+.file-url {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-button, .delete-button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-button {
+    background-color: #2196F3;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.edit-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.edit-textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.edit-textarea.code {
+    font-family: 'Courier New', monospace;
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.save-button, .cancel-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.save-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #9e9e9e;
+    color: white;
+}
+                .editable-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: inherit;
+    background-color: white;
+    margin: 4px 0;
+}
+
+.editable-input.title {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+
+.editable-input.description {
+    min-height: 60px;
+    resize: vertical;
+}
+
+.editable-input.code {
+    min-height: 200px;
+    font-family: 'Courier New', monospace;
+    white-space: pre;
+    overflow-x: auto;
+    background-color: #282c34;
+    color: #ffffff;
+    padding: 12px;
+    resize: vertical;
+}
+
+.editable-input.select {
+    width: auto;
+    margin-left: 8px;
+}
+
+.language-selector {
+    margin: 12px 0;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-button, .delete-button, .save-button, .cancel-button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+
+.edit-button {
+    background-color: #2196F3;
+}
+
+.delete-button {
+    background-color: #f44336;
+}
+
+.save-button {
+    background-color: #4CAF50;
+}
+
+.cancel-button {
+    background-color: #9e9e9e;
+}

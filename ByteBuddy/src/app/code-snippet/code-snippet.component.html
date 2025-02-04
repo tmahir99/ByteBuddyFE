@@ -1,0 +1,125 @@
+<div class="code-snippet-container">
+    <div class="code-snippet-header">
+        <!-- Editable title -->
+        <h3 *ngIf="!isEditing">{{ title }}</h3>
+        <input
+            *ngIf="isEditing"
+            [(ngModel)]="editableTitle"
+            class="editable-input title"
+            placeholder="Enter title"
+        >
+
+        <div class="header-buttons">
+            <button
+                class="copy-button"
+                (click)="copyToClipboard()"
+                [disabled]="copied"
+            >
+                {{ copied ? 'Copied!' : 'Copy' }}
+            </button>
+            
+            <!-- Edit and Delete buttons -->
+            <ng-container *ngIf="canModifySnippet()">
+                <ng-container *ngIf="!isEditing">
+                    <button class="edit-button" (click)="startEditing()">
+                        ✏️ Edit
+                    </button>
+                    <button class="delete-button" (click)="deleteSnippet()">
+                        🗑️ Delete
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="isEditing">
+                    <button class="save-button" (click)="saveChanges()">
+                        💾 Save
+                    </button>
+                    <button class="cancel-button" (click)="cancelEditing()">
+                        ❌ Cancel
+                    </button>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+
+    <!-- Editable description -->
+    <div class="code-snippet-description">
+        <div *ngIf="!isEditing">{{ description }}</div>
+        <textarea
+            *ngIf="isEditing"
+            [(ngModel)]="editableDescription"
+            class="editable-input description"
+            placeholder="Enter description"
+        ></textarea>
+    </div>
+
+    <!-- Editable code content -->
+    <div class="code-content">
+        <pre *ngIf="!isEditing"><code 
+            [innerHTML]="highlightedCode" 
+            class="language-{{ language }}"
+        ></code></pre>
+        <textarea
+            *ngIf="isEditing"
+            [(ngModel)]="editableCodeContent"
+            class="editable-input code"
+            placeholder="Enter code"
+        ></textarea>
+    </div>
+
+    <!-- Editable language -->
+    <div *ngIf="isEditing" class="language-selector">
+        <label>Language: </label>
+        <select [(ngModel)]="editableLanguage" class="editable-input select">
+            <option value="javascript">JavaScript</option>
+            <option value="typescript">TypeScript</option>
+            <option value="python">Python</option>
+            <!-- Add more language options as needed -->
+        </select>
+    </div>
+
+    <div class="code-snippet-footer">
+        <div class="tags">
+            <span *ngFor="let tag of tags" class="tag">
+                {{ tag.name }}
+            </span>
+        </div>
+
+        <div class="metadata">
+            <button 
+                (click)="likeCodeSnippet(id)" 
+                [disabled]="isLikedByCurrentUser()"
+                [ngStyle]="getLikeButtonStyles()"
+                [attr.title]="isLikedByCurrentUser() ? 'You already liked this snippet' : ''">
+                👍 {{ likesCount }}
+            </button>
+
+            <button (click)="toggleComments()" class="comment-button">
+                💬 {{ commentsCount }}
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="showComments">
+        <app-comment [snippetID]="id"></app-comment>
+    </div>
+
+    <!-- Editable file URL -->
+    <div class="file-url-container">
+        <ng-container *ngIf="!isEditing">
+            <a *ngIf="fileUrl" class="file-url" [href]="fileUrl">Download Code</a>
+        </ng-container>
+        <input
+            *ngIf="isEditing"
+            [(ngModel)]="editableFileUrl"
+            class="editable-input"
+            placeholder="Enter file URL"
+        >
+    </div>
+
+    <div *ngIf="createdAt" class="created-at">
+        Created at: {{ createdAt | date }}
+    </div>
+
+    <div *ngIf="createdBy" class="created-by">
+        Created by: {{ createdBy }}
+    </div>
+</div>
