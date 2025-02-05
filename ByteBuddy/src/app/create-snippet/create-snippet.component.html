@@ -1,73 +1,87 @@
-<div class="create-snippet-container">
-    <h2>Create New Code Snippet</h2>
-    
-    <form [formGroup]="snippetForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input 
-          id="title"
-          type="text"
-          formControlName="title"
-          class="form-control"
-          [class.is-invalid]="submitted && f['title'].errors"
-        >
-        <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
-          <div *ngIf="f['title'].errors['required']">Title is required</div>
-        </div>
-      </div>
+<button class="create-button" (click)="openModal()">
+  ✨ Create New Snippet
+</button>
 
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea 
-          id="description"
-          formControlName="description"
-          class="form-control"
-          rows="3"
-        ></textarea>
-      </div>
+<div class="modal" *ngIf="isModalOpen">
+  <div class="modal-overlay" (click)="closeModal()"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Create New Code Snippet</h2>
+      <button class="close-button" (click)="closeModal()">×</button>
+    </div>
 
-      <div class="form-group">
-        <label for="code">Code Content</label>
-        <textarea 
-          id="code"
-          formControlName="codeContent"
-          class="form-control code-editor"
-          rows="10"
-          [class.is-invalid]="submitted && f['codeContent'].errors"
-        ></textarea>
-        <div *ngIf="submitted && f['codeContent'].errors" class="invalid-feedback">
-          <div *ngIf="f['codeContent'].errors['required']">Code content is required</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Tags</label>
-        <div class="tags-container">
-          <div *ngFor="let tag of tags" class="tag-checkbox">
-            <input 
-              type="checkbox"
-              [id]="'tag-' + tag.id"
-              [value]="tag.id"
-              (change)="onTagChange($event, tag)"
+    <div class="modal-body">
+      <form [formGroup]="snippetForm" (ngSubmit)="onSubmit()">
+        <!-- Preview section -->
+        <div class="code-snippet-container">
+          <div class="code-snippet-header">
+            <input
+              formControlName="title"
+              class="title-input"
+              placeholder="Enter title"
+              [class.is-invalid]="submitted && f['title'].errors"
             >
-            <label [for]="'tag-' + tag.id">
-              {{tag.name}} ({{tag.area}})
-            </label>
+          </div>
+
+          <textarea
+            formControlName="description"
+            class="description-input"
+            placeholder="Enter description"
+          ></textarea>
+
+          <div class="code-editor-container">
+            <textarea
+              formControlName="codeContent"
+              class="code-editor"
+              placeholder="Enter your code here..."
+              [class.is-invalid]="submitted && f['codeContent'].errors"
+            ></textarea>
+            <pre *ngIf="previewMode"><code 
+              [innerHTML]="highlightedCode" 
+              [class]="'language-' + selectedLanguage"
+            ></code></pre>
+          </div>
+
+          <div class="tags-section">
+            <label>Select Tags:</label>
+            <div class="tags-container">
+              <div *ngFor="let tag of tags" class="tag-item">
+                <input 
+                  type="checkbox"
+                  [id]="'tag-' + tag.id"
+                  [value]="tag.id"
+                  (change)="onTagChange($event, tag)"
+                >
+                <label [for]="'tag-' + tag.id" class="tag">
+                  {{tag.name}}
+                </label>
+              </div>
+            </div>
+            <div *ngIf="submitted && selectedTags.length === 0" class="error-message">
+              Please select at least one tag
+            </div>
+          </div>
+
+          <div class="preview-toggle">
+            <button type="button" (click)="togglePreview()" class="preview-button">
+              {{ previewMode ? '✏️ Edit' : '👁️ Preview' }}
+            </button>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit-button">Create Snippet</button>
+            <button type="button" class="reset-button" (click)="resetForm()">Reset</button>
           </div>
         </div>
-      </div>
+      </form>
 
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary">Create Snippet</button>
-        <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+      <div *ngIf="success" class="success-message">
+        Code snippet created successfully!
       </div>
-    </form>
-
-    <div *ngIf="success" class="alert alert-success">
-      Code snippet created successfully!
-    </div>
-    
-    <div *ngIf="error" class="alert alert-danger">
-      {{ error }}
+      
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
     </div>
   </div>
+</div>

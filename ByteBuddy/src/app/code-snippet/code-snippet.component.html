@@ -65,17 +65,6 @@
         ></textarea>
     </div>
 
-    <!-- Editable language -->
-    <div *ngIf="isEditing" class="language-selector">
-        <label>Language: </label>
-        <select [(ngModel)]="editableLanguage" class="editable-input select">
-            <option value="javascript">JavaScript</option>
-            <option value="typescript">TypeScript</option>
-            <option value="python">Python</option>
-            <!-- Add more language options as needed -->
-        </select>
-    </div>
-
     <div class="code-snippet-footer">
         <div class="tags">
             <span *ngFor="let tag of tags" class="tag">
@@ -100,19 +89,6 @@
 
     <div *ngIf="showComments">
         <app-comment [snippetID]="id"></app-comment>
-    </div>
-
-    <!-- Editable file URL -->
-    <div class="file-url-container">
-        <ng-container *ngIf="!isEditing">
-            <a *ngIf="fileUrl" class="file-url" [href]="fileUrl">Download Code</a>
-        </ng-container>
-        <input
-            *ngIf="isEditing"
-            [(ngModel)]="editableFileUrl"
-            class="editable-input"
-            placeholder="Enter file URL"
-        >
     </div>
 
     <div *ngIf="createdAt" class="created-at">

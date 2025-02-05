@@ -1,22 +1,76 @@
 <app-page>
-    <app-create-snippet (snippetCreated)="onSnippetCreated()"></app-create-snippet>
+    <div class="welcome-container">
+        <h1>Welcome to Code Snippets</h1>
 
-    <div class="px-4 py-6"
-    *ngFor="let snippet of codeSnippets">
-        <app-code-snippet 
-            [id]="snippet.id.toString()" 
-            [title]="snippet.title" 
-            [codeContent]="snippet.codeContent" 
-            [description]="snippet.description" 
-            [programmingLanguage]="snippet.programmingLanguage" 
-            [fileUrl]="snippet.fileUrl" 
-            [createdAt]="getFormattedDate(snippet.createdAt)"
-            [createdBy]="snippet.createdBy.userName" 
-            [tags]="snippet.tags" 
-            [likesCount]="snippet.likesCount"
-            [likedByUsers]="snippet.likedByUsers"
-            [commentsCount]="snippet.commentsCount"
-            (snippetDeleted)="onSnippetDeleted($event)">
-        </app-code-snippet>
+        <!-- Toggle Search Section Button -->
+        <button (click)="toggleSearchSection()" class="create-button">
+            {{ isSearchSectionVisible ? 'Hide Search' : 'Show Search' }}
+        </button>
+
+        <!-- Search Section -->
+        <div *ngIf="isSearchSectionVisible" class="section search-container">
+            <!-- Radio buttons for search type -->
+            <div class="radio-buttons">
+                <label>
+                    <input type="radio" name="searchType" [(ngModel)]="searchType" value="language" checked />
+                    Search by Programming Language
+                </label>
+                <label>
+                    <input type="radio" name="searchType" [(ngModel)]="searchType" value="area" />
+                    Search by Programming Area
+                </label>
+            </div>
+
+            <!-- Common search fields -->
+            <input [(ngModel)]="searchTerm" placeholder="Search Term" class="title-input" />
+            <input [(ngModel)]="createdById" placeholder="Created By ID" class="title-input" />
+
+            <!-- Dropdown for Programming Language -->
+            <select *ngIf="searchType === 'language'" [(ngModel)]="selectedTag" class="title-input">
+                <option *ngFor="let tag of tags" [value]="tag.name">{{ tag.name }}</option>
+            </select>
+
+            <!-- Dropdown for Programming Area -->
+            <select *ngIf="searchType === 'area'" [(ngModel)]="selectedTag" class="title-input">
+                <option *ngFor="let tag of tags" [value]="tag.area">{{ tag.area }}</option>
+            </select>
+
+            <!-- Sort by dropdown -->
+            <select [(ngModel)]="sortBy" class="title-input">
+                <option value="title">Title</option>
+                <option value="createdAt">Date</option>
+                <option value="likesCount">Likes</option>
+            </select>
+
+            <!-- Search and Cancel buttons -->
+            <div class="form-actions">
+                <button (click)="searchSnippets()" class="submit-button">Search</button>
+                <button (click)="cancelSearch()" class="reset-button">Cancel Search</button>
+            </div>
+        </div>
+
+        <app-create-snippet (snippetCreated)="onSnippetCreated()"></app-create-snippet>
+
+        <!-- Code Snippets Section -->
+        <div class="section">
+            <div *ngFor="let snippet of codeSnippets" class="code-snippet-container">
+                <app-code-snippet 
+                    [id]="snippet.id.toString()" 
+                    [title]="snippet.title" 
+                    [codeContent]="snippet.codeContent" 
+                    [description]="snippet.description" 
+                    [programmingLanguage]="snippet.programmingLanguage" 
+                    [fileUrl]="snippet.fileUrl" 
+                    [createdAt]="getFormattedDate(snippet.createdAt)"
+                    [createdBy]="snippet.createdBy.userName" 
+                    [tags]="snippet.tags" 
+                    [likesCount]="snippet.likesCount"
+                    [likedByUsers]="snippet.likedByUsers"
+                    [commentsCount]="snippet.commentsCount"
+                    (snippetDeleted)="onSnippetDeleted($event)"
+                    (snippetChanged)="onSnippetCreated()">
+                </app-code-snippet>
+            </div>
+        </div>
     </div>
 </app-page>

@@ -39,6 +39,9 @@ export class CodeSnippetComponent {
     @Input() likedByUsers?: string[]
     @Input() createdById?: string
     @Output() snippetDeleted = new EventEmitter<string>();
+    @Output() snippetChanged = new EventEmitter<string>();
+
+
 
     // Editable fields
     editableTitle: string = '';
@@ -107,6 +110,7 @@ export class CodeSnippetComponent {
                 .subscribe({
                     next: (response) => {
                         console.log(response)
+                        this.snippetChanged.emit();
                     },
                     error: (err) => {
                         this.error =
@@ -181,6 +185,8 @@ export class CodeSnippetComponent {
                     this.language = this.editableLanguage;
                     this.fileUrl = this.editableFileUrl;
                     this.isEditing = false;
+                    this.snippetChanged.emit();
+
                 },
                 error: (error) => {
                     this.notificationService.showError('Failed to update snippet');

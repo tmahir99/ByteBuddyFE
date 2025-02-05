@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333; /* Dark grey for better readability */
-    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4; /* Light grey background for contrast */
     display: flex;
@@ -19,30 +19,30 @@ body {
 .success-snackbar {
     --mdc-snackbar-container-color: green;
     --mat-mdc-snack-bar-button-color: white;
-  }
-  
-  /* Error Snackbar */
-  .error-snackbar {
+}
+
+/* Error Snackbar */
+.error-snackbar {
     --mdc-snackbar-container-color: #f44336;
     --mat-mdc-snack-bar-button-color: white;
-  }
-  
-  /* Info Snackbar */
-  .info-snackbar {
+}
+
+/* Info Snackbar */
+.info-snackbar {
     --mdc-snackbar-container-color: #2196f3;
     --mat-mdc-snack-bar-button-color: white;
-  }
-  
-  /* Warning Snackbar */
-  .warning-snackbar {
+}
+
+/* Warning Snackbar */
+.warning-snackbar {
     --mdc-snackbar-container-color: #ff9800;
     --mat-mdc-snack-bar-button-color: white;
-  }
-  
+}
 
 h1, h2, h3, h4, h5, h6 {
     color: #1a1a1a; /* Slightly darker for headings */
     margin-bottom: 15px;
+    font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 h1 { font-size: 2em; }
@@ -55,7 +55,7 @@ h6 { font-size: 0.67em; }
 p {
     margin: 0 0 1em;
     font-size: 1rem;
-    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
 a {
