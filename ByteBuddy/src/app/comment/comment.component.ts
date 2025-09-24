@@ -30,12 +30,13 @@ export class CommentComponent implements OnInit {
         if (token) {
             const headers = new HttpHeaders({
                 'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': 'true',
                 Authorization: `Bearer ${token}`,
             })
             this.http
                 .get<
                     Comment[]
-                >(`https://localhost:7082/api/SocialInteractions/snippets/${this.snippetID}/comments`, { headers, withCredentials: true })
+                >(`https://5d3a83e6fb53.ngrok-free.app/api/SocialInteractions/snippets/${this.snippetID}/comments`, { headers, withCredentials: true })
                 .subscribe({
                     next: (response) => {
                         this.comments = response
@@ -57,6 +58,7 @@ export class CommentComponent implements OnInit {
         if (token) {
             const headers = new HttpHeaders({
                 'Content-Type': 'application/json',
+                'ngrok-skip-browser-warning': 'true',
                 Authorization: `Bearer ${token}`,
             })
             if (!this.newComment.trim()) return
@@ -69,7 +71,7 @@ export class CommentComponent implements OnInit {
 
             this.http
                 .post<Comment>(
-                    `https://localhost:7082/api/SocialInteractions/snippets/${this.snippetID}/comments`,
+                    `https://5d3a83e6fb53.ngrok-free.app/api/SocialInteractions/snippets/${this.snippetID}/comments`,
                     newCommentObj,
                     { headers, withCredentials: true }
                 )

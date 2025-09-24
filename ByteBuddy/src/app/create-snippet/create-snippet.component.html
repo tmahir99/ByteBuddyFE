@@ -1,87 +1,399 @@
-<button class="create-button" (click)="openModal()">
-  ✨ Create New Snippet
+<button (click)="openModal()" class="btn-primary btn-md">
+    <svg
+        class="w-4 h-4 mr-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+        ></path>
+    </svg>
+    Create New Snippet
 </button>
 
-<div class="modal" *ngIf="isModalOpen">
-  <div class="modal-overlay" (click)="closeModal()"></div>
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>Create New Code Snippet</h2>
-      <button class="close-button" (click)="closeModal()">×</button>
-    </div>
+<!-- Modal -->
+<div
+    *ngIf="isModalOpen"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in"
+>
+    <div class="w-full max-w-4xl max-h-[90vh] overflow-hidden animate-scale-in">
+        <div class="card">
+            <!-- Modal Header -->
+            <div class="card-header">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="card-title">Create New Code Snippet</h2>
+                        <p class="card-description">
+                            Share your code with the community
+                        </p>
+                    </div>
+                    <button (click)="closeModal()" class="btn-ghost btn-sm p-2">
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
-    <div class="modal-body">
-      <form [formGroup]="snippetForm" (ngSubmit)="onSubmit()">
-        <!-- Preview section -->
-        <div class="code-snippet-container">
-          <div class="code-snippet-header">
-            <input
-              formControlName="title"
-              class="title-input"
-              placeholder="Enter title"
-              [class.is-invalid]="submitted && f['title'].errors"
-            >
-          </div>
-
-          <textarea
-            formControlName="description"
-            class="description-input"
-            placeholder="Enter description"
-          ></textarea>
-
-          <div class="code-editor-container">
-            <textarea
-              formControlName="codeContent"
-              class="code-editor"
-              placeholder="Enter your code here..."
-              [class.is-invalid]="submitted && f['codeContent'].errors"
-            ></textarea>
-            <pre *ngIf="previewMode"><code 
-              [innerHTML]="highlightedCode" 
-              [class]="'language-' + selectedLanguage"
-            ></code></pre>
-          </div>
-
-          <div class="tags-section">
-            <label>Select Tags:</label>
-            <div class="tags-container">
-              <div *ngFor="let tag of tags" class="tag-item">
-                <input 
-                  type="checkbox"
-                  [id]="'tag-' + tag.id"
-                  [value]="tag.id"
-                  (change)="onTagChange($event, tag)"
+            <!-- Modal Body -->
+            <div class="card-content max-h-[70vh] overflow-y-auto">
+                <form
+                    [formGroup]="snippetForm"
+                    (ngSubmit)="onSubmit()"
+                    class="space-y-6"
                 >
-                <label [for]="'tag-' + tag.id" class="tag">
-                  {{tag.name}}
-                </label>
-              </div>
-            </div>
-            <div *ngIf="submitted && selectedTags.length === 0" class="error-message">
-              Please select at least one tag
-            </div>
-          </div>
+                    <!-- Title -->
+                    <div class="space-y-2">
+                        <label
+                            for="title"
+                            class="text-sm font-medium text-foreground"
+                            >Title *</label
+                        >
+                        <input
+                            type="text"
+                            id="title"
+                            formControlName="title"
+                            placeholder="Enter a descriptive title for your snippet"
+                            class="input"
+                            [class.input-error]="submitted && f['title'].errors"
+                        />
+                        <div
+                            *ngIf="submitted && f['title'].errors"
+                            class="text-sm text-error-600"
+                        >
+                            Title is required
+                        </div>
+                    </div>
 
-          <div class="preview-toggle">
-            <button type="button" (click)="togglePreview()" class="preview-button">
-              {{ previewMode ? '✏️ Edit' : '👁️ Preview' }}
-            </button>
-          </div>
+                    <!-- Description -->
+                    <div class="space-y-2">
+                        <label
+                            for="description"
+                            class="text-sm font-medium text-foreground"
+                            >Description</label
+                        >
+                        <textarea
+                            id="description"
+                            formControlName="description"
+                            placeholder="Describe what your code does..."
+                            rows="3"
+                            class="input resize-y"
+                        ></textarea>
+                        <p class="text-xs text-muted-foreground">
+                            Optional: Help others understand your code
+                        </p>
+                    </div>
 
-          <div class="form-actions">
-            <button type="submit" class="submit-button">Create Snippet</button>
-            <button type="button" class="reset-button" (click)="resetForm()">Reset</button>
-          </div>
+                    <!-- Language Selection -->
+                    <div class="space-y-2">
+                        <label
+                            for="language"
+                            class="text-sm font-medium text-foreground"
+                            >Programming Language</label
+                        >
+                        <select
+                            id="language"
+                            [(ngModel)]="selectedLanguage"
+                            [ngModelOptions]="{ standalone: true }"
+                            class="input"
+                        >
+                            <option value="javascript">JavaScript</option>
+                            <option value="typescript">TypeScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="csharp">C#</option>
+                            <option value="cpp">C++</option>
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="sql">SQL</option>
+                            <option value="bash">Bash</option>
+                            <option value="json">JSON</option>
+                            <option value="xml">XML</option>
+                        </select>
+                    </div>
+
+                    <!-- Code Editor -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <label
+                                for="codeContent"
+                                class="text-sm font-medium text-foreground"
+                                >Code *</label
+                            >
+                            <button
+                                type="button"
+                                (click)="togglePreview()"
+                                class="btn-secondary btn-sm"
+                            >
+                                <svg
+                                    *ngIf="!previewMode"
+                                    class="w-4 h-4 mr-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                    ></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                    ></path>
+                                </svg>
+                                <svg
+                                    *ngIf="previewMode"
+                                    class="w-4 h-4 mr-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                    ></path>
+                                </svg>
+                                {{ previewMode ? 'Edit' : 'Preview' }}
+                            </button>
+                        </div>
+
+                        <div class="relative">
+                            <!-- Code Editor -->
+                            <textarea
+                                *ngIf="!previewMode"
+                                id="codeContent"
+                                formControlName="codeContent"
+                                placeholder="Paste your code here..."
+                                rows="12"
+                                class="input font-mono text-sm bg-secondary-900 text-secondary-100 border-secondary-700 resize-y"
+                                [class.input-error]="
+                                    submitted && f['codeContent'].errors
+                                "
+                            ></textarea>
+
+                            <!-- Code Preview -->
+                            <div *ngIf="previewMode" class="relative">
+                                <div class="absolute top-3 right-3 z-10">
+                                    <div
+                                        class="bg-secondary-800/90 backdrop-blur-sm rounded px-2 py-1 text-xs text-white"
+                                    >
+                                        {{ selectedLanguage }}
+                                    </div>
+                                </div>
+                                <pre
+                                    class="bg-secondary-900 text-secondary-100 p-4 rounded-lg overflow-x-auto border border-secondary-700 min-h-[200px]"
+                                ><code 
+                  [innerHTML]="highlightedCode" 
+                  [class]="'language-' + selectedLanguage"
+                ></code></pre>
+                            </div>
+                        </div>
+
+                        <div
+                            *ngIf="submitted && f['codeContent'].errors"
+                            class="text-sm text-error-600"
+                        >
+                            Code content is required
+                        </div>
+                    </div>
+
+                    <!-- File URL (Optional) -->
+                    <div class="space-y-2">
+                        <label
+                            for="fileUrl"
+                            class="text-sm font-medium text-foreground"
+                            >File URL</label
+                        >
+                        <input
+                            type="url"
+                            id="fileUrl"
+                            formControlName="fileUrl"
+                            placeholder="https://github.com/user/repo/file.js (optional)"
+                            class="input"
+                        />
+                        <p class="text-xs text-muted-foreground">
+                            Optional: Link to the source file
+                        </p>
+                    </div>
+
+                    <!-- Tags Selection -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-foreground"
+                            >Tags *</label
+                        >
+                        <div
+                            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-32 overflow-y-auto border border-border rounded-lg p-3"
+                        >
+                            <label
+                                *ngFor="let tag of tags"
+                                class="flex items-center space-x-2 cursor-pointer hover:bg-muted rounded p-2 transition-colors"
+                            >
+                                <input
+                                    type="checkbox"
+                                    [id]="'tag-' + tag.id"
+                                    [value]="tag.id"
+                                    (change)="onTagChange($event, tag)"
+                                    class="rounded border-border text-primary-600 focus:ring-primary-500 focus:ring-offset-0"
+                                />
+                                <span class="text-sm text-foreground">{{
+                                    tag.name
+                                }}</span>
+                            </label>
+                        </div>
+                        <div
+                            *ngIf="submitted && selectedTags.length === 0"
+                            class="text-sm text-error-600"
+                        >
+                            Please select at least one tag
+                        </div>
+                        <p class="text-xs text-muted-foreground">
+                            Select tags that describe your code
+                        </p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div
+                        class="flex items-center justify-end space-x-3 pt-4 border-t border-border"
+                    >
+                        <button
+                            type="button"
+                            (click)="resetForm()"
+                            class="btn-secondary btn-md"
+                        >
+                            <svg
+                                class="w-4 h-4 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                ></path>
+                            </svg>
+                            Reset
+                        </button>
+
+                        <button
+                            type="submit"
+                            [disabled]="isLoading"
+                            class="btn-primary btn-md"
+                        >
+                            <svg
+                                *ngIf="isLoading"
+                                class="animate-spin -ml-1 mr-2 h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                            >
+                                <circle
+                                    class="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                ></circle>
+                                <path
+                                    class="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                            </svg>
+                            <svg
+                                *ngIf="!isLoading"
+                                class="w-4 h-4 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 13l4 4L19 7"
+                                ></path>
+                            </svg>
+                            {{ isLoading ? 'Creating...' : 'Create Snippet' }}
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Message -->
+                <div
+                    *ngIf="success"
+                    class="mt-6 p-4 bg-success-50 border border-success-200 rounded-lg animate-slide-down"
+                >
+                    <div class="flex items-center">
+                        <svg
+                            class="w-5 h-5 text-success-600 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 13l4 4L19 7"
+                            ></path>
+                        </svg>
+                        <p class="text-success-800 font-medium">
+                            Code snippet created successfully!
+                        </p>
+                    </div>
+                    <p class="text-success-700 text-sm mt-1">
+                        Your snippet has been added to the community.
+                    </p>
+                </div>
+
+                <!-- Error Message -->
+                <div
+                    *ngIf="error"
+                    class="mt-6 p-4 bg-error-50 border border-error-200 rounded-lg animate-slide-down"
+                >
+                    <div class="flex items-center">
+                        <svg
+                            class="w-5 h-5 text-error-600 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path>
+                        </svg>
+                        <p class="text-error-800 font-medium">
+                            Error creating snippet
+                        </p>
+                    </div>
+                    <p class="text-error-700 text-sm mt-1">{{ error }}</p>
+                </div>
+            </div>
         </div>
-      </form>
-
-      <div *ngIf="success" class="success-message">
-        Code snippet created successfully!
-      </div>
-      
-      <div *ngIf="error" class="error-message">
-        {{ error }}
-      </div>
     </div>
-  </div>
 </div>

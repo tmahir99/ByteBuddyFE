@@ -1,13 +1,18 @@
-.page-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
-    width: 100vw;
+/* Modern page layout styles */
+/* Most styles are handled by Tailwind classes in the template */
+
+/* Smooth page transitions */
+main {
+    transition: all 0.3s ease;
 }
-.page-content{
-    display: flex;
-    min-height: 100%;
-    width: 100%;
-    justify-content: center;
+
+/* Ensure proper scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom focus styles for accessibility */
+*:focus-visible {
+    outline: 2px solid theme(colors.primary.500);
+    outline-offset: 2px;
 }

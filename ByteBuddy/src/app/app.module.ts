@@ -1,5 +1,9 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
-import { MarkdownModule } from 'ngx-markdown';
+import {
+    CUSTOM_ELEMENTS_SCHEMA,
+    NgModule,
+    NO_ERRORS_SCHEMA,
+} from '@angular/core'
+import { MarkdownModule } from 'ngx-markdown'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -8,7 +12,7 @@ import {
     provideHttpClient,
     withInterceptorsFromDi,
     HttpClient,
-    HttpClientModule
+    HttpClientModule,
 } from '@angular/common/http'
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify'
 import {
@@ -42,13 +46,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { HttpErrorInterceptor } from './http-error.interceptor'
 import { FooterComponent } from './footer/footer.component'
 import { ContactComponent } from './contact/contact.component'
-import { ManageUsersComponent } from './manage-users/manage-users.component';
-import { PageComponent } from './page/page.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component'
+import { PageComponent } from './page/page.component'
 import { CodeSnippetComponent } from './code-snippet/code-snippet.component'
-import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { CreateSnippetComponent } from './create-snippet/create-snippet.component';
-import { CommentComponent } from './comment/comment.component';
-
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs'
+import { CreateSnippetComponent } from './create-snippet/create-snippet.component'
+import { CommentComponent } from './comment/comment.component'
+import { ProfileComponent } from './profile/profile.component'
 
 @NgModule({
     declarations: [
@@ -65,6 +69,7 @@ import { CommentComponent } from './comment/comment.component';
         CodeSnippetComponent,
         CreateSnippetComponent,
         CommentComponent,
+        ProfileComponent,
     ],
     imports: [
         BrowserModule,
@@ -89,17 +94,17 @@ import { CommentComponent } from './comment/comment.component';
         InputTextModule,
         FormsModule,
         MatSnackBarModule,
-        MarkdownModule.forRoot({loader: HttpClient}),
+        MarkdownModule.forRoot({ loader: HttpClient }),
         HighlightModule,
     ],
     providers: [
         {
             provide: HIGHLIGHT_OPTIONS,
             useValue: {
-              coreLibraryLoader: () => import('highlight.js/lib/core'),
-              lineNumbers: true,
+                coreLibraryLoader: () => import('highlight.js/lib/core'),
+                lineNumbers: true,
             },
-          },
+        },
         AuthService,
         { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer },
         {
@@ -111,6 +116,6 @@ import { CommentComponent } from './comment/comment.component';
     ],
     bootstrap: [AppComponent],
     exports: [CodeSnippetComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class AppModule {}

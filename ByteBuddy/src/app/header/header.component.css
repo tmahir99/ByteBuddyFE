@@ -1,29 +1,23 @@
-.navbar {
-    padding: 10px 0;
-    text-align: center;
-    width: 100%;
-}
-nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    text-align: center;
+/* Modern header component styles */
+/* Most styles are handled by Tailwind classes in the template */
+
+/* Custom backdrop blur for older browsers */
+@supports not (backdrop-filter: blur(12px)) {
+    header {
+        background-color: rgba(255, 255, 255, 0.95);
+    }
 }
 
-nav .nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+/* Smooth transitions for mobile menu */
+.mobile-menu-enter {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
-.navbar .nav-links a {
-    text-decoration: none;
-    font-size: 16px;
-}
-
-nav a a:hover {
-    text-decoration: underline;
+.mobile-menu-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
 }

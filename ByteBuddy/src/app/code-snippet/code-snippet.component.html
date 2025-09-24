@@ -1,101 +1,344 @@
-<div class="code-snippet-container">
-    <div class="code-snippet-header">
-        <!-- Editable title -->
-        <h3 *ngIf="!isEditing">{{ title }}</h3>
-        <input
-            *ngIf="isEditing"
-            [(ngModel)]="editableTitle"
-            class="editable-input title"
-            placeholder="Enter title"
-        >
+<div class="card snippet-card hover:shadow-medium transition-all duration-300">
+    <!-- Card Header -->
+    <div class="card-header">
+        <div class="flex items-start justify-between">
+            <div class="flex-1 min-w-0">
+                <!-- Editable Title -->
+                <div
+                    *ngIf="!isEditing"
+                    class="flex items-center space-x-3 mb-2"
+                >
+                    <h3 class="card-title truncate">{{ title }}</h3>
+                    <span
+                        *ngFor="let tag of distinctTags"
+                        class="badge badge-secondary"
+                        >{{ tag.area }}</span
+                    >
+                </div>
+                <input
+                    *ngIf="isEditing"
+                    [(ngModel)]="editableTitle"
+                    class="input mb-2"
+                    placeholder="Enter snippet title..."
+                />
 
-        <div class="header-buttons">
-            <button
-                class="copy-button"
-                (click)="copyToClipboard()"
-                [disabled]="copied"
-            >
-                {{ copied ? 'Copied!' : 'Copy' }}
-            </button>
-            
-            <!-- Edit and Delete buttons -->
-            <ng-container *ngIf="canModifySnippet()">
-                <ng-container *ngIf="!isEditing">
-                    <button class="edit-button" (click)="startEditing()">
-                        ✏️ Edit
-                    </button>
-                    <button class="delete-button" (click)="deleteSnippet()">
-                        🗑️ Delete
-                    </button>
-                </ng-container>
-                <ng-container *ngIf="isEditing">
-                    <button class="save-button" (click)="saveChanges()">
-                        💾 Save
-                    </button>
-                    <button class="cancel-button" (click)="cancelEditing()">
-                        ❌ Cancel
-                    </button>
-                </ng-container>
-            </ng-container>
+                <!-- Author & Date -->
+                <div
+                    class="flex items-center space-x-4 text-sm text-muted-foreground"
+                >
+                    <div *ngIf="createdBy" class="flex items-center space-x-1">
+                        <button
+                            (click)="navigateToUserProfile($event)"
+                            class="w-5 h-5 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-white text-xs font-medium hover:scale-105 transition-transform duration-200 cursor-pointer"
+                            type="button"
+                        >
+                            {{ createdBy.charAt(0).toUpperCase() }}
+                        </button>
+                        <button
+                            (click)="navigateToUserProfile($event)"
+                            class="text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200 cursor-pointer hover:underline"
+                            type="button"
+                        >
+                            {{ createdBy }}
+                        </button>
+                    </div>
+                    <div *ngIf="createdAt" class="flex items-center space-x-1">
+                        <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            ></path>
+                        </svg>
+                        <span>{{ createdAt | date: 'MMM d, y' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-2 ml-4">
+                <button
+                    (click)="copyToClipboard()"
+                    [disabled]="copied"
+                    class="btn-ghost btn-sm"
+                    [class.btn-success]="copied"
+                >
+                    <svg
+                        *ngIf="!copied"
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        ></path>
+                    </svg>
+                    <svg
+                        *ngIf="copied"
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 13l4 4L19 7"
+                        ></path>
+                    </svg>
+                    <span class="ml-1">{{ copied ? 'Copied!' : 'Copy' }}</span>
+                </button>
+
+                <!-- Edit/Delete Dropdown -->
+                <div *ngIf="canModifySnippet()" class="relative">
+                    <ng-container *ngIf="!isEditing">
+                        <button
+                            (click)="startEditing()"
+                            class="btn-secondary btn-sm"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                ></path>
+                            </svg>
+                            <span class="ml-1">Edit</span>
+                        </button>
+                        <button
+                            (click)="deleteSnippet()"
+                            class="btn-destructive btn-sm ml-2"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                ></path>
+                            </svg>
+                            <span class="ml-1">Delete</span>
+                        </button>
+                    </ng-container>
+
+                    <ng-container *ngIf="isEditing">
+                        <button
+                            (click)="saveChanges()"
+                            class="btn-primary btn-sm"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 13l4 4L19 7"
+                                ></path>
+                            </svg>
+                            <span class="ml-1">Save</span>
+                        </button>
+                        <button
+                            (click)="cancelEditing()"
+                            class="btn-secondary btn-sm ml-2"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                ></path>
+                            </svg>
+                            <span class="ml-1">Cancel</span>
+                        </button>
+                    </ng-container>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Editable description -->
-    <div class="code-snippet-description">
-        <div *ngIf="!isEditing">{{ description }}</div>
-        <textarea
-            *ngIf="isEditing"
-            [(ngModel)]="editableDescription"
-            class="editable-input description"
-            placeholder="Enter description"
-        ></textarea>
-    </div>
+    <!-- Card Content -->
+    <div class="card-content">
+        <!-- Editable Description -->
+        <div *ngIf="description || isEditing" class="mb-4">
+            <p *ngIf="!isEditing" class="text-muted-foreground">
+                {{ description }}
+            </p>
+            <textarea
+                *ngIf="isEditing"
+                [(ngModel)]="editableDescription"
+                class="input"
+                placeholder="Enter a description for your code snippet..."
+                rows="3"
+            ></textarea>
+        </div>
 
-    <!-- Editable code content -->
-    <div class="code-content">
-        <pre *ngIf="!isEditing"><code 
-            [innerHTML]="highlightedCode" 
-            class="language-{{ language }}"
+        <!-- Code Block -->
+        <div class="relative group">
+            <div
+                class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+            >
+                <div
+                    class="bg-secondary-800/90 backdrop-blur-sm rounded px-2 py-1 text-xs text-white"
+                >
+                    {{ language }}
+                </div>
+            </div>
+
+            <div *ngIf="!isEditing" class="relative">
+                <pre
+                    class="bg-secondary-900 text-secondary-100 p-4 rounded-lg overflow-x-auto border border-secondary-700"
+                ><code 
+          [innerHTML]="highlightedCode" 
+          class="language-{{ language }} text-sm font-mono"
         ></code></pre>
-        <textarea
-            *ngIf="isEditing"
-            [(ngModel)]="editableCodeContent"
-            class="editable-input code"
-            placeholder="Enter code"
-        ></textarea>
-    </div>
+            </div>
 
-    <div class="code-snippet-footer">
-        <div class="tags">
-            <span *ngFor="let tag of tags" class="tag">
+            <div *ngIf="isEditing" class="space-y-3">
+                <select [(ngModel)]="editableLanguage" class="input">
+                    <option value="javascript">JavaScript</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="csharp">C#</option>
+                    <option value="cpp">C++</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="sql">SQL</option>
+                    <option value="bash">Bash</option>
+                </select>
+                <textarea
+                    [(ngModel)]="editableCodeContent"
+                    class="input font-mono text-sm bg-secondary-900 text-secondary-100 border-secondary-700"
+                    placeholder="Enter your code here..."
+                    rows="10"
+                ></textarea>
+            </div>
+        </div>
+
+        <!-- Tags -->
+        <div *ngIf="tags.length > 0" class="flex flex-wrap gap-2 mt-4">
+            <span *ngFor="let tag of tags" class="badge badge-primary">
                 {{ tag.name }}
             </span>
         </div>
+    </div>
 
-        <div class="metadata">
-            <button 
-                (click)="likeCodeSnippet(id)" 
-                [disabled]="isLikedByCurrentUser()"
-                [ngStyle]="getLikeButtonStyles()"
-                [attr.title]="isLikedByCurrentUser() ? 'You already liked this snippet' : ''">
-                👍 {{ likesCount }}
-            </button>
+    <!-- Card Footer -->
+    <div class="card-footer">
+        <div class="flex items-center justify-between w-full">
+            <!-- Engagement Actions -->
+            <div class="flex items-center space-x-4">
+                <button
+                    (click)="likeCodeSnippet(id)"
+                    [disabled]="isLikedByCurrentUser()"
+                    class="flex items-center space-x-1 text-sm transition-colors"
+                    [class.text-error-600]="isLikedByCurrentUser()"
+                    [class.text-muted-foreground]="!isLikedByCurrentUser()"
+                    [class.hover:text-error-500]="!isLikedByCurrentUser()"
+                    [attr.title]="
+                        likesCount > 0
+                            ? getLikedByText()
+                            : isLikedByCurrentUser()
+                              ? 'You already liked this snippet'
+                              : 'Like this snippet'
+                    "
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                        />
+                    </svg>
+                    <span>{{ likesCount }}</span>
+                </button>
 
-            <button (click)="toggleComments()" class="comment-button">
-                💬 {{ commentsCount }}
-            </button>
+                <button
+                    (click)="toggleComments()"
+                    class="flex items-center space-x-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                    <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                        ></path>
+                    </svg>
+                    <span
+                        >{{ commentsCount }} comment{{
+                            commentsCount !== 1 ? 's' : ''
+                        }}</span
+                    >
+                </button>
+            </div>
+
+            <!-- File URL -->
+            <div *ngIf="fileUrl">
+                <a [href]="fileUrl" target="_blank" class="btn-ghost btn-sm">
+                    <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        ></path>
+                    </svg>
+                    <span class="ml-1">View File</span>
+                </a>
+            </div>
         </div>
     </div>
 
-    <div *ngIf="showComments">
+    <!-- Comments Section -->
+    <div
+        *ngIf="showComments"
+        class="border-t border-border mt-6 pt-6 animate-slide-down"
+    >
         <app-comment [snippetID]="id"></app-comment>
-    </div>
-
-    <div *ngIf="createdAt" class="created-at">
-        Created at: {{ createdAt | date }}
-    </div>
-
-    <div *ngIf="createdBy" class="created-by">
-        Created by: {{ createdBy }}
     </div>
 </div>

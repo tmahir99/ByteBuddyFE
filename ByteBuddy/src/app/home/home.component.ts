@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
-import { PagedResponse, CodeSnippet } from '../code-snippet';
+import { Component, OnInit } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { AuthService } from '../auth.service'
+import { Router } from '@angular/router'
+import { PagedResponse, CodeSnippet, Tag } from '../code-snippet'
 
 @Component({
     selector: 'app-home',
@@ -10,17 +10,17 @@ import { PagedResponse, CodeSnippet } from '../code-snippet';
     styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-    userRole: string = this.authService.getUserRoles()?.toString() || '';
-    userFullName: string = this.authService.getUserUsername()?.toString() || '';
-    codeSnippets: CodeSnippet[] = [];
-    error: string = '';
-    tags: any[] = [];
-    searchTerm: string = '';
-    createdById: string = '';
-    selectedTag: string | null = null;
-    sortBy: string = 'title';
-    searchType: 'language' | 'area' = 'language'; // Default to 'language'
-    isSearchSectionVisible: boolean = false; // Toggle visibility of search section
+    userRole: string = this.authService.getUserRoles()?.toString() || ''
+    userFullName: string = this.authService.getUserUsername()?.toString() || ''
+    codeSnippets: CodeSnippet[] = []
+    error: string = ''
+    tags: Tag[] = []
+    searchTerm: string = ''
+    createdById: string = ''
+    selectedTag: string | null = null
+    sortBy: string = 'title'
+    searchType: 'language' | 'area' = 'language' // Default to 'language'
+    isSearchSectionVisible: boolean = false // Toggle visibility of search section
 
     constructor(
         private authService: AuthService,
@@ -29,92 +29,128 @@ export class HomeComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.loadSnippets();
-        this.loadTags();
+        this.loadSnippets()
+        this.loadTags()
     }
 
     toggleSearchSection() {
-        this.isSearchSectionVisible = !this.isSearchSectionVisible;
+        this.isSearchSectionVisible = !this.isSearchSectionVisible
     }
 
     loadSnippets() {
         this.http
-            .get<PagedResponse<CodeSnippet>>('https://localhost:7082/api/CodeSnippets')
+            .get<
+                PagedResponse<CodeSnippet>
+            >('https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets')
             .subscribe({
                 next: (response) => {
-                    this.codeSnippets = response.items;
+                    this.codeSnippets = response.items
                 },
                 error: (err) => {
-                    this.error = 'Failed to load code snippets. Please try again.';
-                    console.error('Error loading code snippets:', err);
+                    this.error =
+                        'Failed to load code snippets. Please try again.'
+                    console.error('Error loading code snippets:', err)
                 },
-            });
+            })
     }
 
     loadTags() {
-        this.http.get<any[]>('https://localhost:7082/api/Tags').subscribe({
-            next: (response) => {
-                this.tags = response;
-            },
-            error: (err) => {
-                console.error('Error loading tags:', err);
-            },
-        });
+        this.http
+            .get<Tag[]>('https://5d3a83e6fb53.ngrok-free.app/api/Tags')
+            .subscribe({
+                next: (response) => {
+                    this.tags = response
+                },
+                error: (err) => {
+                    console.error('Error loading tags:', err)
+                },
+            })
+    }
+
+    get distinctLanguages(): Tag[] {
+        const seen = new Set<string>()
+        return this.tags.filter((tag) => {
+            if (seen.has(tag.name)) {
+                return false
+            }
+            seen.add(tag.name)
+            return true
+        })
+    }
+
+    get distinctAreas(): Tag[] {
+        const seen = new Set<string>()
+        return this.tags.filter((tag) => {
+            if (seen.has(tag.area)) {
+                return false
+            }
+            seen.add(tag.area)
+            return true
+        })
     }
 
     searchSnippets() {
         if (!this.selectedTag) {
-            this.error = 'Please select a tag.';
-            return;
+            this.error = 'Please select a tag.'
+            return
         }
-    
+
         // Encode all query parameters
-        const encodedSearchTerm = encodeURIComponent(this.searchTerm);
-        const encodedCreatedById = encodeURIComponent(this.createdById);
-        const encodedSelectedTag = encodeURIComponent(this.selectedTag);
-        const encodedSortBy = encodeURIComponent(this.sortBy);
-    
+        const encodedSearchTerm = encodeURIComponent(this.searchTerm)
+        const encodedCreatedById = encodeURIComponent(this.createdById)
+        const encodedSelectedTag = encodeURIComponent(this.selectedTag)
+        const encodedSortBy = encodeURIComponent(this.sortBy)
+
         // Construct the URL based on the selected search type
-        const tagParam = this.searchType === 'language' ? 'ProgrammingLanguage' : 'ProgrammingArea';
-        const url = `https://localhost:7082/api/CodeSnippets/bytag/${encodedSelectedTag}?SearchTerm=${encodedSearchTerm}&${tagParam}=${encodedSelectedTag}&CreatedById=${encodedCreatedById}&SortBy=${encodedSortBy}&Page=1&PageSize=10`;
-    
+        const tagParam =
+            this.searchType === 'language'
+                ? 'ProgrammingLanguage'
+                : 'ProgrammingArea'
+        const url = `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets/bytag/${encodedSelectedTag}?SearchTerm=${encodedSearchTerm}&${tagParam}=${encodedSelectedTag}&CreatedById=${encodedCreatedById}&SortBy=${encodedSortBy}&Page=1&PageSize=10`
+
         this.http.get<PagedResponse<CodeSnippet>>(url).subscribe({
             next: (response) => {
-                this.codeSnippets = response.items;
+                this.codeSnippets = response.items
             },
             error: (err) => {
-                this.error = 'Failed to search code snippets. Please try again.';
-                console.error('Error searching code snippets:', err);
+                this.error = 'Failed to search code snippets. Please try again.'
+                console.error('Error searching code snippets:', err)
             },
-        });
+        })
     }
 
     cancelSearch() {
         // Reset all search parameters
-        this.searchTerm = '';
-        this.createdById = '';
-        this.selectedTag = null;
-        this.sortBy = 'title';
-        this.searchType = 'language';
+        this.searchTerm = ''
+        this.createdById = ''
+        this.selectedTag = null
+        this.sortBy = 'title'
+        this.searchType = 'language'
 
         // Reload all snippets
-        this.loadSnippets();
+        this.loadSnippets()
     }
 
     onSnippetCreated() {
-        this.loadSnippets();
+        this.loadSnippets()
     }
 
     getFormattedDate(dateString: string | Date): Date {
-        return dateString instanceof Date ? dateString : new Date(dateString);
+        return dateString instanceof Date ? dateString : new Date(dateString)
     }
 
     onSnippetDeleted(snippetId: any) {
-        this.codeSnippets = this.codeSnippets.filter((snippet) => snippet.id !== snippetId);
-        this.loadSnippets();
+        this.codeSnippets = this.codeSnippets.filter(
+            (snippet) => snippet.id !== snippetId
+        )
+        this.loadSnippets()
     }
 
     onSnippetchanged() {
-        this.loadSnippets();
+        this.loadSnippets()
+    }
+
+    trackBySnippetId(index: number, snippet: CodeSnippet): any {
+        return snippet.id
     }
 }

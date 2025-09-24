@@ -14,7 +14,14 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     constructor(private snackBar: MatSnackBar) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler) {
-        return next.handle(request).pipe(
+        // Add ngrok-skip-browser-warning header to bypass ngrok's browser warning
+        const modifiedRequest = request.clone({
+            setHeaders: {
+                'ngrok-skip-browser-warning': 'true',
+            },
+        })
+
+        return next.handle(modifiedRequest).pipe(
             catchError((error: HttpErrorResponse) => {
                 let errorMessage = ''
                 if (error.error instanceof ErrorEvent) {

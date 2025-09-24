@@ -7,7 +7,7 @@ import { Router } from '@angular/router'
     providedIn: 'root',
 })
 export class AuthService {
-    private apiUrl = 'https://localhost:7082/api/Auth'
+    private apiUrl = 'https://5d3a83e6fb53.ngrok-free.app/api/Auth'
 
     constructor(
         private http: HttpClient,
@@ -17,6 +17,7 @@ export class AuthService {
     login(username: string, password: string): Observable<any> {
         const headers = new HttpHeaders({
             'Content-Type': 'application/json',
+            'ngrok-skip-browser-warning': 'true',
             Accept: '*/*',
         })
 
@@ -87,7 +88,7 @@ export class AuthService {
 
     getUserRoles(): string[] {
         const rolesString = localStorage.getItem('userRoles')
-        return rolesString ? JSON.parse(rolesString) : null
+        return rolesString ? JSON.parse(rolesString) : []
     }
 
     deleteUserRoles(): void {
@@ -104,6 +105,18 @@ export class AuthService {
 
     deleteUserUsername(): void {
         localStorage.removeItem('userUsername')
+    }
+
+    storeUserId(userId: string): void {
+        localStorage.setItem('userId', userId)
+    }
+
+    getUserId(): string | null {
+        return localStorage.getItem('userId')
+    }
+
+    deleteUserId(): void {
+        localStorage.removeItem('userId')
     }
 
     isLoggedIn(): boolean {

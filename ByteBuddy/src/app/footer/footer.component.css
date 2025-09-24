@@ -1,35 +1,29 @@
-.footer {
-    padding: 20px 0;
-    text-align: center;
-    width: 100%;
+/* Modern footer component styles */
+/* Most styles are handled by Tailwind classes in the template */
+
+/* Custom gradient overlay for enhanced visual depth */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
 }
 
-.footer-content {
-    max-width: 800px;
-    margin: 0 auto;
+/* Social icon hover effects */
+footer a svg {
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
 }
 
-.footer p {
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
-}
-
-.footer-links li {
-    display: inline;
-    margin: 0 10px;
-}
-
-.footer-links a {
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
+footer a:hover svg {
+    transform: scale(1.1);
 }

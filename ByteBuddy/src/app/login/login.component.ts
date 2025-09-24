@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service'
 })
 export class LoginComponent {
     loginForm: FormGroup
+    isLoading: boolean = false
 
     constructor(
         private fb: FormBuilder,
@@ -23,6 +24,7 @@ export class LoginComponent {
 
     onSubmit() {
         if (this.loginForm.valid) {
+            this.isLoading = true
             const { username, password } = this.loginForm.value
             this.authService.login(username, password).subscribe(
                 (response) => {
@@ -31,12 +33,17 @@ export class LoginComponent {
                     this.authService.storeUserName(response.user.firstName)
                     this.authService.storeUserSurname(response.user.lastName)
                     this.authService.storeUserUsername(response.user.userName)
+                    if (response.user.id) {
+                        this.authService.storeUserId(response.user.id)
+                    }
                     this.authService.storeUserRoles(response.user.roles)
 
                     this.router.navigate(['/home'])
+                    this.isLoading = false
                 },
                 (error) => {
                     console.error('Login error', error)
+                    this.isLoading = false
                 }
             )
         }

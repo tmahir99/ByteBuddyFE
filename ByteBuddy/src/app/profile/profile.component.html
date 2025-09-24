@@ -1,0 +1,236 @@
+<app-page>
+    <div class="container py-8">
+        <div *ngIf="isLoading" class="flex justify-center py-20">
+            <div class="loader"></div>
+        </div>
+
+        <div *ngIf="error && !isLoading" class="card mb-6 border-error-300">
+            <div class="card-content text-error-600">
+                {{ error }}
+            </div>
+        </div>
+
+        <ng-container *ngIf="user && !isLoading">
+            <div class="grid gap-8 lg:grid-cols-[300px_minmax(0,1fr)]">
+                <aside class="space-y-6">
+                    <div class="card">
+                        <div class="card-content space-y-5">
+                            <div class="flex items-center space-x-4">
+                                <div
+                                    class="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-3xl font-semibold"
+                                >
+                                    {{ user.userName?.charAt(0)?.toUpperCase() }}
+                                </div>
+
+                                <div class="space-y-1">
+                                    <h2 class="text-2xl font-semibold text-foreground">
+                                        {{ getDisplayName(user) }}
+                                    </h2>
+                                    <p class="text-muted-foreground">
+                                        @{{ user.userName }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div *ngIf="user.email" class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>{{ user.email }}</span>
+                            </div>
+
+                            <div *ngIf="user.address || user.birthPlace || user.gender || user.dateOfBirth" class="grid grid-cols-2 gap-4 text-sm">
+                                <div *ngIf="user.address">
+                                    <p class="text-muted-foreground">Address</p>
+                                    <p class="font-medium">{{ user.address }}</p>
+                                </div>
+                                <div *ngIf="user.birthPlace">
+                                    <p class="text-muted-foreground">Birthplace</p>
+                                    <p class="font-medium">{{ user.birthPlace }}</p>
+                                </div>
+                                <div *ngIf="user.gender">
+                                    <p class="text-muted-foreground">Gender</p>
+                                    <p class="font-medium">{{ user.gender }}</p>
+                                </div>
+                                <div *ngIf="user.dateOfBirth">
+                                    <p class="text-muted-foreground">Birthday</p>
+                                    <p class="font-medium">{{ user.dateOfBirth | date }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2" *ngIf="user.roles?.length">
+                                <span *ngFor="let role of user.roles" class="badge badge-secondary uppercase">
+                                    {{ role }}
+                                </span>
+                            </div>
+
+                            <div *ngIf="!isCurrentUser" class="pt-4 border-t border-border">
+                                <!-- No connection - show connect button -->
+                                <button
+                                    class="btn-primary btn-md w-full"
+                                    *ngIf="friendshipStatus === 'none'"
+                                    (click)="onSendFriendRequest()"
+                                >
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                    </svg>
+                                    Connect
+                                </button>
+
+                                <!-- Outgoing request pending -->
+                                <div
+                                    *ngIf="friendshipStatus === 'outgoing'"
+                                    class="text-center p-3 bg-amber-50 border border-amber-200 rounded-lg"
+                                >
+                                    <div class="flex items-center justify-center space-x-2 text-amber-700">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <span class="text-sm font-medium">Friend request sent</span>
+                                    </div>
+                                    <p class="text-xs text-amber-600 mt-1">Waiting for response</p>
+                                </div>
+
+                                <!-- Incoming request - show accept/decline buttons -->
+                                <div
+                                    *ngIf="friendshipStatus === 'incoming'"
+                                    class="space-y-3 p-3 bg-blue-50 border border-blue-200 rounded-lg"
+                                >
+                                    <div class="text-center">
+                                        <p class="text-sm font-medium text-blue-900">Friend Request Received</p>
+                                        <p class="text-xs text-blue-700">{{ getUserDisplayName(user) }} wants to connect</p>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button
+                                            class="btn-primary btn-sm flex-1"
+                                            (click)="onAcceptFriendRequest()"
+                                        >
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                            Accept
+                                        </button>
+                                        <button
+                                            class="btn-destructive btn-sm flex-1"
+                                            (click)="onDeclineFriendRequest()"
+                                        >
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                            Decline
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Already friends -->
+                                <div
+                                    *ngIf="friendshipStatus === 'friends'"
+                                    class="text-center p-3 bg-green-50 border border-green-200 rounded-lg"
+                                >
+                                    <div class="flex items-center justify-center space-x-2 text-green-700">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <span class="text-sm font-medium">Connected</span>
+                                    </div>
+                                    <p class="text-xs text-green-600 mt-1">You are friends</p>
+                                </div>
+                            </div>
+
+                            <div *ngIf="isCurrentUser && incomingRequests.length" class="pt-4 border-t border-border space-y-3">
+                                <h3 class="font-semibold text-foreground">Friend Requests</h3>
+                                <div *ngFor="let request of incomingRequests" class="flex items-center justify-between">
+                                    <div>
+                                        <p class="font-medium">{{ request.requesterName || request.requesterId }}</p>
+                                        <p class="text-xs text-muted-foreground">{{ request.createdAt | date:'mediumDate' }}</p>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="btn-primary btn-sm" (click)="onAcceptFriendRequest(request)">Accept</button>
+                                        <button class="btn-secondary btn-sm" (click)="onDeclineFriendRequest(request)">Decline</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <section class="space-y-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Code Snippets</h3>
+                            <p class="card-description">
+                                {{
+                                    isCurrentUser
+                                        ? 'Your'
+                                        : ((user.firstName || user.userName) + "'s")
+                                }}
+                                recent snippets
+                            </p>
+                        </div>
+
+                        <div class="card-content space-y-6" *ngIf="snippets.length; else emptySnippets">
+                            <app-code-snippet
+                                *ngFor="let snippet of snippets"
+                                [id]="snippet.id.toString()"
+                                [title]="snippet.title"
+                                [codeContent]="snippet.codeContent"
+                                [description]="snippet.description"
+                                [programmingLanguage]="snippet.programmingLanguage"
+                                [fileUrl]="snippet.fileUrl"
+                                [createdAt]="getFormattedDate(snippet.createdAt)"
+                                [createdBy]="snippet.createdBy?.userName"
+                                [tags]="snippet.tags"
+                                [likesCount]="snippet.likesCount"
+                                [commentsCount]="snippet.commentsCount"
+                                [likedByUsers]="snippet.likedByUsers"
+                            ></app-code-snippet>
+                        </div>
+                    </div>
+
+                    <ng-template #emptySnippets>
+                        <div class="card">
+                            <div class="card-content text-center py-12 text-muted-foreground">
+                                <p>No code snippets yet.</p>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Pages</h3>
+                            <p class="card-description">Highlights and curated content</p>
+                        </div>
+
+                        <div class="card-content" *ngIf="pages.length; else emptyPages">
+                            <div class="grid gap-4 md:grid-cols-2">
+                                <div *ngFor="let page of pages" class="border border-border rounded-lg p-4 space-y-3 hover:border-primary-400 transition-all">
+                                    <div class="flex items-center justify-between">
+                                        <h4 class="text-lg font-semibold text-foreground truncate">
+                                            {{ page.title }}
+                                        </h4>
+                                        <span class="text-xs text-muted-foreground">
+                                            {{ page.createdAt | date:'mediumDate' }}
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground line-clamp-3">
+                                        {{ page.description || 'No description provided.' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ng-template #emptyPages>
+                        <div class="card">
+                            <div class="card-content text-center py-12 text-muted-foreground">
+                                <p>No pages shared yet.</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </section>
+            </div>
+        </ng-container>
+    </div>
+</app-page>
+
+

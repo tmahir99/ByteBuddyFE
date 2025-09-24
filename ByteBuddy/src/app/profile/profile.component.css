@@ -1,0 +1,21 @@
+.loader {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    border: 3px solid rgba(99, 102, 241, 0.2);
+    border-top-color: rgba(99, 102, 241, 1);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

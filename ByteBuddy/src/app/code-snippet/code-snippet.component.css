@@ -1,204 +1,109 @@
-.code-snippet-container {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    background-color: #f4f4f4;
+/* Modern code snippet component styles */
+/* Most styles are handled by Tailwind classes in the template */
+
+/* Custom syntax highlighting improvements */
+.snippet-card pre {
+    scrollbar-width: thin;
+    scrollbar-color: theme(colors.secondary.600) theme(colors.secondary.800);
 }
 
-.code-snippet-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
+.snippet-card pre::-webkit-scrollbar {
+    height: 8px;
 }
 
-.copy-button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.code-snippet-description {
-    margin-bottom: 12px;
-    color: #666;
-}
-
-pre {
-    margin: 0;
-    padding: 12px;
-    background-color: #282c34;
-    border-radius: 4px;
-    overflow-x: auto;
-}
-
-code {
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-}
-
-.code-snippet-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
-}
-
-.tags .tag {
-    background-color: #e0e0e0;
-    padding: 4px 8px;
-    margin-right: 8px;
-    border-radius: 4px;
-    font-size: 12px;
-}
-
-.created-at,
-.created-by {
-    font-size: 12px;
-    color: #888;
-}
-
-.file-url {
-    display: block;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
-}
-
-.header-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.edit-button, .delete-button {
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-}
-
-.edit-button {
-    background-color: #2196F3;
-    color: white;
-}
-
-.delete-button {
-    background-color: #f44336;
-    color: white;
-}
-
-.edit-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin: 16px 0;
-}
-
-.edit-input {
-    padding: 8px;
-    border: 1px solid #ddd;
+.snippet-card pre::-webkit-scrollbar-track {
+    background: theme(colors.secondary.800);
     border-radius: 4px;
 }
 
-.edit-textarea {
-    padding: 8px;
-    border: 1px solid #ddd;
+.snippet-card pre::-webkit-scrollbar-thumb {
+    background: theme(colors.secondary.600);
     border-radius: 4px;
-    min-height: 100px;
-    font-family: inherit;
 }
 
-.edit-textarea.code {
-    font-family: 'Courier New', monospace;
+.snippet-card pre::-webkit-scrollbar-thumb:hover {
+    background: theme(colors.secondary.500);
 }
 
-.edit-buttons {
-    display: flex;
-    gap: 8px;
+/* Code block hover effects */
+.snippet-card .group:hover pre {
+    border-color: theme(colors.secondary.600);
+    transition: border-color 0.2s ease;
 }
 
-.save-button, .cancel-button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
+/* Language badge animation */
+.snippet-card .group .absolute {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-.save-button {
-    background-color: #4caf50;
-    color: white;
+/* Button hover states with better transitions */
+.snippet-card button {
+    transition: all 0.2s ease;
 }
 
-.cancel-button {
-    background-color: #9e9e9e;
-    color: white;
-}
-                .editable-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: inherit;
-    background-color: white;
-    margin: 4px 0;
+/* Like button special animation */
+.snippet-card button[class*='text-error-600'] svg {
+    animation: heartbeat 0.6s ease-in-out;
 }
 
-.editable-input.title {
-    font-size: 1.17em;
-    font-weight: bold;
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
-.editable-input.description {
-    min-height: 60px;
-    resize: vertical;
+/* Copy button success state */
+.btn-success {
+    @apply bg-success-600 text-white hover:bg-success-700;
 }
 
-.editable-input.code {
-    min-height: 200px;
-    font-family: 'Courier New', monospace;
-    white-space: pre;
-    overflow-x: auto;
-    background-color: #282c34;
-    color: #ffffff;
-    padding: 12px;
-    resize: vertical;
+/* Enhanced focus states for accessibility */
+.snippet-card button:focus-visible {
+    @apply ring-2 ring-offset-2 ring-primary-500;
 }
 
-.editable-input.select {
-    width: auto;
-    margin-left: 8px;
+.snippet-card textarea:focus,
+.snippet-card input:focus,
+.snippet-card select:focus {
+    @apply ring-2 ring-primary-500 border-primary-500;
 }
 
-.language-selector {
-    margin: 12px 0;
+/* Improved typography for code */
+.snippet-card code {
+    font-feature-settings:
+        'liga' 0,
+        'calt' 0;
+    line-height: 1.5;
 }
 
-.header-buttons {
-    display: flex;
-    gap: 8px;
-}
+/* Better spacing for mobile */
+@media (max-width: 640px) {
+    .snippet-card .card-header {
+        @apply flex-col items-start space-y-3;
+    }
 
-.edit-button, .delete-button, .save-button, .cancel-button {
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-    color: white;
-}
+    .snippet-card .card-header > div:first-child {
+        @apply w-full;
+    }
 
-.edit-button {
-    background-color: #2196F3;
-}
+    .snippet-card .card-footer {
+        @apply flex-col space-y-3;
+    }
 
-.delete-button {
-    background-color: #f44336;
-}
-
-.save-button {
-    background-color: #4CAF50;
-}
-
-.cancel-button {
-    background-color: #9e9e9e;
+    .snippet-card .card-footer > div {
+        @apply w-full justify-between;
+    }
 }

@@ -1,75 +1,349 @@
 <app-page>
-    <div class="welcome-container">
-        <h1>Welcome to Code Snippets</h1>
+    <div
+        class="container py-8"
+        [class.h-full]="codeSnippets.length === 0"
+        [class.flex]="codeSnippets.length === 0"
+        [class.flex-col]="codeSnippets.length === 0"
+        [class.justify-center]="codeSnippets.length === 0"
+        [class.items-center]="codeSnippets.length === 0"
+    >
+        <!-- Header Section -->
+        <div
+            class="text-center flex flex-col items-center"
+            [class.mb-12]="codeSnippets.length > 0"
+            [class.mb-8]="codeSnippets.length === 0"
+        >
+            <h1 class="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                Discover Amazing
+                <span
+                    class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+                >
+                    Code Snippets
+                </span>
+            </h1>
+            <p
+                class="text-xl text-muted-foreground max-w-2xl mx-auto text-center"
+            >
+                Explore, share, and collaborate on code snippets from developers
+                around the world. Find solutions, share knowledge, and build
+                amazing things together.
+            </p>
+        </div>
 
-        <!-- Toggle Search Section Button -->
-        <button (click)="toggleSearchSection()" class="create-button">
-            {{ isSearchSectionVisible ? 'Hide Search' : 'Show Search' }}
-        </button>
+        <!-- Action Bar -->
+        <div
+            *ngIf="codeSnippets.length > 0 || isSearchSectionVisible"
+            class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8"
+        >
+            <div class="flex items-center space-x-4">
+                <button
+                    (click)="toggleSearchSection()"
+                    class="btn-outline btn-md"
+                >
+                    <svg
+                        class="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        ></path>
+                    </svg>
+                    {{
+                        isSearchSectionVisible
+                            ? 'Hide Search'
+                            : 'Advanced Search'
+                    }}
+                </button>
 
-        <!-- Search Section -->
-        <div *ngIf="isSearchSectionVisible" class="section search-container">
-            <!-- Radio buttons for search type -->
-            <div class="radio-buttons">
-                <label>
-                    <input type="radio" name="searchType" [(ngModel)]="searchType" value="language" checked />
-                    Search by Programming Language
-                </label>
-                <label>
-                    <input type="radio" name="searchType" [(ngModel)]="searchType" value="area" />
-                    Search by Programming Area
-                </label>
+                <div class="text-sm text-muted-foreground">
+                    {{ codeSnippets.length }} snippet{{
+                        codeSnippets.length !== 1 ? 's' : ''
+                    }}
+                    found
+                </div>
             </div>
 
-            <!-- Common search fields -->
-            <input [(ngModel)]="searchTerm" placeholder="Search Term" class="title-input" />
-            <input [(ngModel)]="createdById" placeholder="Created By ID" class="title-input" />
+            <app-create-snippet
+                (snippetCreated)="onSnippetCreated()"
+            ></app-create-snippet>
+        </div>
 
-            <!-- Dropdown for Programming Language -->
-            <select *ngIf="searchType === 'language'" [(ngModel)]="selectedTag" class="title-input">
-                <option *ngFor="let tag of tags" [value]="tag.name">{{ tag.name }}</option>
-            </select>
+        <!-- Advanced Search Section -->
+        <div
+            *ngIf="isSearchSectionVisible"
+            class="card mb-8 animate-slide-down"
+        >
+            <div class="card-header">
+                <h3 class="card-title">Advanced Search</h3>
+                <p class="card-description">
+                    Find exactly what you're looking for with powerful search
+                    filters
+                </p>
+            </div>
 
-            <!-- Dropdown for Programming Area -->
-            <select *ngIf="searchType === 'area'" [(ngModel)]="selectedTag" class="title-input">
-                <option *ngFor="let tag of tags" [value]="tag.area">{{ tag.area }}</option>
-            </select>
+            <div class="card-content">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+                    <!-- Search Type -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-medium text-foreground"
+                            >Search Type</label
+                        >
+                        <div class="space-y-2">
+                            <label
+                                class="flex items-center space-x-2 cursor-pointer"
+                            >
+                                <input
+                                    type="radio"
+                                    name="searchType"
+                                    [(ngModel)]="searchType"
+                                    value="language"
+                                    class="text-primary-600 focus:ring-primary-500"
+                                />
+                                <span class="text-sm text-muted-foreground"
+                                    >Programming Language</span
+                                >
+                            </label>
+                            <label
+                                class="flex items-center space-x-2 cursor-pointer"
+                            >
+                                <input
+                                    type="radio"
+                                    name="searchType"
+                                    [(ngModel)]="searchType"
+                                    value="area"
+                                    class="text-primary-600 focus:ring-primary-500"
+                                />
+                                <span class="text-sm text-muted-foreground"
+                                    >Programming Area</span
+                                >
+                            </label>
+                        </div>
+                    </div>
 
-            <!-- Sort by dropdown -->
-            <select [(ngModel)]="sortBy" class="title-input">
-                <option value="title">Title</option>
-                <option value="createdAt">Date</option>
-                <option value="likesCount">Likes</option>
-            </select>
+                    <!-- Search Term -->
+                    <div class="space-y-2">
+                        <label
+                            for="searchTerm"
+                            class="text-sm font-medium text-foreground"
+                            >Search Term</label
+                        >
+                        <input
+                            id="searchTerm"
+                            [(ngModel)]="searchTerm"
+                            placeholder="Enter keywords..."
+                            class="input"
+                        />
+                    </div>
 
-            <!-- Search and Cancel buttons -->
-            <div class="form-actions">
-                <button (click)="searchSnippets()" class="submit-button">Search</button>
-                <button (click)="cancelSearch()" class="reset-button">Cancel Search</button>
+                    <!-- Created By -->
+                    <div class="space-y-2">
+                        <label
+                            for="createdById"
+                            class="text-sm font-medium text-foreground"
+                            >Created By</label
+                        >
+                        <input
+                            id="createdById"
+                            [(ngModel)]="createdById"
+                            placeholder="Username or ID..."
+                            class="input"
+                        />
+                    </div>
+
+                    <!-- Language/Area Dropdown -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-foreground">
+                            {{
+                                searchType === 'language'
+                                    ? 'Programming Language'
+                                    : 'Programming Area'
+                            }}
+                        </label>
+                        <select [(ngModel)]="selectedTag" class="input">
+                            <option value="">
+                                All
+                                {{
+                                    searchType === 'language'
+                                        ? 'Languages'
+                                        : 'Areas'
+                                }}
+                            </option>
+                            <option
+                                *ngFor="
+                                    let tag of searchType === 'language'
+                                        ? distinctLanguages
+                                        : distinctAreas
+                                "
+                                [value]="
+                                    searchType === 'language'
+                                        ? tag.name
+                                        : tag.area
+                                "
+                            >
+                                {{
+                                    searchType === 'language'
+                                        ? tag.name
+                                        : tag.area
+                                }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Sort By -->
+                    <div class="space-y-2">
+                        <label
+                            for="sortBy"
+                            class="text-sm font-medium text-foreground"
+                            >Sort By</label
+                        >
+                        <select id="sortBy" [(ngModel)]="sortBy" class="input">
+                            <option value="title">Title</option>
+                            <option value="createdAt">Date Created</option>
+                            <option value="likesCount">Most Liked</option>
+                        </select>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-end space-x-2">
+                        <button
+                            (click)="searchSnippets()"
+                            class="btn-primary btn-md"
+                        >
+                            <svg
+                                class="w-4 h-4 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                ></path>
+                            </svg>
+                            Search
+                        </button>
+                        <button
+                            (click)="cancelSearch()"
+                            class="btn-secondary btn-md"
+                        >
+                            <svg
+                                class="w-4 h-4 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                ></path>
+                            </svg>
+                            Clear
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <app-create-snippet (snippetCreated)="onSnippetCreated()"></app-create-snippet>
-
-        <!-- Code Snippets Section -->
-        <div class="section">
-            <div *ngFor="let snippet of codeSnippets" class="code-snippet-container">
-                <app-code-snippet 
-                    [id]="snippet.id.toString()" 
-                    [title]="snippet.title" 
-                    [codeContent]="snippet.codeContent" 
-                    [description]="snippet.description" 
-                    [programmingLanguage]="snippet.programmingLanguage" 
-                    [fileUrl]="snippet.fileUrl" 
+        <!-- Code Snippets Grid -->
+        <div class="space-y-6" *ngIf="codeSnippets.length > 0">
+            <div
+                *ngFor="let snippet of codeSnippets; trackBy: trackBySnippetId"
+                class="animate-fade-in"
+            >
+                <app-code-snippet
+                    [id]="snippet.id.toString()"
+                    [title]="snippet.title"
+                    [codeContent]="snippet.codeContent"
+                    [description]="snippet.description"
+                    [programmingLanguage]="snippet.programmingLanguage"
+                    [fileUrl]="snippet.fileUrl"
                     [createdAt]="getFormattedDate(snippet.createdAt)"
-                    [createdBy]="snippet.createdBy.userName" 
-                    [tags]="snippet.tags" 
+                    [createdBy]="snippet.createdBy.userName"
+                    [tags]="snippet.tags"
                     [likesCount]="snippet.likesCount"
                     [likedByUsers]="snippet.likedByUsers"
                     [commentsCount]="snippet.commentsCount"
                     (snippetDeleted)="onSnippetDeleted($event)"
-                    (snippetChanged)="onSnippetCreated()">
+                    (snippetChanged)="onSnippetCreated()"
+                >
                 </app-code-snippet>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="codeSnippets.length === 0" class="text-center">
+            <div
+                class="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+                <svg
+                    class="w-12 h-12 text-muted-foreground"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    ></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-semibold text-foreground mb-2">
+                No snippets found
+            </h3>
+            <p class="text-muted-foreground mb-6 max-w-md mx-auto text-center">
+                We couldn't find any code snippets matching your criteria. Try
+                adjusting your search filters or create a new snippet to get
+                started.
+            </p>
+            <div class="flex gap-4 justify-center">
+                <button (click)="cancelSearch()" class="btn-primary btn-md">
+                    <svg
+                        class="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                        ></path>
+                    </svg>
+                    Reset Filters
+                </button>
+                <button
+                    (click)="toggleSearchSection()"
+                    class="btn-outline btn-md"
+                >
+                    <svg
+                        class="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        ></path>
+                    </svg>
+                    Advanced Search
+                </button>
             </div>
         </div>
     </div>

@@ -1,18 +1,16 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
-  selector: 'app-page',
-  template: `
-    <div className="" class="page-container">
-    <app-custom-header></app-custom-header>
-      <main class="page-content bg-background">
-        <div class="bg-primary w-3/5">
-          <ng-content></ng-content>
+    selector: 'app-page',
+    template: `
+        <div class="min-h-screen flex flex-col bg-background">
+            <app-custom-header></app-custom-header>
+            <main class="flex-1 w-full">
+                <ng-content></ng-content>
+            </main>
+            <app-footer></app-footer>
         </div>
-      </main>
-      <app-footer></app-footer>
-    </div>
-  `,
-  styleUrls: ['./page.component.css']
+    `,
+    styleUrls: ['./page.component.css'],
 })
 export class PageComponent {}

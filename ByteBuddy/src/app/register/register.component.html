@@ -1,98 +1,604 @@
-<div class="w-full h-screen bg-gradient-to-r from-secondary to-accent flex items-center justify-center">
-  <div class="w-full max-w-5xl flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden">
-    <!-- Left side with logo -->
-    <div class="w-full md:w-1/2 bg-secondary flex items-center justify-center">
-      <img src="../../assets/logo.png" alt="Logo goes here" class="h-32 w-auto">
-    </div>
+<div
+    class="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50 flex items-center justify-center p-4"
+>
+    <div class="w-full max-w-6xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <!-- Left Side - Branding & Info -->
+            <div class="hidden lg:flex flex-col justify-center space-y-8 p-8">
+                <div class="space-y-6">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg"
+                        >
+                            <svg
+                                class="w-7 h-7 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h1
+                            class="text-3xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+                        >
+                            ByteBuddy
+                        </h1>
+                    </div>
 
-    <!-- Right side with form -->
-    <div class="w-full md:w-1/2 bg-white p-8">
-      <h2 class="text-2xl font-bold mb-6 text-center text-accent">Create Your Account</h2>
-      <form 
-        [formGroup]="registerForm" 
-        (ngSubmit)="onSubmit()" 
-        class="flex flex-col gap-4"
-      >
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <tui-input formControlName="firstName" type="text" id="firstName" required>
-            First Name
-          </tui-input>
-          <tui-input formControlName="lastName" type="text" id="lastName" required>
-            Last Name
-          </tui-input>
-        </div>
+                    <!-- Hero Text -->
+                    <div class="space-y-4">
+                        <h2
+                            class="text-4xl font-bold text-foreground leading-tight"
+                        >
+                            Join our community of
+                            <span class="text-primary-600">developers</span>
+                        </h2>
+                        <p
+                            class="text-xl text-muted-foreground leading-relaxed"
+                        >
+                            Create your account to start sharing amazing code
+                            snippets, collaborate with developers worldwide, and
+                            build something extraordinary together.
+                        </p>
+                    </div>
 
-        <tui-input formControlName="userName" type="text" id="userName" required>
-          Username
-        </tui-input>
-
-        <tui-input formControlName="dateOfBirth" type="date" id="dateOfBirth" required>
-          Date of Birth
-        </tui-input>
-
-        <!-- Using standard HTML select for gender -->
-        <div class="relative">
-          <select 
-            formControlName="gender" 
-            required 
-            class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-          >
-            <option value="" disabled selected>Select Gender</option>
-            <option *ngFor="let option of genderOptions" [value]="option.value">
-              {{ option.label }}
-            </option>
-          </select>
-          <div *ngIf="registerForm.get('gender')?.touched && registerForm.get('gender')?.invalid" class="text-red-500 text-sm mt-1">
-            {{ getErrorMessage('gender') }}
-          </div>
-        </div>
-
-        <tui-input formControlName="birthPlace" type="text" id="birthPlace" required>
-          Birth Place
-        </tui-input>
-
-        <tui-input formControlName="address" type="text" id="address" required>
-          Address
-        </tui-input>
-
-        <tui-input formControlName="email" type="email" id="email" required>
-          Email
-        </tui-input>
-
-        <div class="relative">
-          <input 
-            formControlName="password" 
-            [type]="hidePassword ? 'password' : 'text'" 
-            id="password" 
-            required 
-            class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-          >
-          <button 
-            type="button" 
-            (click)="hidePassword = !hidePassword" 
-            class="absolute right-3 top-4 transform -translate-y-1/2 text-sm text-gray-500"
-          >
-            {{ hidePassword ? 'Show' : 'Hide' }}
-          </button>
-          <!-- Wrapper for error message with a fixed height -->
-          <div class="mt-1" style="min-height: 1.5rem;">
-            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-red-500 text-sm">
-              {{ getErrorMessage('password') }}
+                    <!-- Feature List -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div
+                                class="w-8 h-8 bg-success-100 rounded-lg flex items-center justify-center"
+                            >
+                                <svg
+                                    class="w-4 h-4 text-success-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C20.832 18.477 19.247 18 17.5 18c-1.746 0-3.332.477-4.5 1.253"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <span class="text-muted-foreground"
+                                >Share and discover code snippets</span
+                            >
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div
+                                class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center"
+                            >
+                                <svg
+                                    class="w-4 h-4 text-primary-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <span class="text-muted-foreground"
+                                >Connect with fellow developers</span
+                            >
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div
+                                class="w-8 h-8 bg-accent-100 rounded-lg flex items-center justify-center"
+                            >
+                                <svg
+                                    class="w-4 h-4 text-accent-600"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <span class="text-muted-foreground"
+                                >Learn and grow your skills</span
+                            >
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <!-- Right Side - Registration Form -->
+            <div class="w-full max-w-md mx-auto lg:mx-0">
+                <div class="card animate-scale-in">
+                    <div class="card-header text-center">
+                        <!-- Mobile Logo -->
+                        <div
+                            class="lg:hidden flex items-center justify-center space-x-3 mb-6"
+                        >
+                            <div
+                                class="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center"
+                            >
+                                <svg
+                                    class="w-6 h-6 text-white"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <h1
+                                class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+                            >
+                                ByteBuddy
+                            </h1>
+                        </div>
+
+                        <h2 class="card-title text-center">
+                            Create your account
+                        </h2>
+                        <p class="card-description text-center">
+                            Join our community and start sharing code snippets
+                            today.
+                        </p>
+                    </div>
+
+                    <div class="card-content">
+                        <form
+                            [formGroup]="registerForm"
+                            (ngSubmit)="onSubmit()"
+                            class="space-y-4"
+                        >
+                            <!-- Name Fields -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <label
+                                        for="firstName"
+                                        class="text-sm font-medium text-foreground"
+                                        >First Name</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="firstName"
+                                        formControlName="firstName"
+                                        placeholder="Enter your first name"
+                                        class="input"
+                                        [class.input-error]="
+                                            registerForm.get('firstName')
+                                                ?.invalid &&
+                                            registerForm.get('firstName')
+                                                ?.touched
+                                        "
+                                    />
+                                    <div
+                                        *ngIf="
+                                            registerForm.get('firstName')
+                                                ?.invalid &&
+                                            registerForm.get('firstName')
+                                                ?.touched
+                                        "
+                                        class="text-sm text-error-600"
+                                    >
+                                        {{ getErrorMessage('firstName') }}
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label
+                                        for="lastName"
+                                        class="text-sm font-medium text-foreground"
+                                        >Last Name</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="lastName"
+                                        formControlName="lastName"
+                                        placeholder="Enter your last name"
+                                        class="input"
+                                        [class.input-error]="
+                                            registerForm.get('lastName')
+                                                ?.invalid &&
+                                            registerForm.get('lastName')
+                                                ?.touched
+                                        "
+                                    />
+                                    <div
+                                        *ngIf="
+                                            registerForm.get('lastName')
+                                                ?.invalid &&
+                                            registerForm.get('lastName')
+                                                ?.touched
+                                        "
+                                        class="text-sm text-error-600"
+                                    >
+                                        {{ getErrorMessage('lastName') }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Username -->
+                            <div class="space-y-2">
+                                <label
+                                    for="userName"
+                                    class="text-sm font-medium text-foreground"
+                                    >Username</label
+                                >
+                                <input
+                                    type="text"
+                                    id="userName"
+                                    formControlName="userName"
+                                    placeholder="Choose a unique username"
+                                    class="input"
+                                    [class.input-error]="
+                                        registerForm.get('userName')?.invalid &&
+                                        registerForm.get('userName')?.touched
+                                    "
+                                />
+                                <div
+                                    *ngIf="
+                                        registerForm.get('userName')?.invalid &&
+                                        registerForm.get('userName')?.touched
+                                    "
+                                    class="text-sm text-error-600"
+                                >
+                                    {{ getErrorMessage('userName') }}
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="space-y-2">
+                                <label
+                                    for="email"
+                                    class="text-sm font-medium text-foreground"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    id="email"
+                                    formControlName="email"
+                                    placeholder="Enter your email address"
+                                    class="input"
+                                    [class.input-error]="
+                                        registerForm.get('email')?.invalid &&
+                                        registerForm.get('email')?.touched
+                                    "
+                                />
+                                <div
+                                    *ngIf="
+                                        registerForm.get('email')?.invalid &&
+                                        registerForm.get('email')?.touched
+                                    "
+                                    class="text-sm text-error-600"
+                                >
+                                    {{ getErrorMessage('email') }}
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="space-y-2">
+                                <label
+                                    for="password"
+                                    class="text-sm font-medium text-foreground"
+                                    >Password</label
+                                >
+                                <div class="relative">
+                                    <input
+                                        [type]="
+                                            hidePassword ? 'password' : 'text'
+                                        "
+                                        id="password"
+                                        formControlName="password"
+                                        placeholder="Create a strong password"
+                                        class="input pr-10"
+                                        [class.input-error]="
+                                            registerForm.get('password')
+                                                ?.invalid &&
+                                            registerForm.get('password')
+                                                ?.touched
+                                        "
+                                    />
+                                    <button
+                                        type="button"
+                                        (click)="hidePassword = !hidePassword"
+                                        class="absolute inset-y-0 right-0 pr-3 flex items-center text-muted-foreground hover:text-foreground"
+                                    >
+                                        <svg
+                                            *ngIf="hidePassword"
+                                            class="w-4 h-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                            ></path>
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                            ></path>
+                                        </svg>
+                                        <svg
+                                            *ngIf="!hidePassword"
+                                            class="w-4 h-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div
+                                    *ngIf="
+                                        registerForm.get('password')?.invalid &&
+                                        registerForm.get('password')?.touched
+                                    "
+                                    class="text-sm text-error-600"
+                                >
+                                    {{ getErrorMessage('password') }}
+                                </div>
+                            </div>
+
+                            <!-- Personal Details -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <label
+                                        for="dateOfBirth"
+                                        class="text-sm font-medium text-foreground"
+                                        >Date of Birth</label
+                                    >
+                                    <input
+                                        type="date"
+                                        id="dateOfBirth"
+                                        formControlName="dateOfBirth"
+                                        class="input"
+                                        [class.input-error]="
+                                            registerForm.get('dateOfBirth')
+                                                ?.invalid &&
+                                            registerForm.get('dateOfBirth')
+                                                ?.touched
+                                        "
+                                    />
+                                    <div
+                                        *ngIf="
+                                            registerForm.get('dateOfBirth')
+                                                ?.invalid &&
+                                            registerForm.get('dateOfBirth')
+                                                ?.touched
+                                        "
+                                        class="text-sm text-error-600"
+                                    >
+                                        {{ getErrorMessage('dateOfBirth') }}
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label
+                                        for="gender"
+                                        class="text-sm font-medium text-foreground"
+                                        >Gender</label
+                                    >
+                                    <select
+                                        id="gender"
+                                        formControlName="gender"
+                                        class="input"
+                                        [class.input-error]="
+                                            registerForm.get('gender')
+                                                ?.invalid &&
+                                            registerForm.get('gender')?.touched
+                                        "
+                                    >
+                                        <option value="" disabled>
+                                            Select Gender
+                                        </option>
+                                        <option
+                                            *ngFor="let option of genderOptions"
+                                            [value]="option.value"
+                                        >
+                                            {{ option.label }}
+                                        </option>
+                                    </select>
+                                    <div
+                                        *ngIf="
+                                            registerForm.get('gender')
+                                                ?.invalid &&
+                                            registerForm.get('gender')?.touched
+                                        "
+                                        class="text-sm text-error-600"
+                                    >
+                                        {{ getErrorMessage('gender') }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Location Fields -->
+                            <div class="space-y-2">
+                                <label
+                                    for="birthPlace"
+                                    class="text-sm font-medium text-foreground"
+                                    >Birth Place</label
+                                >
+                                <input
+                                    type="text"
+                                    id="birthPlace"
+                                    formControlName="birthPlace"
+                                    placeholder="Enter your birth place"
+                                    class="input"
+                                    [class.input-error]="
+                                        registerForm.get('birthPlace')
+                                            ?.invalid &&
+                                        registerForm.get('birthPlace')?.touched
+                                    "
+                                />
+                                <div
+                                    *ngIf="
+                                        registerForm.get('birthPlace')
+                                            ?.invalid &&
+                                        registerForm.get('birthPlace')?.touched
+                                    "
+                                    class="text-sm text-error-600"
+                                >
+                                    {{ getErrorMessage('birthPlace') }}
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label
+                                    for="address"
+                                    class="text-sm font-medium text-foreground"
+                                    >Address</label
+                                >
+                                <input
+                                    type="text"
+                                    id="address"
+                                    formControlName="address"
+                                    placeholder="Enter your current address"
+                                    class="input"
+                                    [class.input-error]="
+                                        registerForm.get('address')?.invalid &&
+                                        registerForm.get('address')?.touched
+                                    "
+                                />
+                                <div
+                                    *ngIf="
+                                        registerForm.get('address')?.invalid &&
+                                        registerForm.get('address')?.touched
+                                    "
+                                    class="text-sm text-error-600"
+                                >
+                                    {{ getErrorMessage('address') }}
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="flex items-start space-x-2">
+                                <input
+                                    type="checkbox"
+                                    id="terms"
+                                    class="mt-1 rounded border-border text-primary-600 focus:ring-primary-500 focus:ring-offset-0"
+                                />
+                                <label
+                                    for="terms"
+                                    class="text-sm text-muted-foreground"
+                                >
+                                    I agree to the
+                                    <a
+                                        href="#"
+                                        class="text-primary-600 hover:text-primary-700 font-medium"
+                                        >Terms of Service</a
+                                    >
+                                    and
+                                    <a
+                                        href="#"
+                                        class="text-primary-600 hover:text-primary-700 font-medium"
+                                        >Privacy Policy</a
+                                    >
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button
+                                type="submit"
+                                [disabled]="registerForm.invalid || isLoading"
+                                class="btn-primary btn-lg w-full"
+                            >
+                                <svg
+                                    *ngIf="isLoading"
+                                    class="animate-spin -ml-1 mr-3 h-4 w-4 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        class="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        stroke-width="4"
+                                    ></circle>
+                                    <path
+                                        class="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                                {{
+                                    isLoading
+                                        ? 'Creating Account...'
+                                        : 'Create Account'
+                                }}
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="card-footer justify-center">
+                        <p class="text-sm text-muted-foreground">
+                            Already have an account?
+                            <a
+                                routerLink="/login"
+                                class="text-primary-600 hover:text-primary-700 font-medium"
+                            >
+                                Sign in here
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Additional Info for Mobile -->
+                <div class="lg:hidden mt-8 text-center space-y-4">
+                    <p class="text-muted-foreground">
+                        Join thousands of developers sharing and discovering
+                        amazing code snippets.
+                    </p>
+                    <div class="flex justify-center space-x-6">
+                        <div class="flex items-center space-x-2">
+                            <div
+                                class="w-2 h-2 bg-success-500 rounded-full"
+                            ></div>
+                            <span class="text-sm text-muted-foreground"
+                                >Free to join</span
+                            >
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div
+                                class="w-2 h-2 bg-primary-500 rounded-full"
+                            ></div>
+                            <span class="text-sm text-muted-foreground"
+                                >50k+ developers</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <button 
-          type="submit" 
-          [disabled]="registerForm.invalid" 
-          class="mt-4 bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition duration-300"
-        >
-          Register
-        </button>
-      </form>
-      <p class="mt-4 text-center text-sm">
-        <a routerLink="/login" class="text-text hover:underline">Already have an account?</a>
-      </p>
     </div>
-  </div>
 </div>
