@@ -45,19 +45,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     onSendFriendRequest(): void {
-        if (!this.user?.id) return
+        // Use userName if id is not available (common with public API)
+        const userIdentifier = this.user?.id || this.user?.userName
+        if (!userIdentifier) {
+            this.notification.showError('Unable to identify user')
+            return
+        }
+
         this.profileService
-            .sendFriendRequest(this.user.id)
+            .sendFriendRequest(userIdentifier)
             .pipe(takeUntil(this.destroy$))
             .subscribe({
                 next: () => {
                     this.notification.showSuccess('Friend request sent')
                     this.friendshipStatus = 'outgoing'
                 },
-                error: () =>
-                    this.notification.showError(
-                        'Unable to send friend request'
-                    ),
+                error: (error) => {
+                    console.error('Friend request error:', error)
+                    this.notification.showError('Unable to send friend request')
+                },
             })
     }
 
@@ -65,7 +71,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const requesterId =
             request?.requesterId || this.user?.id || this.user?.userName
 
-        if (!requesterId) return
+        if (!requesterId) {
+            this.notification.showError('Unable to identify user')
+            return
+        }
 
         this.profileService
             .acceptFriendRequest(requesterId)
@@ -83,10 +92,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
                         )
                     }
                 },
-                error: () =>
+                error: (error) => {
+                    console.error('Accept friend request error:', error)
                     this.notification.showError(
                         'Unable to accept friend request'
-                    ),
+                    )
+                },
             })
     }
 
@@ -94,7 +105,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const requesterId =
             request?.requesterId || this.user?.id || this.user?.userName
 
-        if (!requesterId) return
+        if (!requesterId) {
+            this.notification.showError('Unable to identify user')
+            return
+        }
 
         this.profileService
             .declineFriendRequest(requesterId)
@@ -112,10 +126,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
                         )
                     }
                 },
-                error: () =>
+                error: (error) => {
+                    console.error('Decline friend request error:', error)
                     this.notification.showError(
                         'Unable to decline friend request'
-                    ),
+                    )
+                },
             })
     }
 
@@ -179,5 +195,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
         const names = [user.firstName, user.lastName].filter((name) => name)
         return names.join(' ') || user.userName || 'User'
+    }
+
+    // Page event handlers
+    onPageDeleted(pageId: number): void {
+        this.pages = this.pages.filter((p) => p.id !== pageId)
+        this.notification.showSuccess('Page deleted successfully')
+    }
+
+    onPageLiked(updatedPage: PageDto): void {
+        const index = this.pages.findIndex((p) => p.id === updatedPage.id)
+        if (index !== -1) {
+            this.pages[index] = updatedPage
+        }
+    }
+
+    onPageUpdated(updatedPage: PageDto): void {
+        const index = this.pages.findIndex((p) => p.id === updatedPage.id)
+        if (index !== -1) {
+            this.pages[index] = updatedPage
+        }
     }
 }

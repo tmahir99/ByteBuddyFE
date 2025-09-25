@@ -1,0 +1,55 @@
+/* Custom animations and utilities */
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-down {
+    animation: slide-down 0.2s ease-out;
+}
+
+/* Line clamp utility for description */
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Ensure proper hover states */
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+
+.group:hover .group-hover\:text-primary-600 {
+    color: rgb(59 130 246);
+}
+
+/* Like button specific styles */
+.group\/like:hover {
+    transform: scale(1.05);
+}
+
+/* Loading spinner positioning */
+.btn-ghost {
+    position: relative;
+}
+
+/* Heart animation on like */
+.group\/like:active svg {
+    transform: scale(1.2);
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    transition-property:
+        color, background-color, border-color, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

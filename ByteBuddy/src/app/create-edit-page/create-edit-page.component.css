@@ -1,0 +1,132 @@
+/* Loading spinner */
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Form field improvements */
+.input {
+    transition: all 0.2s ease-in-out;
+}
+
+.input:focus {
+    transform: translateY(-1px);
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Error state styling */
+.input.border-error-300 {
+    border-color: #fca5a5;
+    background-color: #fef2f2;
+}
+
+.input.border-error-300:focus {
+    border-color: #ef4444;
+    ring-color: #ef4444;
+}
+
+/* Character counter styling */
+.text-xs.text-muted-foreground {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Textarea specific styles */
+textarea.input {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.5;
+}
+
+textarea.input::placeholder {
+    line-height: 1.5;
+}
+
+/* Button disabled states */
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Preview section styling */
+.whitespace-pre-wrap {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Guidelines section improvements */
+.bg-blue-50 {
+    background-color: #eff6ff;
+}
+
+.border-blue-200 {
+    border-color: #bfdbfe;
+}
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.text-blue-800 {
+    color: #1e40af;
+}
+
+.text-blue-900 {
+    color: #1e3a8a;
+}
+
+/* Responsive form layout */
+@media (max-width: 640px) {
+    .card-content {
+        padding: 1rem;
+    }
+
+    .container.max-w-4xl {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Form validation styling */
+.ng-touched.ng-invalid:not(.ng-pending) {
+    border-color: #f87171;
+}
+
+.ng-touched.ng-valid:not(.ng-pending) {
+    border-color: #10b981;
+}
+
+/* Focus states */
+.input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Smooth transitions */
+* {
+    transition-property:
+        color, background-color, border-color, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

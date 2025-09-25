@@ -17,11 +17,15 @@ export interface ApplicationUserDto {
 }
 
 export interface PageDto {
-    id?: number
+    id: number
     title: string
     description?: string | null
-    createdAt?: string
+    imageUrl?: string | null // Added for file/image support
+    createdAt: Date
     createdById?: string | null
+    createdBy?: ApplicationUserDto
+    likesCount: number
+    isLikedByCurrentUser: boolean
 }
 
 export interface FriendshipDto {

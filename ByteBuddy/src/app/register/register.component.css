@@ -5,61 +5,61 @@
     align-items: center;
     background-color: #f5f5f5;
     padding: 2rem;
-  }
-  
-  .register-card {
+}
+
+.register-card {
     max-width: 600px;
     width: 100%;
     padding: 2rem;
-    
-    mat-card-header {
-      justify-content: center;
-      margin-bottom: 2rem;
-      
-      mat-card-title {
-        font-size: 2rem;
-        font-weight: 500;
-      }
+
+    :is(mat-card-header) {
+        justify-content: center;
+        margin-bottom: 2rem;
+
+        :is(mat-card-title) {
+            font-size: 2rem;
+            font-weight: 500;
+        }
     }
-  }
-  
-  .register-form {
+}
+
+.register-form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-  
+
     .form-row {
-      display: flex;
-      gap: 1rem;
-      
-      mat-form-field {
-        flex: 1;
-      }
+        display: flex;
+        gap: 1rem;
+
+        :is(mat-form-field) {
+            flex: 1;
+        }
     }
-  
-    mat-form-field {
-      width: 100%;
+
+    :is(mat-form-field) {
+        width: 100%;
     }
-  }
-  
-  .submit-button {
+}
+
+.submit-button {
     margin-top: 1rem;
     height: 48px;
     font-size: 1.1rem;
-  }
-  
-  .login-link {
+}
+
+.login-link {
     margin-top: 1rem;
     text-align: center;
-  }
-  
-  @media (max-width: 600px) {
+}
+
+@media (max-width: 600px) {
     .register-card {
-      padding: 1rem;
+        padding: 1rem;
     }
-  
+
     .form-row {
-      flex-direction: column;
-      gap: 0;
+        flex-direction: column;
+        gap: 0;
     }
-  }
+}

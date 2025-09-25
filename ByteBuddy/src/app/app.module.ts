@@ -53,6 +53,10 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs'
 import { CreateSnippetComponent } from './create-snippet/create-snippet.component'
 import { CommentComponent } from './comment/comment.component'
 import { ProfileComponent } from './profile/profile.component'
+import { PagesComponent } from './pages/pages.component'
+import { PageCardComponent } from './page-card/page-card.component'
+import { CreateEditPageComponent } from './create-edit-page/create-edit-page.component'
+import { PageDetailComponent } from './page-detail/page-detail.component'
 
 @NgModule({
     declarations: [
@@ -70,6 +74,10 @@ import { ProfileComponent } from './profile/profile.component'
         CreateSnippetComponent,
         CommentComponent,
         ProfileComponent,
+        PagesComponent,
+        PageCardComponent,
+        CreateEditPageComponent,
+        PageDetailComponent,
     ],
     imports: [
         BrowserModule,

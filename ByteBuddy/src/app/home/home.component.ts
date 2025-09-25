@@ -90,27 +90,50 @@ export class HomeComponent implements OnInit {
     }
 
     searchSnippets() {
-        if (!this.selectedTag) {
-            this.error = 'Please select a tag.'
+        // Check if at least one search criteria is provided
+        if (!this.selectedTag && !this.createdById.trim()) {
+            this.error = 'Please select a tag or enter a username.'
             return
         }
 
         // Encode all query parameters
         const encodedSearchTerm = encodeURIComponent(this.searchTerm)
-        const encodedCreatedById = encodeURIComponent(this.createdById)
-        const encodedSelectedTag = encodeURIComponent(this.selectedTag)
+        const encodedCreatedBy = encodeURIComponent(this.createdById)
         const encodedSortBy = encodeURIComponent(this.sortBy)
 
-        // Construct the URL based on the selected search type
-        const tagParam =
-            this.searchType === 'language'
-                ? 'ProgrammingLanguage'
-                : 'ProgrammingArea'
-        const url = `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets/bytag/${encodedSelectedTag}?SearchTerm=${encodedSearchTerm}&${tagParam}=${encodedSelectedTag}&CreatedById=${encodedCreatedById}&SortBy=${encodedSortBy}&Page=1&PageSize=10`
+        let url: string
+        let queryParams: string[] = []
+
+        // Add common query parameters
+        if (this.searchTerm.trim()) {
+            queryParams.push(`SearchTerm=${encodedSearchTerm}`)
+        }
+        if (this.createdById.trim()) {
+            queryParams.push(`UserName=${encodedCreatedBy}`)
+        }
+        queryParams.push(`SortBy=${encodedSortBy}`)
+        queryParams.push('Page=1')
+        queryParams.push('PageSize=10')
+
+        if (this.selectedTag) {
+            // Use the specific tag-based endpoint
+            const encodedSelectedTag = encodeURIComponent(this.selectedTag)
+            const tagParam =
+                this.searchType === 'language'
+                    ? 'ProgrammingLanguage'
+                    : 'ProgrammingArea'
+            queryParams.push(`${tagParam}=${encodedSelectedTag}`)
+
+            url = `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets/bytag/${encodedSelectedTag}?${queryParams.join('&')}`
+        } else {
+            // Use the general search endpoint
+            url = `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets?${queryParams.join('&')}`
+        }
 
         this.http.get<PagedResponse<CodeSnippet>>(url).subscribe({
             next: (response) => {
-                this.codeSnippets = response.items
+                this.codeSnippets = response.items || []
+                this.error = '' // Clear any previous errors
             },
             error: (err) => {
                 this.error = 'Failed to search code snippets. Please try again.'

@@ -1,38 +1,51 @@
 <app-page>
     <div
         class="container py-8"
-        [class.h-full]="codeSnippets.length === 0"
-        [class.flex]="codeSnippets.length === 0"
-        [class.flex-col]="codeSnippets.length === 0"
-        [class.justify-center]="codeSnippets.length === 0"
-        [class.items-center]="codeSnippets.length === 0"
+        [class.h-full]="pages.length === 0"
+        [class.flex]="pages.length === 0"
+        [class.flex-col]="pages.length === 0"
+        [class.justify-center]="pages.length === 0"
+        [class.items-center]="pages.length === 0"
     >
+        <!-- Loading State -->
+        <div *ngIf="isLoading" class="flex justify-center py-20">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Error State -->
+        <div *ngIf="error && !isLoading" class="card mb-6 border-error-300">
+            <div class="card-content text-error-600">
+                {{ error }}
+            </div>
+        </div>
+
         <!-- Header Section -->
         <div
             class="text-center flex flex-col items-center"
-            [class.mb-12]="codeSnippets.length > 0"
-            [class.mb-8]="codeSnippets.length === 0"
+            [class.mb-12]="pages.length > 0"
+            [class.mb-8]="pages.length === 0"
+            *ngIf="!isLoading"
         >
             <h1 class="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                Discover Amazing
+                Explore
                 <span
                     class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
                 >
-                    Code Snippets
+                    Community Pages
                 </span>
             </h1>
             <p
                 class="text-xl text-muted-foreground max-w-2xl mx-auto text-center"
             >
-                Explore, share, and collaborate on code snippets from developers
-                around the world. Find solutions, share knowledge, and build
-                amazing things together.
+                Discover curated content, tutorials, and insights shared by
+                developers from around the world. Share your own knowledge and
+                connect with the community.
             </p>
         </div>
 
         <!-- Action Bar -->
         <div
-            *ngIf="codeSnippets.length > 0 || isSearchSectionVisible"
+            *ngIf="(pages.length > 0 || isSearchSectionVisible) && !isLoading"
             class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8"
         >
             <div class="flex items-center space-x-4">
@@ -56,90 +69,69 @@
                     {{
                         isSearchSectionVisible
                             ? 'Hide Search'
-                            : 'Advanced Search'
+                            : 'Search & Filter'
                     }}
                 </button>
 
                 <div class="text-sm text-muted-foreground">
-                    {{ codeSnippets.length }} snippet{{
-                        codeSnippets.length !== 1 ? 's' : ''
-                    }}
+                    {{ totalCount }} page{{ totalCount !== 1 ? 's' : '' }}
                     found
                 </div>
             </div>
 
-            <app-create-snippet
-                (snippetCreated)="onSnippetCreated()"
-            ></app-create-snippet>
+            <button
+                *ngIf="isAuthenticated()"
+                (click)="onCreatePage()"
+                class="btn-primary btn-md"
+            >
+                <svg
+                    class="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4v16m8-8H4"
+                    ></path>
+                </svg>
+                Create Page
+            </button>
         </div>
 
-        <!-- Advanced Search Section -->
+        <!-- Search Section -->
         <div
-            *ngIf="isSearchSectionVisible"
+            *ngIf="isSearchSectionVisible && !isLoading"
             class="card mb-8 animate-slide-down"
         >
             <div class="card-header">
-                <h3 class="card-title">Advanced Search</h3>
+                <h3 class="card-title">Search & Filter Pages</h3>
                 <p class="card-description">
-                    Find exactly what you're looking for with powerful search
-                    filters. Search by username only or combine with other
-                    filters.
+                    Find pages by title, description, or author. Use filters to
+                    narrow down your search.
                 </p>
             </div>
 
             <div class="card-content">
                 <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                 >
-                    <!-- Search Type -->
-                    <div class="space-y-3">
-                        <label class="text-sm font-medium text-foreground"
-                            >Search Type</label
-                        >
-                        <div class="space-y-2">
-                            <label
-                                class="flex items-center space-x-2 cursor-pointer"
-                            >
-                                <input
-                                    type="radio"
-                                    name="searchType"
-                                    [(ngModel)]="searchType"
-                                    value="language"
-                                    class="text-primary-600 focus:ring-primary-500"
-                                />
-                                <span class="text-sm text-muted-foreground"
-                                    >Programming Language</span
-                                >
-                            </label>
-                            <label
-                                class="flex items-center space-x-2 cursor-pointer"
-                            >
-                                <input
-                                    type="radio"
-                                    name="searchType"
-                                    [(ngModel)]="searchType"
-                                    value="area"
-                                    class="text-primary-600 focus:ring-primary-500"
-                                />
-                                <span class="text-sm text-muted-foreground"
-                                    >Programming Area</span
-                                >
-                            </label>
-                        </div>
-                    </div>
-
                     <!-- Search Term -->
                     <div class="space-y-2">
                         <label
                             for="searchTerm"
                             class="text-sm font-medium text-foreground"
-                            >Search Term</label
                         >
+                            Search
+                        </label>
                         <input
                             id="searchTerm"
                             [(ngModel)]="searchTerm"
-                            placeholder="Enter keywords..."
+                            placeholder="Search title or description..."
                             class="input"
+                            (keyup.enter)="searchPages()"
                         />
                     </div>
 
@@ -148,54 +140,16 @@
                         <label
                             for="createdById"
                             class="text-sm font-medium text-foreground"
-                            >Created By (Username)</label
                         >
+                            Author
+                        </label>
                         <input
                             id="createdById"
                             [(ngModel)]="createdById"
                             placeholder="Enter username..."
                             class="input"
+                            (keyup.enter)="searchPages()"
                         />
-                    </div>
-
-                    <!-- Language/Area Dropdown -->
-                    <div class="space-y-2">
-                        <label class="text-sm font-medium text-foreground">
-                            {{
-                                searchType === 'language'
-                                    ? 'Programming Language'
-                                    : 'Programming Area'
-                            }}
-                        </label>
-                        <select [(ngModel)]="selectedTag" class="input">
-                            <option value="">
-                                All
-                                {{
-                                    searchType === 'language'
-                                        ? 'Languages'
-                                        : 'Areas'
-                                }}
-                                (Optional)
-                            </option>
-                            <option
-                                *ngFor="
-                                    let tag of searchType === 'language'
-                                        ? distinctLanguages
-                                        : distinctAreas
-                                "
-                                [value]="
-                                    searchType === 'language'
-                                        ? tag.name
-                                        : tag.area
-                                "
-                            >
-                                {{
-                                    searchType === 'language'
-                                        ? tag.name
-                                        : tag.area
-                                }}
-                            </option>
-                        </select>
                     </div>
 
                     <!-- Sort By -->
@@ -203,20 +157,21 @@
                         <label
                             for="sortBy"
                             class="text-sm font-medium text-foreground"
-                            >Sort By</label
                         >
+                            Sort By
+                        </label>
                         <select id="sortBy" [(ngModel)]="sortBy" class="input">
+                            <option value="latest">Latest</option>
                             <option value="title">Title</option>
-                            <option value="createdAt">Date Created</option>
-                            <option value="likesCount">Most Liked</option>
+                            <option value="oldest">Oldest</option>
                         </select>
                     </div>
 
                     <!-- Action Buttons -->
                     <div class="flex items-end space-x-2">
                         <button
-                            (click)="searchSnippets()"
-                            class="btn-primary btn-md"
+                            (click)="searchPages()"
+                            class="btn-primary btn-md flex-1"
                         >
                             <svg
                                 class="w-4 h-4 mr-2"
@@ -234,8 +189,8 @@
                             Search
                         </button>
                         <button
-                            (click)="cancelSearch()"
-                            class="btn-secondary btn-md"
+                            (click)="clearSearch()"
+                            class="btn-secondary btn-md flex-1"
                         >
                             <svg
                                 class="w-4 h-4 mr-2"
@@ -257,34 +212,95 @@
             </div>
         </div>
 
-        <!-- Code Snippets Grid -->
-        <div class="space-y-6" *ngIf="codeSnippets.length > 0">
-            <div
-                *ngFor="let snippet of codeSnippets; trackBy: trackBySnippetId"
-                class="animate-fade-in"
-            >
-                <app-code-snippet
-                    [id]="snippet.id.toString()"
-                    [title]="snippet.title"
-                    [codeContent]="snippet.codeContent"
-                    [description]="snippet.description"
-                    [programmingLanguage]="snippet.programmingLanguage"
-                    [fileUrl]="snippet.fileUrl"
-                    [createdAt]="getFormattedDate(snippet.createdAt)"
-                    [createdBy]="snippet.createdBy.userName"
-                    [tags]="snippet.tags"
-                    [likesCount]="snippet.likesCount"
-                    [likedByUsers]="snippet.likedByUsers"
-                    [commentsCount]="snippet.commentsCount"
-                    (snippetDeleted)="onSnippetDeleted($event)"
-                    (snippetChanged)="onSnippetCreated()"
+        <!-- Pages Grid -->
+        <div class="space-y-6" *ngIf="pages.length > 0 && !isLoading">
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <div
+                    *ngFor="let page of pages; trackBy: trackByPageId"
+                    class="animate-fade-in"
                 >
-                </app-code-snippet>
+                    <app-page-card
+                        [page]="page"
+                        [showActions]="true"
+                        [showAuthor]="true"
+                        (pageDeleted)="onPageDeleted($event)"
+                        (pageLiked)="onPageLiked($event)"
+                        (pageUpdated)="onPageUpdated($event)"
+                    ></app-page-card>
+                </div>
             </div>
         </div>
 
+        <!-- Pagination -->
+        <div
+            *ngIf="totalPages > 1 && !isLoading"
+            class="flex justify-center items-center space-x-2 mt-8"
+        >
+            <!-- Previous Button -->
+            <button
+                (click)="goToPreviousPage()"
+                [disabled]="currentPage === 1"
+                class="btn-outline btn-sm"
+                [class.opacity-50]="currentPage === 1"
+                [class.cursor-not-allowed]="currentPage === 1"
+            >
+                <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"
+                    ></path>
+                </svg>
+            </button>
+
+            <!-- Page Numbers -->
+            <div class="flex space-x-1">
+                <button
+                    *ngFor="let pageNum of getPageNumbers()"
+                    (click)="goToPage(pageNum)"
+                    class="btn-outline btn-sm min-w-10"
+                    [class.btn-primary]="pageNum === currentPage"
+                    [class.btn-outline]="pageNum !== currentPage"
+                >
+                    {{ pageNum }}
+                </button>
+            </div>
+
+            <!-- Next Button -->
+            <button
+                (click)="goToNextPage()"
+                [disabled]="currentPage === totalPages"
+                class="btn-outline btn-sm"
+                [class.opacity-50]="currentPage === totalPages"
+                [class.cursor-not-allowed]="currentPage === totalPages"
+            >
+                <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                    ></path>
+                </svg>
+            </button>
+        </div>
+
         <!-- Empty State -->
-        <div *ngIf="codeSnippets.length === 0" class="text-center">
+        <div
+            *ngIf="pages.length === 0 && !isLoading && !error"
+            class="text-center"
+        >
             <div
                 class="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6"
             >
@@ -298,20 +314,19 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     ></path>
                 </svg>
             </div>
             <h3 class="text-2xl font-semibold text-foreground mb-2">
-                No snippets found
+                No pages found
             </h3>
             <p class="text-muted-foreground mb-6 max-w-md mx-auto text-center">
-                We couldn't find any code snippets matching your criteria. Try
-                adjusting your search filters or create a new snippet to get
-                started.
+                We couldn't find any pages matching your criteria. Try adjusting
+                your search filters or be the first to create a page.
             </p>
             <div class="flex gap-4 justify-center">
-                <button (click)="cancelSearch()" class="btn-primary btn-md">
+                <button (click)="clearSearch()" class="btn-primary btn-md">
                     <svg
                         class="w-4 h-4 mr-2"
                         fill="none"
@@ -325,10 +340,11 @@
                             d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                         ></path>
                     </svg>
-                    Reset Filters
+                    Show All Pages
                 </button>
                 <button
-                    (click)="toggleSearchSection()"
+                    *ngIf="isAuthenticated()"
+                    (click)="onCreatePage()"
                     class="btn-outline btn-md"
                 >
                     <svg
@@ -341,10 +357,10 @@
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            d="M12 4v16m8-8H4"
                         ></path>
                     </svg>
-                    Advanced Search
+                    Create First Page
                 </button>
             </div>
         </div>

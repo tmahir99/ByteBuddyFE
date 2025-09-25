@@ -155,7 +155,41 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     onSearchFocus(): void {
-        if (this.searchResults.length > 0) {
+        // Trigger search when user clicks on search input
+        if (this.searchQuery.trim().length === 0) {
+            // If no search query, fetch all usernames to show initial results
+            this.isSearching = true
+            this.profileService
+                .getAllUserNames()
+                .pipe(takeUntil(this.destroy$))
+                .subscribe({
+                    next: (usernames) => {
+                        // Show first 10 usernames as basic results
+                        this.searchResults = usernames
+                            .slice(0, 10)
+                            .map((username) => ({
+                                id: undefined,
+                                userName: username,
+                                firstName: undefined,
+                                lastName: undefined,
+                                email: undefined,
+                                dateOfBirth: undefined,
+                                gender: undefined,
+                                birthPlace: undefined,
+                                address: undefined,
+                                roles: [],
+                                fullName: username,
+                            }))
+                        this.isSearching = false
+                        this.showSearchResults = true
+                    },
+                    error: () => {
+                        this.isSearching = false
+                        this.searchResults = []
+                        this.showSearchResults = false
+                    },
+                })
+        } else if (this.searchResults.length > 0) {
             this.showSearchResults = true
         }
     }
@@ -171,7 +205,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.showSearchResults = false
         this.searchQuery = ''
         this.searchResults = []
-        this.goToProfile(user.id || user.userName)
+
+        // If we have a full user object with details, use id, otherwise use userName
+        const identifier = user.id || user.userName
+        this.goToProfile(identifier)
     }
 
     getUserDisplayName(user: ApplicationUserDto): string {

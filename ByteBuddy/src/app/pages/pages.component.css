@@ -1,0 +1,101 @@
+/* Custom animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+}
+
+.animate-slide-down {
+    animation: slide-down 0.2s ease-out;
+}
+
+/* Loading spinner */
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Grid responsive improvements */
+@media (max-width: 768px) {
+    .grid.gap-6.md\\:grid-cols-2.lg\\:grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .grid.gap-6.md\\:grid-cols-2.lg\\:grid-cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Pagination button improvements */
+.btn-sm.min-w-10 {
+    min-width: 2.5rem;
+    justify-content: center;
+}
+
+/* Search section improvements */
+.card-content .grid {
+    align-items: end;
+}
+
+/* Smooth transitions */
+* {
+    transition-property:
+        color, background-color, border-color, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button states */
+.btn-outline:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn-outline:disabled:hover {
+    background-color: transparent;
+    border-color: rgb(209 213 219);
+    color: rgb(107 114 128);
+}
+
+/* Empty state improvements */
+.text-center .w-24.h-24 {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+}
