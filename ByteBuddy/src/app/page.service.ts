@@ -149,7 +149,7 @@ export class PageService {
 
     // Get image URL for a page using fileId
     getPageImageUrl(fileId: number): string {
-        return `${this.apiUrl}/file/${fileId}`
+        return `${this.apiUrl}/file/${fileId}?ngrok-skip-browser-warning=true`
     }
 
     // Get the API base URL for use in templates
