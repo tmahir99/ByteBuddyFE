@@ -30,6 +30,13 @@
             </p>
         </div>
 
+        <!-- Create Snippet Button - Always Visible -->
+        <div class="flex justify-center mb-8">
+            <app-create-snippet
+                (snippetCreated)="onSnippetCreated()"
+            ></app-create-snippet>
+        </div>
+
         <!-- Action Bar -->
         <div
             *ngIf="codeSnippets.length > 0 || isSearchSectionVisible"
@@ -67,10 +74,6 @@
                     found
                 </div>
             </div>
-
-            <app-create-snippet
-                (snippetCreated)="onSnippetCreated()"
-            ></app-create-snippet>
         </div>
 
         <!-- Advanced Search Section -->

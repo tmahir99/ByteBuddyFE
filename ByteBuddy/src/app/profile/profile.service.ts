@@ -17,6 +17,8 @@ import {
     ApplicationUserDto,
     FriendshipDto,
     FriendshipStatus,
+    FriendRequestStatusResponse,
+    FriendshipStatusEnum,
     PageDto,
 } from './profile.types'
 
@@ -267,44 +269,40 @@ export class ProfileService {
             return of('friends')
         }
 
-        return forkJoin({
-            friends: this.getFriends(),
-            incomingRequests: this.getIncomingFriendRequests(),
-            outgoingRequests: this.getOutgoingFriendRequests(),
-        }).pipe(
-            map(({ friends, incomingRequests, outgoingRequests }) => {
-                // Check if already friends
-                if (
-                    friends.some(
-                        (friend) =>
-                            friend.addresseeId === userId ||
-                            friend.requesterId === userId
-                    )
-                ) {
-                    return 'friends'
-                }
-
-                // Check if there's an incoming request from this user
-                if (
-                    incomingRequests.some(
-                        (request) => request.requesterId === userId
-                    )
-                ) {
-                    return 'incoming'
-                }
-
-                // Check if there's an outgoing request to this user
-                if (
-                    outgoingRequests.some(
-                        (request) => request.addresseeId === userId
-                    )
-                ) {
-                    return 'outgoing'
-                }
-
-                return 'none'
-            })
-        )
+        // Use the new API endpoint to check friend request status
+        return this.http
+            .get<FriendRequestStatusResponse>(
+                `${this.baseUrl}/api/friendships/request-status/${encodeURIComponent(userId)}`,
+                { headers: this.buildAuthHeaders(), withCredentials: true }
+            )
+            .pipe(
+                map((response): FriendshipStatus => {
+                    // Map the API response status to our FriendshipStatus type
+                    switch (response.status) {
+                        case FriendshipStatusEnum.Accepted: // 1
+                            return 'friends'
+                        case FriendshipStatusEnum.Pending: // 0
+                            // Determine if it's incoming or outgoing based on who is the requester
+                            const currentUserIdOrUsername = currentUserId
+                            if (
+                                response.requesterId === currentUserIdOrUsername
+                            ) {
+                                return 'outgoing' // Current user sent the request
+                            } else {
+                                return 'incoming' // Other user sent the request
+                            }
+                        case FriendshipStatusEnum.Declined: // 2
+                        case FriendshipStatusEnum.Blocked: // 3
+                        default:
+                            return 'none'
+                    }
+                }),
+                catchError((error) => {
+                    // If the API call fails (e.g., 404 for NotFound), return 'none'
+                    console.log('Friend request status check failed:', error)
+                    return of<FriendshipStatus>('none')
+                })
+            )
     }
 
     private getFriends(): Observable<FriendshipDto[]> {

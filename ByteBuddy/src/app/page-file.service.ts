@@ -3,123 +3,76 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { FileUploadResponseDto } from './page.types'
 import { AuthService } from './auth.service'
+import { FileUploadService } from './file-upload.service'
 
 @Injectable({
     providedIn: 'root',
 })
 export class PageFileService {
-    private readonly apiUrl = 'https://5d3a83e6fb53.ngrok-free.app/api'
-    private readonly fileEndpoint = `${this.apiUrl}/File`
-
     constructor(
         private http: HttpClient,
-        private authService: AuthService
+        private authService: AuthService,
+        private fileUploadService: FileUploadService
     ) {}
 
-    private getAuthHeaders() {
-        const token = this.authService.getToken()
-        const headers: Record<string, string> = {
-            'ngrok-skip-browser-warning': 'true',
-        }
-
-        if (token) {
-            headers['Authorization'] = `Bearer ${token}`
-        }
-
-        return headers
+    /**
+     * Upload an image file independently
+     * Returns fileId that can be associated with a page later
+     */
+    uploadPageImage(file: File): Observable<FileUploadResponseDto> {
+        // Delegate to the new FileUploadService for independent file upload
+        return this.fileUploadService.uploadFile(file)
     }
 
     /**
-     * Upload an image file for a page
-     * Uses the page ID as the "codeSnippetId" parameter to work with existing API
+     * Delete a file by file ID
      */
-    uploadPageImage(
-        pageId: number,
-        file: File
-    ): Observable<FileUploadResponseDto> {
-        const formData = new FormData()
-        formData.append('file', file, file.name)
-        formData.append('codeSnippetId', pageId.toString()) // Use pageId as codeSnippetId
-
-        return this.http.post<FileUploadResponseDto>(
-            `${this.fileEndpoint}/upload`,
-            formData,
-            {
-                headers: this.getAuthHeaders(),
-                withCredentials: true,
-            }
-        )
+    deleteFile(fileId: number): Observable<any> {
+        // Delegate to the new FileUploadService
+        return this.fileUploadService.deleteFile(fileId)
     }
 
     /**
-     * Delete an image file for a page
-     * Uses the page ID as the "codeSnippetId" parameter to work with existing API
+     * Get file information by file ID
      */
-    deletePageImage(pageId: number): Observable<FileUploadResponseDto> {
-        return this.http.delete<FileUploadResponseDto>(
-            `${this.fileEndpoint}/delete/${pageId}`,
-            {
-                headers: this.getAuthHeaders(),
-                withCredentials: true,
-            }
-        )
+    getFileInfo(fileId: number): Observable<any> {
+        // Delegate to the new FileUploadService
+        return this.fileUploadService.getFileInfo(fileId)
     }
 
     /**
-     * Get file information for a page
-     * Uses the page ID as the "codeSnippetId" parameter to work with existing API
+     * Download a file by file ID
      */
-    getPageFileInfo(pageId: number): Observable<any> {
-        return this.http.get(`${this.fileEndpoint}/info/${pageId}`, {
-            headers: this.getAuthHeaders(),
-            withCredentials: true,
-        })
-    }
-
-    /**
-     * Download a file for a page
-     * Uses the page ID as the "codeSnippetId" parameter to work with existing API
-     */
-    downloadPageFile(pageId: number): Observable<Blob> {
-        return this.http.get(`${this.fileEndpoint}/download/${pageId}`, {
-            headers: this.getAuthHeaders(),
-            withCredentials: true,
-            responseType: 'blob',
-        })
+    downloadFile(fileId: number): Observable<Blob> {
+        // Delegate to the new FileUploadService
+        return this.fileUploadService.downloadFile(fileId)
     }
 
     /**
      * Check if a file type is an image
      */
     isImageFile(file: File): boolean {
-        return file.type.startsWith('image/')
+        return this.fileUploadService.isImageFile(file)
     }
 
     /**
      * Check if file size is within limits (e.g., 5MB)
      */
     isValidFileSize(file: File, maxSizeMB: number = 5): boolean {
-        const maxSizeBytes = maxSizeMB * 1024 * 1024
-        return file.size <= maxSizeBytes
+        return this.fileUploadService.isValidFileSize(file, maxSizeMB)
     }
 
     /**
      * Get allowed image file types
      */
     getAllowedImageTypes(): string[] {
-        return [
-            'image/jpeg',
-            'image/jpg',
-            'image/png',
-            'image/gif',
-            'image/webp',
-        ]
+        return this.fileUploadService.getAllowedImageTypes()
     }
 
     /**
      * Validate if the uploaded file is an allowed image type
      */
     isAllowedImageType(file: File): boolean {
-        return this.getAllowedImageTypes().includes(file.type.toLowerCase())
+        return this.fileUploadService.isAllowedImageType(file)
     }
 }

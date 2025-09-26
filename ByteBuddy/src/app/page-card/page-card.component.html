@@ -37,14 +37,16 @@
         </div>
 
         <!-- Page Image -->
-        <div *ngIf="page.imageUrl" class="cursor-pointer" (click)="onViewPage()">
-            <img
-                [src]="page.imageUrl"
-                [alt]="page.title"
-                class="w-full h-48 object-cover rounded-lg border border-border hover:opacity-95 transition-opacity"
-                loading="lazy"
-                (error)="onImageError($event)"
-            />
+        <div *ngIf="hasPageImage()" class="cursor-pointer" (click)="onViewPage()">
+            <div class="relative overflow-hidden rounded-lg bg-muted/20 border border-border">
+                <img
+                    [src]="getPageImageUrl()"
+                    [alt]="page.title + ' image'"
+                    class="w-full h-48 object-cover hover:opacity-95 transition-opacity"
+                    loading="lazy"
+                    (error)="onImageError($event)"
+                />
+            </div>
         </div>
 
         <!-- Page Description -->

@@ -146,4 +146,14 @@ export class PageService {
     isAuthenticated(): boolean {
         return this.authService.isLoggedIn()
     }
+
+    // Get image URL for a page using fileId
+    getPageImageUrl(fileId: number): string {
+        return `${this.apiUrl}/file/${fileId}`
+    }
+
+    // Get the API base URL for use in templates
+    getApiBaseUrl(): string {
+        return this.apiUrl
+    }
 }

@@ -167,15 +167,23 @@
                 <section class="space-y-8">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Code Snippets</h3>
-                            <p class="card-description">
-                                {{
-                                    isCurrentUser
-                                        ? 'Your'
-                                        : ((user.firstName || user.userName) + "'s")
-                                }}
-                                recent snippets
-                            </p>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="card-title">Code Snippets</h3>
+                                    <p class="card-description">
+                                        {{
+                                            isCurrentUser
+                                                ? 'Your'
+                                                : ((user.firstName || user.userName) + "'s")
+                                        }}
+                                        recent snippets
+                                    </p>
+                                </div>
+                                <app-create-snippet
+                                    *ngIf="isCurrentUser"
+                                    (snippetCreated)="onSnippetCreated()"
+                                ></app-create-snippet>
+                            </div>
                         </div>
 
                         <div class="card-content space-y-6" *ngIf="snippets.length; else emptySnippets">

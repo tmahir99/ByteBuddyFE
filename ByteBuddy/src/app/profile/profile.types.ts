@@ -37,4 +37,22 @@ export interface FriendshipDto {
     createdAt?: string
 }
 
+// Response from the new friend request status API endpoint
+export interface FriendRequestStatusResponse {
+    requesterId?: string
+    requesterName?: string
+    addresseeId?: string
+    addresseeName?: string
+    status: 0 | 1 | 2 | 3 // 0=Pending, 1=Accepted, 2=Declined, 3=Blocked
+    createdAt?: string
+}
+
+// Enum for friendship status values from backend
+export enum FriendshipStatusEnum {
+    Pending = 0,
+    Accepted = 1,
+    Declined = 2,
+    Blocked = 3
+}
+
 export type FriendshipStatus = 'none' | 'friends' | 'incoming' | 'outgoing'

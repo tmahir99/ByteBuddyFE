@@ -239,4 +239,26 @@ export class PageDetailComponent implements OnInit {
         img.style.display = 'none' // Hide broken image
         console.warn('Failed to load page image:', img.src)
     }
+
+    // Get the image URL for the current page
+    getPageImageUrl(): string | null {
+        if (!this.page) return null
+        
+        // Use fileId if available (new approach)
+        if (this.page.fileId) {
+            return this.pageService.getPageImageUrl(this.page.fileId)
+        }
+        
+        // Fallback to imageUrl if available (legacy support)
+        if (this.page.imageUrl) {
+            return this.page.imageUrl
+        }
+        
+        return null
+    }
+
+    // Check if page has an image to display
+    hasPageImage(): boolean {
+        return !!(this.page?.fileId || this.page?.imageUrl)
+    }
 }

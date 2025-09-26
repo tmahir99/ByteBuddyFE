@@ -216,4 +216,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.pages[index] = updatedPage
         }
     }
+
+    // Code snippet event handler
+    onSnippetCreated(): void {
+        // Reload the profile to get the updated snippets list
+        this.loadProfile()
+        this.notification.showSuccess('Code snippet created successfully!')
+    }
 }

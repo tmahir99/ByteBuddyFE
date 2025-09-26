@@ -144,16 +144,18 @@
             </div>
 
             <!-- Page Image -->
-            <div *ngIf="page.imageUrl" class="card">
-                <div class="card-content">
-                    <img
-                        [src]="page.imageUrl"
-                        [alt]="page.title"
-                        class="w-full rounded-lg border border-border object-contain"
-                        style="max-height: 500px;"
-                        loading="lazy"
-                        (error)="onImageError($event)"
-                    />
+            <div *ngIf="hasPageImage()" class="card">
+                <div class="card-content p-0">
+                    <div class="relative overflow-hidden rounded-lg bg-muted/20">
+                        <img
+                            [src]="getPageImageUrl()"
+                            [alt]="page.title + ' image'"
+                            class="w-full h-auto object-contain max-h-96 mx-auto block"
+                            style="max-height: 400px;"
+                            loading="lazy"
+                            (error)="onImageError($event)"
+                        />
+                    </div>
                 </div>
             </div>
 

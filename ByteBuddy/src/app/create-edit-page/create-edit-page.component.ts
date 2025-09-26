@@ -23,6 +23,7 @@ export class CreateEditPageComponent implements OnInit {
     selectedFile: File | null = null
     currentImageUrl: string | null = null
     imagePreview: string | null = null
+    uploadedFileId: number | null = null // Store the fileId from upload response
     isUploadingImage = false
     isDeletingImage = false
     maxImageSizeMB = 5
@@ -286,11 +287,12 @@ export class CreateEditPageComponent implements OnInit {
         this.isUploadingImage = true
 
         this.pageFileService
-            .uploadPageImage(this.pageId, this.selectedFile)
+            .uploadPageImage(this.selectedFile)
             .subscribe({
                 next: (response) => {
-                    if (response.isSucceed && response.fileUrl) {
+                    if (response.isSucceed && response.fileUrl && response.fileId) {
                         this.currentImageUrl = response.fileUrl
+                        this.uploadedFileId = response.fileId // Store the fileId for later use
                         this.notificationService.showSuccess(
                             'Image uploaded successfully'
                         )
@@ -315,8 +317,8 @@ export class CreateEditPageComponent implements OnInit {
 
         this.isDeletingImage = true
 
-        this.pageFileService.deletePageImage(this.pageId).subscribe({
-            next: (response) => {
+        this.pageFileService.deleteFile(this.pageId).subscribe({
+            next: (response: any) => {
                 if (response.isSucceed) {
                     this.currentImageUrl = null
                     this.notificationService.showSuccess(
@@ -329,7 +331,7 @@ export class CreateEditPageComponent implements OnInit {
                 }
                 this.isDeletingImage = false
             },
-            error: (error) => {
+            error: (error: any) => {
                 console.error('Error deleting image:', error)
                 this.notificationService.showError('Failed to delete image')
                 this.isDeletingImage = false
@@ -363,95 +365,78 @@ export class CreateEditPageComponent implements OnInit {
 
         this.isSubmitting = true
 
-        const createData: CreatePageDto = {
-            title: formValue.title,
-            description: formValue.description || undefined,
-            createdById: currentUserId,
-        }
+        // NEW WORKFLOW: Upload file first, then create page with fileId
+        if (this.selectedFile) {
+            this.isUploadingImage = true
+            this.pageFileService
+                .uploadPageImage(this.selectedFile)
+                .subscribe({
+                    next: (uploadResponse) => {
+                        if (uploadResponse.isSucceed && uploadResponse.fileId) {
+                            // Create page with fileId included in payload
+                            const createData: CreatePageDto = {
+                                title: formValue.title,
+                                description: formValue.description || undefined,
+                                createdById: currentUserId,
+                                fileId: uploadResponse.fileId // Include fileId in creation payload
+                            }
 
-        this.pageService.createPage(createData).subscribe({
-            next: (createdPage) => {
-                // Now upload the image
-                if (this.selectedFile) {
-                    this.isUploadingImage = true
-                    this.pageFileService
-                        .uploadPageImage(createdPage.id, this.selectedFile)
-                        .subscribe({
-                            next: (uploadResponse) => {
-                                if (
-                                    uploadResponse.isSucceed &&
-                                    uploadResponse.fileUrl
-                                ) {
-                                    // Update the page with the image URL
-                                    const updateData: UpdatePageDto = {
-                                        title: createData.title,
-                                        description: createData.description,
-                                        createdById: currentUserId,
-                                        imageUrl: uploadResponse.fileUrl,
-                                    }
-
-                                    this.pageService
-                                        .updatePage(createdPage.id, updateData)
-                                        .subscribe({
-                                            next: () => {
-                                                this.notificationService.showSuccess(
-                                                    'Page created with image successfully'
-                                                )
-                                                this.router.navigate([
-                                                    '/pages',
-                                                    createdPage.id,
-                                                ])
-                                            },
-                                            error: (error) => {
-                                                console.error(
-                                                    'Error updating page with image URL:',
-                                                    error
-                                                )
-                                                this.notificationService.showWarning(
-                                                    'Page created but failed to save image URL'
-                                                )
-                                                this.router.navigate([
-                                                    '/pages',
-                                                    createdPage.id,
-                                                ])
-                                            },
-                                        })
-                                } else {
-                                    this.notificationService.showWarning(
-                                        'Page created but image upload failed'
+                            this.pageService.createPage(createData).subscribe({
+                                next: (createdPage) => {
+                                    this.notificationService.showSuccess(
+                                        'Page created with image successfully'
                                     )
-                                    this.router.navigate([
-                                        '/pages',
-                                        createdPage.id,
-                                    ])
+                                    this.router.navigate(['/pages', createdPage.id])
+                                    this.isSubmitting = false
+                                    this.isUploadingImage = false
+                                },
+                                error: (error) => {
+                                    console.error('Error creating page:', error)
+                                    this.notificationService.showError(
+                                        'Failed to create page'
+                                    )
+                                    this.isSubmitting = false
+                                    this.isUploadingImage = false
                                 }
-                                this.isUploadingImage = false
-                                this.isSubmitting = false
-                            },
-                            error: (error) => {
-                                console.error('Error uploading image:', error)
-                                this.notificationService.showWarning(
-                                    'Page created but image upload failed'
-                                )
-                                this.router.navigate(['/pages', createdPage.id])
-                                this.isUploadingImage = false
-                                this.isSubmitting = false
-                            },
-                        })
-                } else {
+                            })
+                        } else {
+                            this.notificationService.showError(
+                                'Failed to upload image'
+                            )
+                            this.isSubmitting = false
+                            this.isUploadingImage = false
+                        }
+                    },
+                    error: (error: any) => {
+                        console.error('Error uploading image:', error)
+                        this.notificationService.showError('Failed to upload image')
+                        this.isSubmitting = false
+                        this.isUploadingImage = false
+                    }
+                })
+        } else {
+            // Create page without image
+            const createData: CreatePageDto = {
+                title: formValue.title,
+                description: formValue.description || undefined,
+                createdById: currentUserId,
+            }
+
+            this.pageService.createPage(createData).subscribe({
+                next: (createdPage: any) => {
                     this.notificationService.showSuccess(
                         'Page created successfully'
                     )
                     this.router.navigate(['/pages', createdPage.id])
                     this.isSubmitting = false
+                },
+                error: (error: any) => {
+                    console.error('Error creating page:', error)
+                    this.notificationService.showError('Failed to create page')
+                    this.isSubmitting = false
                 }
-            },
-            error: (error) => {
-                console.error('Error creating page:', error)
-                this.notificationService.showError('Failed to create page')
-                this.isSubmitting = false
-            },
-        })
+            })
+        }
     }
 
     // Helper methods for template

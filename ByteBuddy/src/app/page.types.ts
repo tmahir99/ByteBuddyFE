@@ -17,6 +17,7 @@ export interface PageDto {
     title: string
     description?: string | null
     imageUrl?: string | null // Added for file/image support
+    fileId?: number | null // Added for linking uploaded files
     createdAt: Date
     createdById?: string | null
     createdBy?: ApplicationUserDto
@@ -29,6 +30,7 @@ export interface CreatePageDto {
     description?: string
     createdById: string
     imageUrl?: string // Added for file/image support
+    fileId?: number // Added for linking uploaded files
 }
 
 export interface UpdatePageDto {
@@ -36,6 +38,7 @@ export interface UpdatePageDto {
     description?: string
     createdById: string
     imageUrl?: string // Added for file/image support
+    fileId?: number // Added for linking uploaded files
 }
 
 export interface PageDtoPaginatedResult {
@@ -69,6 +72,7 @@ export interface PageSearchRequest {
 
 // File upload related types for Pages
 export interface FileUploadResponseDto {
+    fileId: number
     isSucceed: boolean
     message?: string
     fileUrl?: string
