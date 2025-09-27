@@ -36,7 +36,7 @@ export class CommentComponent implements OnInit {
             this.http
                 .get<
                     Comment[]
-                >(`https://5d3a83e6fb53.ngrok-free.app/api/SocialInteractions/snippets/${this.snippetID}/comments`, { headers, withCredentials: true })
+                >(` https://7137430cb0f4.ngrok-free.app/api/SocialInteractions/snippets/${this.snippetID}/comments`, { headers, withCredentials: true })
                 .subscribe({
                     next: (response) => {
                         this.comments = response
@@ -71,7 +71,7 @@ export class CommentComponent implements OnInit {
 
             this.http
                 .post<Comment>(
-                    `https://5d3a83e6fb53.ngrok-free.app/api/SocialInteractions/snippets/${this.snippetID}/comments`,
+                    ` https://7137430cb0f4.ngrok-free.app/api/SocialInteractions/snippets/${this.snippetID}/comments`,
                     newCommentObj,
                     { headers, withCredentials: true }
                 )

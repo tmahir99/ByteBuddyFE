@@ -34,7 +34,7 @@ export interface ProfileAggregatedResponse {
     providedIn: 'root',
 })
 export class ProfileService {
-    private readonly baseUrl = 'https://5d3a83e6fb53.ngrok-free.app'
+    private readonly baseUrl = ' https://7137430cb0f4.ngrok-free.app'
     private users$?: Observable<ApplicationUserDto[]>
 
     constructor(

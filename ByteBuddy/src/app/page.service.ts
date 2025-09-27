@@ -16,7 +16,7 @@ import { AuthService } from './auth.service'
     providedIn: 'root',
 })
 export class PageService {
-    private readonly apiUrl = 'https://5d3a83e6fb53.ngrok-free.app/api'
+    private readonly apiUrl = ' https://7137430cb0f4.ngrok-free.app/api'
     private readonly pageEndpoint = `${this.apiUrl}/Page`
 
     constructor(

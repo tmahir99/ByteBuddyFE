@@ -71,7 +71,7 @@ export class CreateSnippetComponent implements OnInit {
 
     loadTags() {
         this.http
-            .get<Tag[]>('https://5d3a83e6fb53.ngrok-free.app/api/Tags')
+            .get<Tag[]>(' https://7137430cb0f4.ngrok-free.app/api/Tags')
             .subscribe({
                 next: (tags) => {
                     this.tags = tags
@@ -142,7 +142,7 @@ export class CreateSnippetComponent implements OnInit {
 
         this.http
             .post(
-                'https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets',
+                ' https://7137430cb0f4.ngrok-free.app/api/CodeSnippets',
                 payload,
                 { headers, withCredentials: true }
             )

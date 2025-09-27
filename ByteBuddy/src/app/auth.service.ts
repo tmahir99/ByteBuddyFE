@@ -7,7 +7,7 @@ import { Router } from '@angular/router'
     providedIn: 'root',
 })
 export class AuthService {
-    private apiUrl = 'https://5d3a83e6fb53.ngrok-free.app/api/Auth'
+    private apiUrl = ' https://7137430cb0f4.ngrok-free.app/api/Auth'
 
     constructor(
         private http: HttpClient,

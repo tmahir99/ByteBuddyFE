@@ -114,7 +114,7 @@ export class CodeSnippetComponent {
             })
             this.http
                 .post(
-                    `https://5d3a83e6fb53.ngrok-free.app/api/SocialInteractions/snippets/${snippetID}/like`,
+                    ` https://7137430cb0f4.ngrok-free.app/api/SocialInteractions/snippets/${snippetID}/like`,
                     null,
                     { headers, withCredentials: true }
                 )
@@ -222,7 +222,7 @@ export class CodeSnippetComponent {
 
         this.http
             .put(
-                `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets/${this.id}`,
+                ` https://7137430cb0f4.ngrok-free.app/api/CodeSnippets/${this.id}`,
                 payload,
                 { headers }
             )
@@ -270,7 +270,7 @@ export class CodeSnippetComponent {
 
         this.http
             .delete(
-                `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets/${this.id}`,
+                ` https://7137430cb0f4.ngrok-free.app/api/CodeSnippets/${this.id}`,
                 { headers }
             )
             .subscribe({

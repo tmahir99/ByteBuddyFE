@@ -18,7 +18,7 @@ export interface FileUploadResponseDto {
     providedIn: 'root',
 })
 export class FileUploadService {
-    private readonly apiUrl = 'https://5d3a83e6fb53.ngrok-free.app/api'
+    private readonly apiUrl = ' https://7137430cb0f4.ngrok-free.app/api'
     private readonly fileEndpoint = `${this.apiUrl}/file`
 
     constructor(

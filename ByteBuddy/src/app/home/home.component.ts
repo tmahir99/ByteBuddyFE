@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
         this.http
             .get<
                 PagedResponse<CodeSnippet>
-            >('https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets')
+            >(' https://7137430cb0f4.ngrok-free.app/api/CodeSnippets')
             .subscribe({
                 next: (response) => {
                     this.codeSnippets = response.items
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
 
     loadTags() {
         this.http
-            .get<Tag[]>('https://5d3a83e6fb53.ngrok-free.app/api/Tags')
+            .get<Tag[]>(' https://7137430cb0f4.ngrok-free.app/api/Tags')
             .subscribe({
                 next: (response) => {
                     this.tags = response
@@ -124,10 +124,10 @@ export class HomeComponent implements OnInit {
                     : 'ProgrammingArea'
             queryParams.push(`${tagParam}=${encodedSelectedTag}`)
 
-            url = `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets/bytag/${encodedSelectedTag}?${queryParams.join('&')}`
+            url = ` https://7137430cb0f4.ngrok-free.app/api/CodeSnippets/bytag/${encodedSelectedTag}?${queryParams.join('&')}`
         } else {
             // Use the general search endpoint
-            url = `https://5d3a83e6fb53.ngrok-free.app/api/CodeSnippets?${queryParams.join('&')}`
+            url = ` https://7137430cb0f4.ngrok-free.app/api/CodeSnippets?${queryParams.join('&')}`
         }
 
         this.http.get<PagedResponse<CodeSnippet>>(url).subscribe({
